@@ -70,8 +70,8 @@
                   "properties": {
                     "breadth": { "type": "number", "minimum": 0, "maximum": 10, "description": "覆盖广度" },
                     "breadthNote": { "type": "string", "description": "广度评语" },
-                    "depth": { "type": "number", "minimum": 0, "maximum": 10, "description": "理解深度" },
-                    "depthNote": { "type": "string", "description": "深度评语" },
+                    "depth": { "type": "number", "minimum": 0, "maximum": 10, "description": "depth of understanding" },
+                    "depthNote": { "type": "string", "description": "depth assessment note" },
                     "application": { "type": "number", "minimum": 0, "maximum": 10, "description": "应用能力" },
                     "applicationNote": { "type": "string", "description": "应用评语" }
                   }
@@ -110,15 +110,15 @@
                       "name": { "type": "string", "description": "知识点名称" },
                       "level": {
                         "type": "string",
-                        "enum": ["深度", "中等", "基础"],
-                        "description": "掌握深度"
+                        "enum": ["advanced", "intermediate", "basic"],
+                        "description": "mastery level"
                       },
                       "docId": { "type": "string", "description": "文档ID，必须在顶层 documents 中存在" },
                       "summary": { "type": "string", "description": "知识点摘要（1-2句话）" },
                       "levelReason": { "type": "string", "description": "评估依据，需引用用户原始数据中的证据" },
                       "improvePriority": {
                         "type": "string",
-                        "enum": ["高", "中", "低"],
+                        "enum": ["high", "medium", "low"],
                         "description": "提升优先级"
                       },
                       "improve": { "type": "string", "description": "具体提升建议" },
@@ -159,7 +159,7 @@
                 },
                 "priority": {
                   "type": "string",
-                  "enum": ["高", "中", "低"]
+                  "enum": ["high", "medium", "low"]
                 },
                 "title": { "type": "string" },
                 "brief": { "type": "string", "description": "简要描述" },

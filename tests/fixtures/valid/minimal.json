@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "userName": "测试用户",
+    "generatedAt": "2024-01-15",
+    "evaluationBasis": "3年开发经验"
+  },
+  "domains": [
+    {
+      "id": "testing",
+      "name": "软件测试",
+      "subtitle": "自动化测试能力评估",
+      "color": "#7c3aed",
+      "icon": "code",
+      "overallScore": 7.5,
+      "benchmark": "3年经验工程师标准",
+      "dimensionInfo": {
+        "intro": "评估覆盖测试的广度、深度和应用能力",
+        "method": "基于对话记录和知识展现进行评估"
+      },
+      "scores": [
+        { "label": "单元测试", "value": 8.0, "factors": { "breadth": 7.5, "depth": 8.0, "application": 8.5 } },
+        { "label": "集成测试", "value": 7.0, "factors": { "breadth": 6.5, "depth": 7.0, "application": 7.5 } },
+        { "label": "E2E测试", "value": 6.5, "factors": { "breadth": 6.0, "depth": 6.5, "application": 7.0 } }
+      ],
+      "expertRoles": ["测试架构师", "质量保证专家", "自动化工程师"],
+      "categories": [
+        {
+          "id": "cat-unit",
+          "name": "单元测试",
+          "icon": "🧪",
+          "items": [
+            {
+              "id": "item-jest",
+              "name": "Jest框架",
+              "level": "深度",
+              "docId": "doc-jest",
+              "summary": "熟练使用Jest进行单元测试",
+              "levelReason": "从对话中展现了对mock、spy等高级功能的熟练使用",
+              "improvePriority": "低",
+              "improve": "可以深入学习Jest的自定义matcher和插件开发",
+              "experts": [
+                { "name": "测试架构师", "opinion": "Jest使用熟练，建议探索snapshot测试" },
+                { "name": "质量保证专家", "opinion": "覆盖率意识好，可加强边界测试" },
+                { "name": "自动化工程师", "opinion": "建议结合CI/CD优化测试执行效率" }
+              ]
+            }
+          ]
+        }
+      ],
+      "gaps": [
+        {
+          "id": "gap-perf",
+          "type": "new",
+          "priority": "中",
+          "title": "性能测试",
+          "brief": "缺乏性能测试经验",
+          "from": null,
+          "experts": [
+            { "name": "测试架构师", "opinion": "建议从JMeter或k6入手" },
+            { "name": "质量保证专家", "opinion": "性能测试是高级质量保证的关键" },
+            { "name": "自动化工程师", "opinion": "可结合CI实现自动性能回归" }
+          ]
+        }
+      ]
+    }
+  ],
+  "documents": {
+    "doc-jest": "<h2>Jest框架知识文档</h2><p>Jest是一个流行的JavaScript测试框架。</p>"
+  }
+}

@@ -1,6 +1,6 @@
 # 🔬 KnowledgeLens（中文版）
 
-> 把你的笔记变成一份交互式知识体检报告
+> 多渠道知识管理、可视化与 AI 辅助学习
 
 ## ✨ 特性
 
@@ -30,9 +30,9 @@ chmod +x install.sh
 | 平台 | 安装位置 | 触发方式 |
 |------|----------|----------|
 | Claude Code | `.claude/commands/knowledgelens.md` | 输入 `/knowledgelens` |
-| Cursor | `.cursor/rules/knowledgelens.mdc` | 说「生成知识体检报告」|
-| Windsurf | `.windsurf/rules/knowledgelens.md` | 说「生成知识体检报告」|
-| GitHub Copilot | `.github/copilot-instructions.md` | 说「生成知识体检报告」|
+| Cursor | `.cursor/rules/knowledgelens.mdc` | 说「运行 KnowledgeLens」|
+| Windsurf | `.windsurf/rules/knowledgelens.md` | 说「运行 KnowledgeLens」|
+| GitHub Copilot | `.github/copilot-instructions.md` | 说「运行 KnowledgeLens」|
 | ChatGPT | `knowledgelens-chatgpt.md` | 粘贴到 Custom Instructions |
 
 支持多选，一次安装到多个平台。
@@ -44,7 +44,7 @@ chmod +x install.sh
 1. **选择知识来源** — 本地文件夹 或 Apple Notes
 2. **确认配置** — 领域划分、评估基准、专家角色
 3. **等待生成** — AI 自动提取知识结构、生成评分和建议
-4. **查看报告** — 浏览器打开生成的 HTML 文件
+4. **查看结果** — 浏览器打开生成的 HTML 文件
 
 ## 📚 支持的知识来源
 
@@ -63,9 +63,9 @@ zh/
 ├── README.md           ← 本文件
 ├── install.sh          ← 一键安装脚本（运行这个即可）
 ├── prompt.md           ← AI 生成流水线指令
-├── template.html       ← 报告 HTML 模板（D3.js 已内嵌）
+├── template.html       ← HTML 模板（D3.js 已内嵌）
 ├── data-schema.json    ← JSON 数据格式约定
-└── demo-report.html    ← 示例报告（浏览器打开查看效果）
+└── demo-report.html    ← 示例效果（浏览器打开预览）
 ```
 
 ## 🎯 查看示例
@@ -75,7 +75,7 @@ zh/
 ## 📐 工作原理
 
 ```
-你的笔记 → AI 分析 → JSON 数据 → 注入模板 → 交互式 HTML 报告
+你的笔记 → AI 分析 → JSON 数据 → 注入模板 → 交互式知识可视化
 ```
 
 - 所有评分基于你的真实笔记内容

@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "userName": "测试用户",
+    "generatedAt": "2024-01-15",
+    "evaluationBasis": "测试"
+  },
+  "domains": [
+    {
+      "id": "test",
+      "name": "测试",
+      "color": "#7c3aed",
+      "icon": "code",
+      "overallScore": 5,
+      "benchmark": "标准",
+      "dimensionInfo": { "intro": "简介", "method": "方法" },
+      "scores": [
+        { "label": "A", "value": 5, "factors": { "breadth": 5, "depth": 5, "application": 5 } },
+        { "label": "B", "value": 5, "factors": { "breadth": 5, "depth": 5, "application": 5 } },
+        { "label": "C", "value": 5, "factors": { "breadth": 5, "depth": 5, "application": 5 } }
+      ],
+      "expertRoles": ["专家A", "专家B", "专家C"],
+      "categories": [
+        {
+          "id": "cat1",
+          "name": "类别",
+          "items": [
+            {
+              "id": "item1",
+              "name": "知识点",
+              "level": "中等",
+              "docId": "doc1",
+              "summary": "摘要</script>alert('xss')",
+              "levelReason": "原因",
+              "improvePriority": "中",
+              "improve": "建议",
+              "experts": [
+                { "name": "专家A", "opinion": "意见" },
+                { "name": "专家B", "opinion": "意见" },
+                { "name": "专家C", "opinion": "意见" }
+              ]
+            }
+          ]
+        }
+      ],
+      "gaps": [],
+      "expertRoles": ["专家A", "专家B", "专家C"]
+    }
+  ],
+  "documents": {
+    "doc1": "<p>内容</p>"
+  }
+}

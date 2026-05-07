@@ -104,13 +104,13 @@ schema/data-schema.json
 Generated JSON must strictly conform to this schema. Key constraints:
 - `additionalProperties: false` — no extra fields allowed
 - `scores` is a `[{label, value, factors:{breadth, breadthNote, depth, depthNote, application, applicationNote}}]` paired array, each dimension must include three sub-factor scores
-- `level` can only be `"深度"` / `"中等"` / `"基础"`
-- `improvePriority` can only be `"高"` / `"中"` / `"低"`
+- `level` can only be `"advanced"` / `"intermediate"` / `"basic"`
+- `improvePriority` can only be `"high"` / `"medium"` / `"low"`
 - `gap.type` can only be `"extend"` / `"new"`
 - Each item and gap must have at least 3 `experts`
 - Each item's `docId` must exist in the top-level `documents`
 
-> **Note:** The JSON data uses Chinese enum values (`深度`/`中等`/`基础` for level, `高`/`中`/`低` for priority) to match the schema. The English template maps these to English display labels.
+> **Note:** The JSON data uses English enum values (`advanced`/`intermediate`/`basic` for level, `high`/`medium`/`low` for priority).
 
 **2.2 Generate Per Domain**
 
@@ -130,7 +130,7 @@ Based on extracted evidence, generate:
 - `categories[]`: knowledge categories (naturally clustered from note content, don't force-fill)
 - Each category's `items[]`:
   - `name`: knowledge point name
-  - `level`: judged by note depth (systematic organization = 深度, practical records = 中等, merely mentioned = 基础)
+  - `level`: judged by note depth (systematic organization = advanced, practical records = intermediate, merely mentioned = basic)
   - `summary`: 1-2 sentence summary based on actual note content
   - `levelReason`: **must cite specific evidence from notes**
   - `improve`: specific improvement suggestions based on current level

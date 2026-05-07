@@ -304,19 +304,19 @@ body {
   flex-shrink: 0;
 }
 
-.level-badge.深度 {
+.level-badge.advanced {
   background: #f1f5f9;
   color: #334155;
   border: 1px solid #cbd5e1;
 }
 
-.level-badge.中等 {
+.level-badge.intermediate {
   background: #f1f5f9;
   color: #334155;
   border: 1px solid #cbd5e1;
 }
 
-.level-badge.基础 {
+.level-badge.basic {
   background: #f1f5f9;
   color: #334155;
   border: 1px solid #cbd5e1;
@@ -1107,17 +1107,17 @@ body {
   font-weight: 600;
 }
 
-.gap-priority-badge.高 {
+.gap-priority-badge.high {
   background: #fee2e2;
   color: #991b1b;
 }
 
-.gap-priority-badge.中 {
+.gap-priority-badge.medium {
   background: #fed7aa;
   color: #9a3412;
 }
 
-.gap-priority-badge.低 {
+.gap-priority-badge.low {
   background: #d1fae5;
   color: #065f46;
 }
@@ -1414,8 +1414,8 @@ body {
 const KNOWLEDGELENS_DATA = {}; // Will be replaced by pipeline
 
 // ========== Display Mapping (data values are in Chinese, display in English) ==========
-const LEVEL_DISPLAY = { '深度': 'Deep', '中等': 'Intermediate', '基础': 'Basic' };
-const PRIORITY_DISPLAY = { '高': 'High', '中': 'Medium', '低': 'Low' };
+const LEVEL_DISPLAY = { 'advanced': 'Advanced', 'intermediate': 'Intermediate', 'basic': 'Basic' };
+const PRIORITY_DISPLAY = { 'high': 'High', 'medium': 'Medium', 'low': 'Low' };
 const GAP_TYPE_DISPLAY = { 'extend': 'Extend', 'new': 'New Skill' };
 
 function displayLevel(level) { return LEVEL_DISPLAY[level] || level; }
@@ -1733,9 +1733,9 @@ function renderOverview(container) {
       <div class="summary-grid">
         ${trees.map(cat => {
           const items = cat.items || [];
-          const deepCount = items.filter(i => i.level === '深度').length;
-          const medCount = items.filter(i => i.level === '中等').length;
-          const basicCount = items.filter(i => i.level === '基础').length;
+          const deepCount = items.filter(i => i.level === 'advanced').length;
+          const medCount = items.filter(i => i.level === 'intermediate').length;
+          const basicCount = items.filter(i => i.level === 'basic').length;
           const catId = cat.id || cat.name;
           return `
             <div class="summary-card" style="cursor:pointer" onclick="openCategories.push('${catId.replace(/'/g, "\\'")}');showView('overview');renderSidebar();">
@@ -1842,7 +1842,7 @@ function renderKnowledgeDetail(container) {
               <li>
                 <span class="bullet">•</span>
                 <span class="content">
-                  ${knowledgeItem.improvePriority === '高' ? '<span class="priority-badge">High Priority</span>' : knowledgeItem.improvePriority === '中' ? '<span class="priority-badge med">Medium Priority</span>' : '<span class="priority-badge low">Low Priority</span>'}
+                  ${knowledgeItem.improvePriority === 'high' ? '<span class="priority-badge">High Priority</span>' : knowledgeItem.improvePriority === 'medium' ? '<span class="priority-badge med">Medium Priority</span>' : '<span class="priority-badge low">Low Priority</span>'}
                   ${knowledgeItem.improve}
                 </span>
               </li>
@@ -1905,7 +1905,7 @@ function renderGaps(container) {
     (cat.items || []).forEach(item => {
       if (item.improve) {
         allItems.push({
-          type: 'tree', priority: item.improvePriority || '中',
+          type: 'tree', priority: item.improvePriority || 'medium',
           title: item.name, brief: item.improve, category: cat.name,
           docId: item.docId, resources: item.improveResources || null, experts: item.experts || null
         });

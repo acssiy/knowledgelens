@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-KnowledgeLens is a knowledge visualization tool that generates interactive HTML reports from users' knowledge bases. It scans markdown/text notes, structures them into domains with expert evaluations, and produces a single self-contained HTML file with radar charts, knowledge trees, and improvement suggestions.
+KnowledgeLens is a multi-source knowledge management and visualization tool. It aggregates notes from various platforms, structures them into scored domains with expert evaluations, and produces a single interactive HTML file with radar charts, knowledge trees, learning recommendations, and gap analysis.
 
 ## Architecture
 
@@ -11,14 +11,14 @@ knowledgelens/
 ├── README.md                   # Project overview (GitHub landing page)
 ├── CONTRIBUTING.md             # This file (developer notes)
 ├── .gitignore                  # Excludes OS/editor files
-├── zh/                         # Chinese (self-contained package)
+├── zh/                         # Chinese (standalone package)
 │   ├── README.md
 │   ├── install.sh
 │   ├── prompt.md
 │   ├── template.html
 │   ├── data-schema.json
 │   └── demo-report.html
-├── en/                         # English (self-contained package)
+├── en/                         # English (standalone package)
 │   ├── README.md
 │   ├── install.sh
 │   ├── prompt.md
@@ -53,7 +53,7 @@ This checks both `zh/template.html` and `en/template.html` for 27 CSS/layout ove
 1. User runs the install script, picks platform + language
 2. Triggers the prompt in their AI assistant
 3. Pipeline scans user's notes → proposes domains → user confirms → generates JSON → injects into template → outputs HTML
-4. The HTML is fully self-contained — D3.js is embedded inline, no external dependencies
+4. The output HTML is fully standalone — D3.js is embedded inline, works offline, zero external dependencies
 
 ## Key Files
 

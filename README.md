@@ -52,16 +52,16 @@ git clone https://github.com/acssiy/knowledgelens.git
 cd knowledgelens/en && chmod +x install.sh && ./install.sh
 ```
 
-The installer asks which AI platform you use, then auto-configures everything. After that, just ask your AI to "generate a knowledge report".
+The installer asks which AI platform you use, then auto-configures everything. After that, just ask your AI to "run KnowledgeLens".
 
 **Supported platforms:**
 
 | Platform | How to Trigger |
 |----------|----------------|
 | Claude Code | Type `/knowledgelens` |
-| Cursor | Say "generate knowledge report" |
-| Windsurf | Say "generate knowledge report" |
-| GitHub Copilot | Say "generate knowledge report" |
+| Cursor | Say "run KnowledgeLens" |
+| Windsurf | Say "run KnowledgeLens" |
+| GitHub Copilot | Say "run KnowledgeLens" |
 | ChatGPT | Paste into Custom Instructions |
 
 
@@ -81,14 +81,14 @@ Works with wherever you learn:
 ## How It Works
 
 ```
-Your Notes → AI Analysis → Structured JSON → HTML Template → Interactive Report
+Your Notes → AI Analysis → Structured JSON → HTML Template → Interactive Knowledge Visualization
 ```
 
 1. AI reads your notes, identifies knowledge domains
 2. Extracts items, evaluates mastery, identifies gaps
 3. Scores each dimension with sub-factors (breadth/depth/application)
 4. Expert panel generates role-specific recommendations
-5. JSON injected into template → self-contained HTML report
+5. JSON injected into template → self-contained interactive HTML (offline, zero dependencies)
 
 Design principles:
 - Every score is evidence-based, citing your actual notes
@@ -104,7 +104,7 @@ Design principles:
 | Documentation | [`zh/README.md`](zh/README.md) | [`en/README.md`](en/README.md) |
 | Live Demo | [中文 Demo](https://acssiy.github.io/knowledgelens/zh/demo-report.html) | [English Demo](https://acssiy.github.io/knowledgelens/en/demo-report.html) |
 
-Each folder is a complete, self-contained package. Pick one, download it, and you're set.
+Each folder is a complete, standalone package. Pick one, download it, and you're set.
 
 
 ## Vision & Roadmap

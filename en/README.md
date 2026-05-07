@@ -1,6 +1,6 @@
 # 🔬 KnowledgeLens (English)
 
-> Turn your notes into an interactive Knowledge Health Report
+> Multi-source knowledge management, visualization, and AI-guided learning
 
 ## ✨ Features
 
@@ -30,9 +30,9 @@ The installer will ask you to select your platform and auto-configure:
 | Platform | Install Location | How to Trigger |
 |----------|-----------------|----------------|
 | Claude Code | `.claude/commands/knowledgelens.md` | Type `/knowledgelens` |
-| Cursor | `.cursor/rules/knowledgelens.mdc` | Say "generate knowledge report" |
-| Windsurf | `.windsurf/rules/knowledgelens.md` | Say "generate knowledge report" |
-| GitHub Copilot | `.github/copilot-instructions.md` | Say "generate knowledge report" |
+| Cursor | `.cursor/rules/knowledgelens.mdc` | Say "run KnowledgeLens" |
+| Windsurf | `.windsurf/rules/knowledgelens.md` | Say "run KnowledgeLens" |
+| GitHub Copilot | `.github/copilot-instructions.md` | Say "run KnowledgeLens" |
 | ChatGPT | `knowledgelens-chatgpt.md` | Paste into Custom Instructions |
 
 You can select multiple platforms at once.
@@ -44,7 +44,7 @@ After installation, trigger KnowledgeLens in your chosen platform and follow the
 1. **Choose knowledge source** — local folder or Apple Notes
 2. **Confirm configuration** — domain structure, benchmarks, expert roles
 3. **Wait for generation** — AI extracts knowledge structure, generates scores and advice
-4. **View report** — open the generated HTML file in your browser
+4. **View result** — open the generated HTML file in your browser
 
 ## 📚 Supported Knowledge Sources
 
@@ -63,24 +63,24 @@ en/
 ├── README.md           ← This file
 ├── install.sh          ← One-click installer (run this)
 ├── prompt.md           ← AI generation pipeline instructions
-├── template.html       ← Report HTML template (D3.js embedded)
+├── template.html       ← HTML template with D3.js embedded
 ├── data-schema.json    ← JSON data format contract
-└── demo-report.html    ← Example report (open in browser)
+└── demo-report.html    ← Example output (open in browser to preview)
 ```
 
 ## 🎯 View Demo
 
-Open `demo-report.html` in your browser to see an example report.
+Open `demo-report.html` in your browser to see an example.
 
 ## 📐 How It Works
 
 ```
-Your Notes → AI Analysis → JSON Data → Inject Template → Interactive HTML Report
+Your Notes → AI Analysis → JSON Data → Inject Template → Interactive Knowledge Visualization
 ```
 
 - All scores are based on your actual notes content
 - Will not fabricate knowledge you don't have
-- Single-file output, no server needed, fully offline
+- Single-file output, works offline, zero external dependencies
 
 ## 📄 License
 
