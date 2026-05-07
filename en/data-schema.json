@@ -1,0 +1,192 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KnowledgeLens Data Schema",
+  "description": "用户知识体检报告的完整数据结构。LLM 生成时必须严格遵循此 schema。",
+  "type": "object",
+  "required": ["meta", "domains", "documents"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "报告元信息",
+      "required": ["userName", "generatedAt", "evaluationBasis"],
+      "additionalProperties": false,
+      "properties": {
+        "userName": { "type": "string", "description": "用户名称" },
+        "generatedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "生成日期 YYYY-MM-DD" },
+        "evaluationBasis": { "type": "string", "description": "评估基准，如'3年AI产品经理经验'" },
+        "version": { "type": "string", "default": "1.0" }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "description": "知识文档内容（全局），key 为 docId，value 为 HTML 格式的详细文档",
+      "additionalProperties": { "type": "string" }
+    },
+    "domains": {
+      "type": "array",
+      "description": "知识领域列表，至少1个",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "color", "icon", "overallScore", "benchmark", "dimensionInfo", "scores", "categories", "gaps", "expertRoles"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "领域唯一标识，如 'psychology'" },
+          "name": { "type": "string", "description": "领域显示名称" },
+          "subtitle": { "type": "string", "description": "一句话副标题" },
+          "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "description": "主题色 hex 值" },
+          "icon": { "type": "string", "description": "图标标识，模板内置 SVG 映射，无匹配时使用 fallback" },
+          "overallScore": { "type": "number", "minimum": 0, "maximum": 10, "description": "综合评分" },
+          "benchmark": { "type": "string", "description": "评分基准说明" },
+          "dimensionInfo": {
+            "type": "object",
+            "description": "维度评估说明",
+            "required": ["intro", "method"],
+            "additionalProperties": false,
+            "properties": {
+              "intro": { "type": "string", "description": "评估简介" },
+              "method": { "type": "string", "description": "评估方法说明" }
+            }
+          },
+          "scores": {
+            "type": "array",
+            "description": "雷达图维度评分，配对结构",
+            "minItems": 3,
+            "maxItems": 12,
+            "items": {
+              "type": "object",
+              "required": ["label", "value", "factors"],
+              "additionalProperties": false,
+              "properties": {
+                "label": { "type": "string", "description": "维度名称" },
+                "value": { "type": "number", "minimum": 0, "maximum": 10, "description": "该维度综合评分" },
+                "description": { "type": "string", "description": "该维度的整体评语" },
+                "factors": {
+                  "type": "object",
+                  "description": "三维度子评分",
+                  "required": ["breadth", "depth", "application"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "breadth": { "type": "number", "minimum": 0, "maximum": 10, "description": "覆盖广度" },
+                    "breadthNote": { "type": "string", "description": "广度评语" },
+                    "depth": { "type": "number", "minimum": 0, "maximum": 10, "description": "理解深度" },
+                    "depthNote": { "type": "string", "description": "深度评语" },
+                    "application": { "type": "number", "minimum": 0, "maximum": 10, "description": "应用能力" },
+                    "applicationNote": { "type": "string", "description": "应用评语" }
+                  }
+                }
+              }
+            }
+          },
+          "expertRoles": {
+            "type": "array",
+            "description": "该领域的专家角色名称列表，至少3个",
+            "minItems": 3,
+            "items": { "type": "string" }
+          },
+          "categories": {
+            "type": "array",
+            "description": "知识类别列表",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "items"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "description": "类别唯一标识" },
+                "name": { "type": "string", "description": "类别名称" },
+                "icon": { "type": "string", "description": "类别图标 emoji" },
+                "items": {
+                  "type": "array",
+                  "description": "该类别下的知识项",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "name", "level", "docId", "summary", "levelReason", "improvePriority", "improve", "experts"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": { "type": "string", "description": "知识项唯一标识" },
+                      "name": { "type": "string", "description": "知识点名称" },
+                      "level": {
+                        "type": "string",
+                        "enum": ["深度", "中等", "基础"],
+                        "description": "掌握深度"
+                      },
+                      "docId": { "type": "string", "description": "文档ID，必须在顶层 documents 中存在" },
+                      "summary": { "type": "string", "description": "知识点摘要（1-2句话）" },
+                      "levelReason": { "type": "string", "description": "评估依据，需引用用户原始数据中的证据" },
+                      "improvePriority": {
+                        "type": "string",
+                        "enum": ["高", "中", "低"],
+                        "description": "提升优先级"
+                      },
+                      "improve": { "type": "string", "description": "具体提升建议" },
+                      "improveResources": { "type": "string", "description": "推荐学习资源（HTML链接格式）" },
+                      "experts": {
+                        "type": "array",
+                        "description": "专家建议，至少3位，角色需匹配 domain.expertRoles",
+                        "minItems": 3,
+                        "items": {
+                          "type": "object",
+                          "required": ["name", "opinion"],
+                          "additionalProperties": false,
+                          "properties": {
+                            "name": { "type": "string", "description": "专家角色名称" },
+                            "opinion": { "type": "string", "description": "专业建议（支持 HTML）" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "gaps": {
+            "type": "array",
+            "description": "知识差距/待提升项",
+            "items": {
+              "type": "object",
+              "required": ["id", "type", "priority", "title", "brief", "experts"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "description": "差距项唯一标识" },
+                "type": {
+                  "type": "string",
+                  "enum": ["extend", "new"],
+                  "description": "extend=扩展现有知识, new=全新领域"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": ["高", "中", "低"]
+                },
+                "title": { "type": "string" },
+                "brief": { "type": "string", "description": "简要描述" },
+                "from": {
+                  "type": ["array", "null"],
+                  "items": { "type": "string" },
+                  "description": "关联的知识项 ID 列表，null 表示全新领域"
+                },
+                "resources": { "type": "string", "description": "推荐资源（HTML链接格式）" },
+                "experts": {
+                  "type": "array",
+                  "minItems": 3,
+                  "items": {
+                    "type": "object",
+                    "required": ["name", "opinion"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": { "type": "string" },
+                      "opinion": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
