@@ -9,7 +9,7 @@
   <a href="#-vision--roadmap">Roadmap</a>
 </p>
 
----
+
 
 ## 💡 The Problem
 
@@ -22,7 +22,7 @@ You've been learning for months — taking notes in Obsidian, highlighting in Ap
 
 Most people have 100s of notes but zero clarity on their knowledge structure. The notes exist, but the *insight* doesn't.
 
----
+
 
 ## 💡 The Solution
 
@@ -37,7 +37,7 @@ In one command, you get:
 
 **No server. No account. No subscription. Just one HTML file that works offline.**
 
----
+
 
 ## ✨ What's in the Report
 
@@ -75,7 +75,7 @@ Instantly search across all domains, knowledge items, and expert advice.
 ### 📄 Single File, Fully Offline
 One HTML file (~350KB). No server, no build step, no internet connection required. D3.js visualization library is embedded inline.
 
----
+
 
 ## 🚀 Quick Start
 
@@ -118,7 +118,7 @@ Trigger KnowledgeLens in your AI tool. It will:
 
 Open the HTML file in any browser. Done.
 
----
+
 
 ## 📚 Supported Knowledge Sources
 
@@ -142,7 +142,7 @@ Open the HTML file in any browser. Done.
 
 Each folder is a **complete, self-contained package** — install script, AI prompt, HTML template, data schema, and demo report. Download one folder and you're set.
 
----
+
 
 ## 📐 How It Works
 
@@ -168,7 +168,7 @@ Each folder is a **complete, self-contained package** — install script, AI pro
 - ✅ Source labels clearly mark what came from your notes vs. AI inference
 - ✅ Schema-validated data ensures template compatibility
 
----
+
 
 ## 🖥️ Supported AI Platforms
 
@@ -182,7 +182,7 @@ Each folder is a **complete, self-contained package** — install script, AI pro
 
 The install script handles format differences automatically. You just pick your platform(s).
 
----
+
 
 ## 🔮 Vision & Roadmap
 
@@ -214,7 +214,7 @@ You get a clear picture of what you know and where your gaps are.
 
 **The end goal:** A closed-loop system where AI helps you **identify gaps → learn effectively → verify mastery → repeat** — turning passive note-taking into active, measurable learning.
 
----
+
 
 ## 📂 Repository Structure
 
@@ -232,7 +232,7 @@ knowledgelens/
 
 **Contributors:** See [`CONTRIBUTING.md`](CONTRIBUTING.md) for architecture, design decisions, and how to run tests.
 
----
+
 
 ## 🤝 Contributing
 
@@ -244,7 +244,7 @@ PRs and issues welcome! Areas where help is appreciated:
 - 🔌 New AI platform integrations
 - 📝 Knowledge source connectors
 
----
+
 
 ## 📄 License
 
