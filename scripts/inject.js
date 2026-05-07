@@ -69,7 +69,7 @@ function main() {
     process.exit(1);
   }
 
-  const injection = `const KNOWLEDGELENS_DATA = JSON.parse(atob("${base64}"));`;
+  const injection = `const KNOWLEDGELENS_DATA = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("${base64}"), c => c.charCodeAt(0))));`;
   const output = template.replace(placeholder, injection);
 
   // Write output

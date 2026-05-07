@@ -19,8 +19,8 @@ export function extractJSON(htmlPath) {
 
   const afterMarker = html.slice(startIdx + marker.length);
 
-  // Try new base64 pattern: JSON.parse(atob("..."))
-  const atobMatch = afterMarker.match(/^JSON\.parse\(atob\("([A-Za-z0-9+/=]+)"\)\)/);
+  // Try new base64 pattern: JSON.parse(atob("...")) or JSON.parse(new TextDecoder()...atob("..."))
+  const atobMatch = afterMarker.match(/atob\("([A-Za-z0-9+/=]+)"\)/);
   if (atobMatch) {
     const base64Str = atobMatch[1];
     try {
