@@ -4,7 +4,10 @@ import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
 /**
- * Extract KNOWLEDGELENS_DATA JSON from an HTML report file using brace counting.
+ * Extract KNOWLEDGELENS_DATA JSON from an HTML report file.
+ * Supports both:
+ *   - New base64 style: JSON.parse(atob("..."))
+ *   - Old object literal style: brace-counted JSON
  */
 export function extractJSON(htmlPath) {
   const html = readFileSync(htmlPath, 'utf-8');
@@ -14,6 +17,22 @@ export function extractJSON(htmlPath) {
     return { data: null, raw: null, error: 'KNOWLEDGELENS_DATA not found in file' };
   }
 
+  const afterMarker = html.slice(startIdx + marker.length);
+
+  // Try new base64 pattern: JSON.parse(atob("..."))
+  const atobMatch = afterMarker.match(/^JSON\.parse\(atob\("([A-Za-z0-9+/=]+)"\)\)/);
+  if (atobMatch) {
+    const base64Str = atobMatch[1];
+    try {
+      const raw = Buffer.from(base64Str, 'base64').toString('utf-8');
+      const data = JSON.parse(raw);
+      return { data, raw, error: null };
+    } catch (e) {
+      return { data: null, raw: null, error: `Base64/JSON parse error: ${e.message}` };
+    }
+  }
+
+  // Fall back to old brace-counting style
   const jsonStart = startIdx + marker.length;
   let depth = 0;
   let inString = false;
