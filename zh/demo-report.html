@@ -1414,22 +1414,57 @@ body {
 const KNOWLEDGELENS_DATA = {
   "meta": {
     "userName": "示例用户",
-    "generatedAt": "2025-05-07",
-    "evaluationBasis": "基于42篇学习笔记、6个项目文档、3份读书笔记",
-    "version": "1.0"
+    "generatedAt": "2025-05-07T10:00:00+08:00",
+    "totalItems": 32,
+    "totalDomains": 2,
+    "sourceDescription": "Obsidian vault + Apple Notes (产品管理与市场投放相关笔记)"
+  },
+  "documents": {
+    "doc-mkt-01": "<h2>Google Ads \u8d26\u6237\u7ed3\u6784</h2><h3>\u5c42\u7ea7</h3><ul><li>Account \u2192 Campaign \u2192 Ad Group \u2192 Ad/Keyword</li></ul><h3>\u51fa\u4ef7\u7b56\u7565</h3><ul><li>Manual CPC: \u624b\u52a8\u63a7\u5236</li><li>Target CPA: \u81ea\u52a8\u5316, \u4ee5\u8f6c\u5316\u6210\u672c\u4e3a\u76ee\u6807</li><li>Target ROAS: \u81ea\u52a8\u5316, \u4ee5\u6295\u8d44\u56de\u62a5\u4e3a\u76ee\u6807</li><li>Maximize Conversions: \u5728\u9884\u7b97\u5185\u6700\u5927\u5316\u8f6c\u5316</li></ul><h3>\u9879\u76ee\u8bb0\u5f55</h3><h3>\u7535\u5546\u9879\u76ee</h3><ul><li>\u54c1\u724c\u8bcd Campaign: Manual CPC, \u786e\u4fdd\u54c1\u724c\u8bcd\u8986\u76d6</li><li>\u7ade\u54c1\u8bcd Campaign: Target CPA, \u63a7\u5236\u83b7\u5ba2\u6210\u672c</li><li>\u901a\u7528\u8bcd Campaign: Maximize Conversions</li></ul>",
+    "doc-mkt-02": "<h2>\u5173\u952e\u8bcd\u7814\u7a76</h2><h3>\u5de5\u5177</h3><ul><li>Google Keyword Planner</li><li>SEMrush</li><li>Ahrefs</li></ul><h3>\u5339\u914d\u7c7b\u578b</h3><ul><li>\u5e7f\u6cdb\u5339\u914d: \u6700\u5927\u8986\u76d6</li><li>\u8bcd\u7ec4\u5339\u914d: \u5e73\u8861\u8986\u76d6\u548c\u7cbe\u51c6</li><li>\u7cbe\u786e\u5339\u914d: \u6700\u7cbe\u51c6\u63a7\u5236</li></ul><h3>\u5173\u952e\u8bcd\u5e93\u7ba1\u7406</h3><ul><li>\u6309\u610f\u56fe\u5206\u7c7b: \u4fe1\u606f\u578b/\u5bfc\u822a\u578b/\u4ea4\u6613\u578b</li><li>\u5b9a\u671f\u6e05\u7406\u4f4e\u6548\u8bcd</li><li>\u62d3\u5c55\u957f\u5c3e\u8bcd</li></ul>",
+    "doc-mkt-03": "<h2>\u8d28\u91cf\u5f97\u5206\u4f18\u5316</h2><h3>\u4e09\u8981\u7d20</h3><ol><li>\u9884\u671f\u70b9\u51fb\u7387 (CTR)</li><li>\u5e7f\u544a\u76f8\u5173\u6027</li><li>\u843d\u5730\u9875\u4f53\u9a8c</li></ol><h3>\u4f18\u5316\u65b9\u6cd5</h3><ul><li>\u63d0\u5347CTR: \u4f18\u5316\u6807\u9898\u548c\u63cf\u8ff0</li><li>\u76f8\u5173\u6027: \u5173\u952e\u8bcd-\u5e7f\u544a-\u843d\u5730\u9875\u4e09\u8005\u4e00\u81f4</li><li>\u843d\u5730\u9875: \u52a0\u8f7d\u901f\u5ea6, \u79fb\u52a8\u53cb\u597d, \u5185\u5bb9\u76f8\u5173</li></ul>",
+    "doc-mkt-04": "<h2>\u641c\u7d22\u5e7f\u544a\u6587\u6848</h2><h3>RSA (\u54cd\u5e94\u5f0f\u641c\u7d22\u5e7f\u544a)</h3><ul><li>\u63d0\u4f9b\u6700\u591a15\u4e2a\u6807\u9898\u548c4\u4e2a\u63cf\u8ff0</li><li>\u7cfb\u7edf\u81ea\u52a8\u7ec4\u5408\u6d4b\u8bd5</li></ul><h3>\u5199\u4f5c\u539f\u5219</h3><ul><li>\u5305\u542b\u5173\u952e\u8bcd</li><li>\u7a81\u51faUSP</li><li>\u660e\u786eCTA</li><li>\u6570\u5b57\u548c\u7279\u6b8a\u5b57\u7b26\u5438\u5f15\u773c\u7403</li></ul>",
+    "doc-mkt-05": "<h2>\u5426\u5b9a\u5173\u952e\u8bcd</h2><h3>\u6982\u5ff5</h3><p>\u9632\u6b62\u5e7f\u544a\u5728\u4e0d\u76f8\u5173\u641c\u7d22\u4e2d\u5c55\u793a</p><h3>\u5c42\u7ea7</h3><ul><li>\u8d26\u6237\u7ea7\u5426\u5b9a</li><li>Campaign\u7ea7\u5426\u5b9a</li><li>Ad Group\u7ea7\u5426\u5b9a</li></ul>",
+    "doc-mkt-06": "<h2>\u4fe1\u606f\u6d41\u5e7f\u544a\u6295\u653e</h2><h3>\u5e73\u53f0</h3><ul><li>Meta (Facebook/Instagram)</li><li>TikTok</li><li>\u6296\u97f3/\u5feb\u624b</li></ul><h3>\u5173\u952e\u6d41\u7a0b</h3><ol><li>\u521b\u5efaCampaign \u2192 \u9009\u62e9\u76ee\u6807</li><li>\u8bbe\u7f6eAd Set \u2192 \u53d7\u4f17/\u7248\u4f4d/\u9884\u7b97</li><li>\u521b\u5efaAd \u2192 \u7d20\u6750/\u6587\u6848</li></ol><h3>\u9879\u76ee\u8bb0\u5f55</h3><h3>\u7535\u5546\u62c9\u65b0</h3><ul><li>\u9884\u7b97: $3000/\u5929</li><li>\u76ee\u6807CPA: $15</li><li>\u5b9e\u9645CPA: $12.3</li><li>ROAS: 4.2x</li></ul><h3>APP\u5b89\u88c5</h3><ul><li>\u9884\u7b97: $2000/\u5929</li><li>\u76ee\u6807CPI: $3</li><li>\u5b9e\u9645CPI: $2.7</li></ul>",
+    "doc-mkt-07": "<h2>\u53d7\u4f17\u5b9a\u5411\u7b56\u7565</h2><h3>\u7c7b\u578b</h3><ul><li>\u6838\u5fc3\u53d7\u4f17: \u4eba\u53e3\u7edf\u8ba1+\u5174\u8da3+\u884c\u4e3a</li><li>\u81ea\u5b9a\u4e49\u53d7\u4f17: \u7f51\u7ad9\u8bbf\u5ba2/APP\u7528\u6237/\u5ba2\u6237\u540d\u5355</li><li>\u76f8\u4f3c\u53d7\u4f17: \u57fa\u4e8e\u79cd\u5b50\u7528\u6237\u6269\u5c55</li></ul><h3>\u7b56\u7565</h3><ul><li>\u51b7\u542f\u52a8: \u5bbd\u6cdb\u5b9a\u5411, \u8ba9\u7b97\u6cd5\u5b66\u4e60</li><li>\u653e\u91cf\u671f: \u76f8\u4f3c\u53d7\u4f17\u6269\u5c55</li><li>\u7a33\u5b9a\u671f: \u518d\u8425\u9500\u63d0\u6548</li></ul>",
+    "doc-mkt-08": "<h2>\u521b\u610f\u7d20\u6750\u5236\u4f5c</h2><h3>\u683c\u5f0f</h3><ul><li>\u9759\u6001\u56fe: 1:1, 4:5, 9:16</li><li>\u89c6\u9891: 6s/15s/30s</li><li>Carousel: 2-10\u5f20\u5361\u7247</li></ul><h3>\u65b9\u6cd5</h3><ul><li>\u7d20\u6750\u5206\u7c7b\u6807\u7b7e</li><li>\u5468\u66f4\u65b0\u9891\u7387</li><li>\u6548\u679c\u6570\u636e\u8ffd\u8e2a</li></ul>",
+    "doc-mkt-09": "<h2>\u518d\u8425\u9500\u7b56\u7565</h2><h3>\u6982\u5ff5</h3><p>\u5411\u5df2\u7ecf\u548c\u54c1\u724c\u4e92\u52a8\u8fc7\u7684\u7528\u6237\u518d\u6b21\u6295\u653e\u5e7f\u544a</p><h3>Pixel\u5b89\u88c5</h3><ul><li>Facebook Pixel</li><li>Google Tag</li><li>TikTok Pixel</li></ul>",
+    "doc-mkt-10": "<h2>\u9884\u7b97\u5206\u914d\u7b56\u7565</h2><h3>\u539f\u5219</h3><ul><li>\u6548\u679c\u597d\u7684\u6e20\u9053\u52a0\u9884\u7b97</li><li>\u65b0\u6e20\u9053\u5c0f\u9884\u7b97\u6d4b\u8bd5</li><li>\u4fdd\u755910-20%\u505a\u5b9e\u9a8c</li></ul><h3>\u6846\u67b6</h3><ul><li>70/20/10: \u6838\u5fc3/\u589e\u957f/\u5b9e\u9a8c</li></ul>",
+    "doc-mkt-11": "<h2>Google Analytics 4</h2><h3>\u4e8b\u4ef6\u8ffd\u8e2a</h3><ul><li>\u81ea\u52a8\u4e8b\u4ef6: page_view, scroll, click</li><li>\u63a8\u8350\u4e8b\u4ef6: purchase, sign_up, add_to_cart</li><li>\u81ea\u5b9a\u4e49\u4e8b\u4ef6: \u6309\u9700\u914d\u7f6e</li></ul><h3>\u8f6c\u5316\u8bbe\u7f6e</h3><ul><li>\u6807\u8bb0\u5173\u952e\u4e8b\u4ef6\u4e3a\u8f6c\u5316</li><li>\u8bbe\u7f6e\u8f6c\u5316\u4ef7\u503c</li></ul><h3>\u53d7\u4f17\u5206\u6790</h3><ul><li>\u7528\u6237\u5c5e\u6027\u5206\u6790</li><li>\u540c\u671f\u7fa4\u62a5\u544a</li><li>\u8def\u5f84\u63a2\u7d22</li></ul><h3>\u914d\u7f6e\u8bb0\u5f55</h3><p>\u5df2\u4e3a3\u4e2a\u7f51\u7ad9\u914d\u7f6eGA4\u4e8b\u4ef6\u8ffd\u8e2a\u4f53\u7cfb</p>",
+    "doc-mkt-12": "<h2>UTM\u53c2\u6570\u7ba1\u7406</h2><h3>\u89c4\u8303</h3><ul><li>utm_source: \u6d41\u91cf\u6765\u6e90 (google/facebook/email)</li><li>utm_medium: \u5a92\u4ecb\u7c7b\u578b (cpc/organic/social)</li><li>utm_campaign: \u6d3b\u52a8\u540d\u79f0</li><li>utm_content: \u533a\u5206\u540c\u4e00\u5e7f\u544a\u7684\u53d8\u4f53</li><li>utm_term: \u5173\u952e\u8bcd</li></ul><h3>\u547d\u540d\u89c4\u5219</h3><ul><li>\u5168\u5c0f\u5199</li><li>\u4e0b\u5212\u7ebf\u5206\u9694</li><li>\u65e5\u671f\u524d\u7f00: 2025Q1_spring_sale</li></ul>",
+    "doc-mkt-13": "<h2>\u5f52\u56e0\u6a21\u578b</h2><h3>\u5e38\u89c1\u6a21\u578b</h3><ul><li>Last Click: \u6700\u540e\u70b9\u51fb\u5f52\u56e0</li><li>First Click: \u9996\u6b21\u70b9\u51fb\u5f52\u56e0</li><li>Linear: \u7ebf\u6027\u5e73\u5747\u5206\u914d</li><li>Time Decay: \u65f6\u95f4\u8870\u51cf</li><li>Data-Driven: \u6570\u636e\u9a71\u52a8\uff08GA4\u9ed8\u8ba4\uff09</li></ul><h3>\u5b9e\u9645\u5e94\u7528</h3><ul><li>\u54c1\u724c\u5e7f\u544a\u9002\u5408First Click</li><li>\u6548\u679c\u5e7f\u544a\u770bLast Click</li><li>\u7efc\u5408\u51b3\u7b56\u7528Data-Driven</li></ul>",
+    "doc-mkt-14": "<h2>\u6570\u636e\u53ef\u89c6\u5316\u4e0e\u62a5\u8868</h2><h3>Looker Studio</h3><ul><li>\u8fde\u63a5\u6570\u636e\u6e90: GA4, Google Ads, BigQuery</li><li>\u81ea\u5b9a\u4e49\u4eea\u8868\u76d8</li><li>\u5b9a\u65f6\u90ae\u4ef6\u53d1\u9001</li></ul><h3>\u4eea\u8868\u76d8\u6848\u4f8b</h3><h3>\u8425\u9500\u65e5\u62a5</h3><ul><li>\u82b1\u8d39/\u8f6c\u5316/CPA/ROAS</li><li>\u6e20\u9053\u5bf9\u6bd4</li><li>\u5f02\u5e38\u9884\u8b66</li></ul><h3>\u6708\u5ea6\u56de\u987e</h3><ul><li>\u8d8b\u52bf\u5206\u6790</li><li>\u76ee\u6807\u8fbe\u6210\u7387</li><li>\u4e0b\u6708\u8ba1\u5212</li></ul>",
+    "doc-mkt-15": "<h2>\u9690\u79c1\u5408\u89c4</h2><h3>GDPR (\u6b27\u76df)</h3><ul><li>\u7528\u6237\u540c\u610f\u524d\u4e0d\u80fd\u6536\u96c6\u6570\u636e</li><li>\u6570\u636e\u6700\u5c0f\u5316\u539f\u5219</li><li>\u88ab\u9057\u5fd8\u6743</li></ul><h3>CCPA (\u52a0\u5dde)</h3><ul><li>\u544a\u77e5\u6536\u96c6\u76ee\u7684</li><li>\u7528\u6237\u53ef\u8981\u6c42\u5220\u9664</li><li>opt-out of sale</li></ul>",
+    "doc-pm-01": "<h2>KANO\u6a21\u578b\u5b66\u4e60\u7b14\u8bb0</h2><h3>\u6838\u5fc3\u6982\u5ff5</h3><ul><li>\u57fa\u672c\u578b\u9700\u6c42\uff1a\u4e0d\u6ee1\u8db3\u4f1a\u4e0d\u6ee1\u610f\uff0c\u6ee1\u8db3\u4e86\u4e5f\u4e0d\u4f1a\u7279\u522b\u6ee1\u610f</li><li>\u671f\u671b\u578b\u9700\u6c42\uff1a\u7ebf\u6027\u5173\u7cfb\uff0c\u6ee1\u8db3\u8d8a\u591a\u8d8a\u6ee1\u610f</li><li>\u5174\u594b\u578b\u9700\u6c42\uff1a\u4e0d\u6ee1\u8db3\u4e0d\u4f1a\u4e0d\u6ee1\u610f\uff0c\u6ee1\u8db3\u4e86\u4f1a\u975e\u5e38\u60ca\u559c</li></ul><h3>\u5b9e\u8df5\u6848\u4f8b</h3><h3>\u9879\u76eeA - \u7535\u5546\u8d2d\u7269\u8f66\u4f18\u5316</h3><ul><li>\u57fa\u672c\u578b\uff1a\u52a0\u8d2d\u540e\u6709\u786e\u8ba4\u53cd\u9988</li><li>\u671f\u671b\u578b\uff1a\u663e\u793a\u9884\u4f30\u914d\u9001\u65f6\u95f4</li><li>\u5174\u594b\u578b\uff1a\u667a\u80fd\u63a8\u8350\u642d\u914d\u5546\u54c1</li></ul><h3>\u9879\u76eeB - SaaS\u5de5\u4f5c\u53f0</h3><ul><li>\u57fa\u672c\u578b\uff1a\u6570\u636e\u52a0\u8f7d\u4e0d\u8d85\u8fc73\u79d2</li><li>\u671f\u671b\u578b\uff1a\u81ea\u5b9a\u4e49\u4eea\u8868\u76d8\u5e03\u5c40</li><li>\u5174\u594b\u578b\uff1aAI\u81ea\u52a8\u751f\u6210\u5468\u62a5</li></ul>",
+    "doc-pm-02": "<h2>RICE\u4f18\u5148\u7ea7\u6846\u67b6</h2><h3>\u516c\u5f0f</h3><p>RICE Score = (Reach \u00d7 Impact \u00d7 Confidence) / Effort</p><h3>\u8bc4\u4f30\u6807\u51c6</h3><ul><li>Reach: \u5f71\u54cd\u7528\u6237\u6570/\u5b63\u5ea6</li><li>Impact: 0.25/0.5/1/2/3</li><li>Confidence: 50%-100%</li><li>Effort: \u4eba\u00b7\u6708</li></ul><h3>\u8bc4\u4f30\u6848\u4f8b</h3><table><tr><th>\u9700\u6c42</th><th>Reach</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>Score</th></tr><tr><td>\u641c\u7d22\u4f18\u5316</td><td>5000</td><td>2</td><td>80%</td><td>2</td><td>4000</td></tr><tr><td>\u65b0\u589e\u652f\u4ed8</td><td>3000</td><td>3</td><td>60%</td><td>4</td><td>1350</td></tr><tr><td>\u901a\u77e5\u7cfb\u7edf</td><td>8000</td><td>1</td><td>90%</td><td>3</td><td>2400</td></tr></table>",
+    "doc-pm-03": "<h2>\u7528\u6237\u8bbf\u8c08\u65b9\u6cd5\u8bba</h2><h3>\u51c6\u5907\u9636\u6bb5</h3><ol><li>\u660e\u786e\u7814\u7a76\u76ee\u6807\u548c\u5047\u8bbe</li><li>\u8bbe\u8ba1\u534a\u7ed3\u6784\u5316\u8bbf\u8c08\u63d0\u7eb2</li><li>\u51c6\u5907\u5f55\u97f3/\u8bb0\u5f55\u5de5\u5177</li></ol><h3>\u8bbf\u8c08\u6280\u5de7</h3><ul><li>\u5f00\u653e\u5f0f\u63d0\u95ee\uff1a\u300c\u80fd\u63cf\u8ff0\u4e00\u4e0b\u4f60\u4e0a\u6b21...\u7684\u7ecf\u5386\u5417\uff1f\u300d</li><li>\u8ffd\u95ee\u7ec6\u8282\uff1a\u300c\u90a3\u4e2a\u65f6\u5019\u4f60\u662f\u600e\u4e48\u60f3\u7684\uff1f\u300d</li><li>\u907f\u514d\u5f15\u5bfc\uff1a\u4e0d\u8bf4\u300c\u4f60\u89c9\u5f97\u8fd9\u4e2a\u529f\u80fd\u597d\u4e0d\u597d\uff1f\u300d</li></ul><h3>\u8bbf\u8c08\u8bb0\u5f55\u6c47\u603b</h3><p>\u5df2\u5b8c\u62108\u6b21\u7528\u6237\u8bbf\u8c08\uff0c\u6d89\u53ca3\u4e2a\u9879\u76ee</p>",
+    "doc-pm-04": "<h2>\u95ee\u5377\u8bbe\u8ba1\u65b9\u6cd5</h2><h3>\u9898\u578b\u9009\u62e9</h3><ul><li>\u5355\u9009\u9898\uff1a\u4e92\u65a5\u9009\u9879</li><li>\u591a\u9009\u9898\uff1a\u52a0\u300c\u5176\u4ed6\u300d\u515c\u5e95</li><li>\u91cf\u8868\u9898\uff1a5\u70b9/7\u70b9\u674e\u514b\u7279</li></ul><h3>\u6ce8\u610f\u4e8b\u9879</h3><ul><li>\u907f\u514d\u53cc\u91cd\u5426\u5b9a</li><li>\u907f\u514d\u5f15\u5bfc\u6027\u63aa\u8f9e</li><li>\u63a7\u5236\u95ee\u5377\u957f\u5ea6\u57285\u5206\u949f\u5185</li></ul>",
+    "doc-pm-05": "<h2>\u7528\u6237\u753b\u50cf\u6784\u5efa</h2><h3>\u5b9a\u6027\u753b\u50cf</h3><p>\u57fa\u4e8e\u8bbf\u8c08\u548c\u89c2\u5bdf\u521b\u5efa\u7684\u4eba\u7269\u539f\u578b</p><h3>\u6570\u636e\u753b\u50cf</h3><p>\u57fa\u4e8e\u884c\u4e3a\u6570\u636e\u805a\u7c7b\u7684\u7528\u6237\u5206\u7fa4</p><h3>\u6848\u4f8b</h3><h3>\u9879\u76eeX\u7528\u6237\u753b\u50cf</h3><ul><li>\u6548\u7387\u578b\u7528\u6237\uff0835%\uff09\uff1a\u8ffd\u6c42\u5feb\u901f\u5b8c\u6210\u4efb\u52a1</li><li>\u63a2\u7d22\u578b\u7528\u6237\uff0825%\uff09\uff1a\u559c\u6b22\u53d1\u73b0\u65b0\u529f\u80fd</li><li>\u88ab\u52a8\u578b\u7528\u6237\uff0840%\uff09\uff1a\u53ea\u7528\u6838\u5fc3\u529f\u80fd</li></ul>",
+    "doc-pm-06": "<h2>\u7ade\u54c1\u5206\u6790\u65b9\u6cd5</h2><h3>\u6846\u67b6</h3><ul><li>\u529f\u80fd\u5bf9\u6bd4\u77e9\u9635</li><li>\u7528\u6237\u4f53\u9a8c\u5bf9\u6bd4</li><li>\u5546\u4e1a\u6a21\u5f0f\u5206\u6790</li></ul><h3>\u5f85\u5efa\u7acb</h3><ul><li>\u957f\u671f\u8ddf\u8e2a\u673a\u5236</li><li>\u5b9a\u671f\u8f93\u51fa\u62a5\u544a</li></ul>",
+    "doc-pm-07": "<h2>\u4fe1\u606f\u67b6\u6784\u8bbe\u8ba1</h2><h3>\u65b9\u6cd5\u8bba</h3><ul><li>\u5361\u7247\u5206\u7c7b\uff08\u5f00\u653e\u5f0f/\u5c01\u95ed\u5f0f\uff09</li><li>\u6811\u72b6\u6d4b\u8bd5</li><li>\u7ad9\u70b9\u5730\u56fe</li></ul><h3>\u9879\u76ee\u5b9e\u8df5</h3><h3>\u7535\u5546\u5bfc\u822a\u91cd\u6784</h3><ul><li>\u4ece\u54c1\u7c7b\u5bfc\u822a\u6539\u4e3a\u573a\u666f\u5bfc\u822a</li><li>\u6811\u72b6\u6d4b\u8bd5\u6210\u529f\u7387\u4ece45%\u63d0\u5347\u523078%</li></ul><h3>SaaS\u529f\u80fd\u91cd\u7ec4</h3><ul><li>\u6309\u5de5\u4f5c\u6d41\u91cd\u7ec4\u529f\u80fd\u6a21\u5757</li><li>\u7528\u6237\u627e\u5230\u76ee\u6807\u529f\u80fd\u7684\u5e73\u5747\u70b9\u51fb\u6570\u4ece4.2\u964d\u52302.1</li></ul>",
+    "doc-pm-08": "<h2>\u4ea4\u4e92\u8bbe\u8ba1\u539f\u5219</h2><h3>\u5c3c\u5c14\u68ee\u5341\u5927\u539f\u5219</h3><ol><li>\u7cfb\u7edf\u72b6\u6001\u53ef\u89c1\u6027</li><li>\u7cfb\u7edf\u4e0e\u771f\u5b9e\u4e16\u754c\u7684\u5339\u914d</li><li>\u7528\u6237\u63a7\u5236\u548c\u81ea\u7531</li><li>\u4e00\u81f4\u6027\u548c\u6807\u51c6</li><li>\u9519\u8bef\u9884\u9632</li><li>\u8bc6\u522b\u800c\u975e\u56de\u5fc6</li><li>\u7075\u6d3b\u6027\u548c\u4f7f\u7528\u6548\u7387</li><li>\u7f8e\u89c2\u7b80\u6d01\u7684\u8bbe\u8ba1</li><li>\u5e2e\u52a9\u7528\u6237\u8bc6\u522b\u548c\u6062\u590d\u9519\u8bef</li><li>\u5e2e\u52a9\u6587\u6863</li></ol><h3>\u8bbe\u8ba1\u8bc4\u5ba1\u8bb0\u5f55</h3><p>\u591a\u6b21\u5728\u8bc4\u5ba1\u4e2d\u5f15\u7528\u539f\u52193\uff08\u64a4\u9500\u529f\u80fd\uff09\u548c\u539f\u52195\uff08\u8868\u5355\u9a8c\u8bc1\uff09</p>",
+    "doc-pm-09": "<h2>Figma\u539f\u578b\u8bbe\u8ba1</h2><h3>\u6280\u5de7\u96c6</h3><ul><li>Auto Layout: \u81ea\u9002\u5e94\u7ec4\u4ef6\u5e03\u5c40</li><li>\u7ec4\u4ef6\u53d8\u4f53: \u72b6\u6001\u7ba1\u7406</li><li>\u4ea4\u4e92\u52a8\u6548: Smart Animate</li></ul><h3>\u9879\u76ee\u539f\u578b</h3><p>\u5171\u5b8c\u62106\u4e2a\u9879\u76ee\u7684\u4e2d\u9ad8\u4fdd\u771f\u539f\u578b</p>",
+    "doc-pm-10": "<h2>\u8bbe\u8ba1\u7cfb\u7edf</h2><h3>\u6838\u5fc3\u6982\u5ff5</h3><ul><li>Design Token</li><li>\u539f\u5b50\u8bbe\u8ba1\u65b9\u6cd5\u8bba</li><li>\u7ec4\u4ef6\u6587\u6863\u5316</li></ul><h3>\u53c2\u8003</h3><ul><li>Ant Design</li><li>Material Design</li><li>Apple HIG</li></ul>",
+    "doc-pm-11": "<h2>\u53ef\u7528\u6027\u6d4b\u8bd5</h2><h3>\u6d41\u7a0b</h3><ol><li>\u786e\u5b9a\u6d4b\u8bd5\u4efb\u52a1</li><li>\u62db\u52df\u7528\u6237\uff085-8\u4eba\uff09</li><li>\u6267\u884c\u89c2\u5bdf</li><li>\u6574\u7406\u95ee\u9898</li><li>\u4f18\u5148\u7ea7\u6392\u5e8f</li></ol><h3>\u5b9e\u8df5\u8bb0\u5f55</h3><h3>\u6d4b\u8bd51: \u6ce8\u518c\u6d41\u7a0b</h3><ul><li>\u53d1\u73b03\u4e2a\u53ef\u7528\u6027\u95ee\u9898</li><li>\u5b8c\u6210\u7387\u4ece60%\u63d0\u5347\u523090%</li></ul><h3>\u6d4b\u8bd52: \u641c\u7d22\u529f\u80fd</h3><ul><li>\u53d1\u73b0\u7528\u6237\u5bf9\u7b5b\u9009\u5668\u7406\u89e3\u6709\u56f0\u96be</li></ul>",
+    "doc-pm-12": "<h2>SQL\u5b66\u4e60\u7b14\u8bb0</h2><h3>\u7a97\u53e3\u51fd\u6570</h3><p><code>`</code>sql</p><p>SELECT user_id,</p><p>ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at) as visit_seq,</p><p>LAG(created_at) OVER (PARTITION BY user_id ORDER BY created_at) as prev_visit</p><p>FROM events</p><p><code>`</code></p><h3>CTE</h3><p><code>`</code>sql</p><p>WITH daily_active AS (</p><p>SELECT date, COUNT(DISTINCT user_id) as dau</p><p>FROM events GROUP BY date</p><p>)</p><p>SELECT * FROM daily_active WHERE dau > 1000</p><p><code>`</code></p><h3>\u5b9e\u9645\u67e5\u8be2\u6848\u4f8b</h3><ul><li>\u7528\u6237\u7559\u5b58\u7387\u8ba1\u7b97</li><li>\u6f0f\u6597\u8f6c\u5316\u5206\u6790</li><li>\u6d3b\u8dc3\u7528\u6237\u8d8b\u52bf</li></ul>",
+    "doc-pm-13": "<h2>A/B\u6d4b\u8bd5\u8bbe\u8ba1</h2><h3>\u6d41\u7a0b</h3><ol><li>\u5047\u8bbe \u2192 2. \u8bbe\u8ba1\u65b9\u6848 \u2192 3. \u8ba1\u7b97\u6837\u672c\u91cf \u2192 4. \u968f\u673a\u5206\u7ec4 \u2192 5. \u8fd0\u884c \u2192 6. \u5206\u6790</li></ol><h3>\u6848\u4f8b</h3><h3>\u6309\u94ae\u989c\u8272\u6d4b\u8bd5</h3><ul><li>\u5bf9\u7167\u7ec4: \u84dd\u8272CTA</li><li>\u5b9e\u9a8c\u7ec4: \u7eff\u8272CTA</li><li>\u7ed3\u679c: \u8f6c\u5316\u7387\u63d0\u534712% (p=0.03)</li></ul><h3>\u5b9a\u4ef7\u9875\u5e03\u5c40</h3><ul><li>\u5bf9\u7167\u7ec4: \u4e09\u5217\u5e76\u6392</li><li>\u5b9e\u9a8c\u7ec4: \u63a8\u8350\u9879\u7a81\u51fa</li><li>\u7ed3\u679c: \u4ed8\u8d39\u8f6c\u5316\u63d0\u53478% (p=0.07, \u672a\u8fbe\u663e\u8457)</li></ul>",
+    "doc-pm-14": "<h2>\u6f0f\u6597\u5206\u6790\u65b9\u6cd5</h2><h3>\u7535\u5546\u6f0f\u6597</h3><p>\u9996\u9875 \u2192 \u5217\u8868\u9875 \u2192 \u8be6\u60c5\u9875 \u2192 \u52a0\u8d2d \u2192 \u7ed3\u7b97 \u2192 \u652f\u4ed8\u6210\u529f</p><h3>\u9879\u76ee\u8bb0\u5f55</h3><h3>\u9879\u76ee1: \u652f\u4ed8\u6f0f\u6597\u4f18\u5316</h3><ul><li>\u53d1\u73b0\u52a0\u8d2d\u2192\u7ed3\u7b97\u6d41\u593135%</li><li>\u539f\u56e0: \u9700\u8981\u5148\u6ce8\u518c</li><li>\u65b9\u6848: \u5141\u8bb8\u6e38\u5ba2\u7ed3\u7b97</li><li>\u7ed3\u679c: \u6d41\u5931\u964d\u523018%</li></ul><h3>\u9879\u76ee2: \u6ce8\u518c\u6f0f\u6597</h3><h3>\u9879\u76ee3: \u5185\u5bb9\u6d88\u8d39\u6f0f\u6597</h3>",
+    "doc-pm-15": "<h2>\u7559\u5b58\u5206\u6790</h2><h3>\u6307\u6807\u5b9a\u4e49</h3><ul><li>\u6b21\u65e5\u7559\u5b58: D+1\u56de\u8bbf\u7387</li><li>7\u65e5\u7559\u5b58: D+7\u56de\u8bbf\u7387</li><li>30\u65e5\u7559\u5b58: D+30\u56de\u8bbf\u7387</li></ul><h3>\u65b9\u6cd5</h3><ul><li>\u540c\u671f\u7fa4\u5206\u6790</li><li>\u7559\u5b58\u66f2\u7ebf</li><li>\u529f\u80fd\u7559\u5b58\u7387</li></ul>",
+    "doc-pm-16": "<h2>\u7edf\u8ba1\u663e\u8457\u6027</h2><h3>\u6982\u5ff5</h3><ul><li>p\u503c: \u96f6\u5047\u8bbe\u4e3a\u771f\u65f6\u89c2\u6d4b\u5230\u5f53\u524d\u6216\u66f4\u6781\u7aef\u7ed3\u679c\u7684\u6982\u7387</li><li>\u7f6e\u4fe1\u533a\u95f4: \u53c2\u6570\u4f30\u8ba1\u7684\u4e0d\u786e\u5b9a\u6027\u8303\u56f4</li><li>\u03b1: \u663e\u8457\u6027\u6c34\u5e73, \u901a\u5e38\u53d60.05</li></ul>",
+    "doc-pm-17": "<h2>\u589e\u957f\u9ed1\u5ba2\u65b9\u6cd5\u8bba</h2><h3>\u8bfb\u4e66\u7b14\u8bb0</h3><ul><li>AARRR\u6a21\u578b: Acquisition \u2192 Activation \u2192 Retention \u2192 Revenue \u2192 Referral</li><li>\u589e\u957f\u98de\u8f6e: \u627e\u5230\u6b63\u53cd\u9988\u5faa\u73af</li><li>\u5317\u6781\u661f\u6307\u6807: \u4e00\u4e2a\u6838\u5fc3\u6307\u6807\u6307\u5bfc\u6240\u6709\u589e\u957f\u52a8\u4f5c</li></ul>"
   },
   "domains": [
     {
-      "id": "product-management",
+      "id": "domain-pm",
       "name": "产品管理",
-      "subtitle": "从需求分析到产品落地的完整技能栈",
-      "color": "#7c3aed",
-      "icon": "box",
-      "overallScore": 7.2,
-      "benchmark": "以3年经验的产品经理为基准（10分=产品总监级别）",
+      "subtitle": "Product Management",
+      "color": "#4F46E5",
+      "icon": "📦",
+      "overallScore": 7.4,
+      "benchmark": "3年产品经理",
       "dimensionInfo": {
         "intro": "基于产品文档、项目复盘、方法论笔记及读书笔记，由产品总监、用户研究专家、数据分析师三位专家交叉评估。",
-        "method": "每个维度综合考量三个因素：方法论覆盖广度、实践深度（是否有成功案例）、跨场景迁移能力。最终得分为三位专家评分的加权综合。"
+        "method": "每个维度从广度（知识面覆盖）、深度（理解和应用层次）、应用（实际项目中运用的证据）三个子因子综合评估，分数基于笔记中的具体证据。"
       },
       "expertRoles": [
         "产品总监",
@@ -1440,237 +1475,494 @@ const KNOWLEDGELENS_DATA = {
         {
           "label": "需求分析",
           "value": 8.2,
-          "description": "系统掌握用户访谈、问卷设计、需求优先级排序方法。KANO模型和RICE框架使用熟练，能从用户反馈中提炼核心需求。但在B端复杂业务场景的需求拆解经验不足。",
+          "description": "系统掌握用户访谈、问卷设计、需求优先级排序方法。KANO模型和RICE框架使用熟练，能从用户反馈中提炼核心需求。",
           "factors": {
             "breadth": 8.5,
-            "breadthNote": "用户访谈、问卷、KANO模型、RICE框架、用户故事地图均覆盖",
+            "breadthNote": "覆盖KANO、RICE、用户访谈、问卷设计、用户画像、竞品分析6个方向",
             "depth": 8.0,
-            "depthNote": "KANO模型深入理解并有实际案例应用",
+            "depthNote": "KANO和RICE有深度实践案例，竞品分析偏基础",
             "application": 8.0,
-            "applicationNote": "3个C端产品需求分析完整案例，B端经验不足"
+            "applicationNote": "有8次访谈记录和多个需求排序案例"
           }
         },
         {
           "label": "产品设计",
-          "value": 7.8,
-          "description": "熟悉产品设计全流程，从信息架构到交互细节。Figma原型能力强，但对设计系统的系统性构建经验有限。",
+          "value": 8.5,
+          "description": "信息架构和交互设计能力突出，Figma原型设计熟练，设计系统认知较浅。",
           "factors": {
             "breadth": 8.0,
-            "breadthNote": "信息架构、交互设计、原型设计、设计评审流程齐全",
-            "depth": 7.5,
-            "depthNote": "交互设计理解深入，设计系统构建经验有限",
-            "application": 8.0,
-            "applicationNote": "独立完成2个产品的完整设计方案"
+            "breadthNote": "覆盖IA、交互、原型、设计系统、可用性测试",
+            "depth": 9.0,
+            "depthNote": "IA和交互原则有深度理解和项目实践",
+            "application": 8.5,
+            "applicationNote": "6个项目的原型设计记录，多次设计评审引用"
           }
         },
         {
           "label": "数据分析",
-          "value": 7.5,
-          "description": "SQL查询熟练，能搭建基础数据看板。A/B测试设计和解读能力良好，但高级统计方法和因果推断尚在学习中。",
+          "value": 7.2,
+          "description": "SQL和漏斗分析能力强，A/B测试和统计方法有待加强。",
           "factors": {
             "breadth": 7.5,
-            "breadthNote": "SQL、A/B测试、漏斗分析、留存分析均有实践",
-            "depth": 7.0,
-            "depthNote": "基础分析扎实，高级统计方法在学习中",
-            "application": 8.0,
-            "applicationNote": "搭建过完整数据看板，日常数据驱动决策"
+            "breadthNote": "SQL、漏斗、留存、A/B测试、统计、增长方法论",
+            "depth": 7.5,
+            "depthNote": "SQL和漏斗有深度，统计和增长偏基础",
+            "application": 6.5,
+            "applicationNote": "SQL查询案例丰富，但实验设计实践较少"
+          }
+        },
+        {
+          "label": "商业思维",
+          "value": 6.0,
+          "description": "对商业模式和市场分析的系统性理解有待提升。",
+          "factors": {
+            "breadth": 6.0,
+            "breadthNote": "增长方法论覆盖，但商业模式和市场分析缺失",
+            "depth": 5.5,
+            "depthNote": "主要停留在概念理解层面",
+            "application": 6.5,
+            "applicationNote": "有AARRR应用思考，但缺少完整商业分析案例"
           }
         },
         {
           "label": "项目管理",
           "value": 7.0,
-          "description": "能管理3-5人小团队的迭代节奏，熟悉敏捷开发流程。但跨部门大项目协调和风险管控经验有限。",
+          "description": "敏捷开发流程理解到位，跨团队协调经验体现在访谈和设计评审中。",
           "factors": {
             "breadth": 7.0,
-            "breadthNote": "敏捷、Scrum、看板、Sprint Planning均实践过",
-            "depth": 6.5,
-            "depthNote": "小团队管理得心应手，大项目经验不足",
-            "application": 7.5,
-            "applicationNote": "主导过4个产品迭代周期"
-          }
-        },
-        {
-          "label": "商业思维",
-          "value": 6.5,
-          "description": "理解基本商业模式画布和竞品分析框架，但对市场规模估算、财务建模、融资策略理解偏浅。",
-          "factors": {
-            "breadth": 6.5,
-            "breadthNote": "商业模式画布和竞品分析有实践，财务建模缺失",
-            "depth": 6.0,
-            "depthNote": "框架层面理解，缺乏深入的商业判断力",
+            "breadthNote": "敏捷流程、优先级管理、跨团队协作",
+            "depth": 7.0,
+            "depthNote": "流程方法论理解好，复杂项目管理经验有限",
             "application": 7.0,
-            "applicationNote": "完成过2份竞品分析报告"
-          }
-        },
-        {
-          "label": "技术理解",
-          "value": 6.0,
-          "description": "能与工程师有效沟通，理解前后端基本架构和API设计。但对分布式系统、性能优化等深层技术原理了解有限。",
-          "factors": {
-            "breadth": 6.0,
-            "breadthNote": "前后端架构、API、数据库基础概念覆盖",
-            "depth": 5.5,
-            "depthNote": "基本概念清晰，深层原理了解有限",
-            "application": 6.5,
-            "applicationNote": "能写PRD技术约束部分，工程师认可"
+            "applicationNote": "从笔记中可见日常项目管理实践"
           }
         }
       ],
       "categories": [
         {
+          "id": "cat-pm-0",
           "name": "需求与用户研究",
           "items": [
             {
-              "title": "KANO模型与需求分类",
+              "id": "pm-0-0",
+              "name": "KANO模型与需求分类",
               "level": "深度",
-              "connections": [
-                "RICE优先级框架",
-                "用户访谈技巧"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-01",
+              "summary": "掌握基本型/期望型/兴奋型需求分类方法，能在实际项目中运用",
+              "levelReason": "笔记中有3篇系统性总结，包含2个实际项目的KANO分析案例",
+              "improvePriority": "低",
+              "improve": "可进一步学习KANO定量化分析方法",
+              "improveResources": "<a href='https://example.com'>KANO定量化方法论</a>",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "KANO模型理解到位，建议尝试在B端场景中应用"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议结合满意度调研，量化需求优先级"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可以将KANO分类结果与用户行为数据交叉验证"
+                }
+              ]
             },
             {
-              "title": "RICE优先级框架",
+              "id": "pm-0-1",
+              "name": "RICE优先级框架",
               "level": "深度",
-              "connections": [
-                "KANO模型与需求分类"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-02",
+              "summary": "熟练使用Reach/Impact/Confidence/Effort四维度评估需求优先级",
+              "levelReason": "笔记中有RICE评估模板和5个实际需求排序记录",
+              "improvePriority": "低",
+              "improve": "可对比ICE、WSJF等其他优先级框架",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "RICE使用熟练，建议在团队中推广标准化评估流程"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Impact维度建议结合用户调研数据而非主观判断"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Reach数据可以从产品埋点中获取，建议建立数据驱动的评估机制"
+                }
+              ]
             },
             {
-              "title": "用户访谈技巧",
+              "id": "pm-0-2",
+              "name": "用户访谈技巧",
               "level": "深度",
-              "connections": [
-                "KANO模型与需求分类",
-                "问卷设计方法"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-03",
+              "summary": "掌握半结构化访谈设计、提问技巧、记录与分析方法",
+              "levelReason": "有完整的访谈方法论笔记，记录了8次用户访谈实践",
+              "improvePriority": "低",
+              "improve": "可学习远程访谈工具和大规模访谈管理方法",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "访谈能力扎实，下一步可以带团队做访谈"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议学习焦点小组和卡片分类等补充方法"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "访谈结论可以设计AB测试来验证"
+                }
+              ]
             },
             {
-              "title": "问卷设计方法",
+              "id": "pm-0-3",
+              "name": "问卷设计方法",
               "level": "中等",
-              "connections": [
-                "用户访谈技巧"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-04",
+              "summary": "了解问卷题型选择、量表设计、样本量计算基础",
+              "levelReason": "有问卷设计笔记但缺少实际投放和回收分析案例",
+              "improvePriority": "中",
+              "improve": "建议完成一次完整的问卷调研闭环（设计→投放→分析→行动）",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "问卷只是工具，关键是能从数据中提炼出actionable insights"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议重点学习李克特量表和NPS相关方法论"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "统计检验和显著性判断是问卷分析的核心能力"
+                }
+              ]
             },
             {
-              "title": "用户画像构建",
+              "id": "pm-0-4",
+              "name": "用户画像构建",
               "level": "中等",
-              "connections": [
-                "用户访谈技巧"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-05",
+              "summary": "了解定性画像和数据驱动画像的构建方法",
+              "levelReason": "有用户画像理论笔记，有1个项目的画像案例",
+              "improvePriority": "中",
+              "improve": "建议学习聚类分析在用户分群中的应用",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "画像需要能指导具体产品决策，不能只是挂在墙上"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议区分营销画像和设计画像的不同用途"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可以用RFM模型结合行为数据做数据驱动的画像"
+                }
+              ]
             },
             {
-              "title": "Jobs-to-be-Done框架",
+              "id": "pm-0-5",
+              "name": "竞品分析方法论",
               "level": "基础",
-              "connections": [
-                "用户画像构建"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-06",
+              "summary": "了解竞品分析框架，但缺少深度实践",
+              "levelReason": "只有零散的竞品对比笔记，缺少系统性分析框架记录",
+              "improvePriority": "高",
+              "improve": "建议建立竞品长期跟踪机制，定期输出竞品动态分析",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "竞品分析是PM基本功，建议选2-3个竞品做深度拆解"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "竞品分析要包含用户体验维度，不只看功能"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可以用SimilarWeb等工具获取竞品数据做量化对比"
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-pm-1",
           "name": "产品设计与原型",
           "items": [
             {
-              "title": "信息架构设计",
+              "id": "pm-1-0",
+              "name": "信息架构设计",
               "level": "深度",
-              "connections": [
-                "交互设计原则"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-07",
+              "summary": "系统掌握卡片分类、树状测试等信息架构方法",
+              "levelReason": "有3篇信息架构相关学习笔记，2个项目的IA设计记录",
+              "improvePriority": "低",
+              "improve": "可研究大规模内容管理场景下的IA设计模式",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "IA设计扎实，建议关注跨平台一致性"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "可以定期做树状测试验证IA的可发现性"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "结合用户路径数据评估IA的有效性"
+                }
+              ]
             },
             {
-              "title": "交互设计原则",
+              "id": "pm-1-1",
+              "name": "交互设计原则",
               "level": "深度",
-              "connections": [
-                "信息架构设计",
-                "Figma原型设计"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-08",
+              "summary": "熟悉尼尔森十大可用性原则，能运用到实际设计评审中",
+              "levelReason": "有设计原则系统笔记，多次在设计评审中引用相关原则",
+              "improvePriority": "低",
+              "improve": "可深入学习认知负荷理论和注意力设计",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "设计原则掌握好，建议培养设计审美能力"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议通过可用性测试验证设计原则的应用效果"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "交互变更后关注转化率和留存率变化"
+                }
+              ]
             },
             {
-              "title": "Figma原型设计",
+              "id": "pm-1-2",
+              "name": "Figma原型设计",
               "level": "深度",
-              "connections": [
-                "交互设计原则"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-09",
+              "summary": "能独立完成中高保真原型，熟悉组件和Auto Layout",
+              "levelReason": "有Figma技巧笔记集和多个项目原型文件记录",
+              "improvePriority": "低",
+              "improve": "可学习Design Token和设计系统自动化",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "原型能力很好，作为PM够用了，不需要追求设计师水平"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "高保真原型在用户测试中比线框图效果更好"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "原型阶段就可以嵌入Analytics考虑"
+                }
+              ]
             },
             {
-              "title": "设计系统构建",
+              "id": "pm-1-3",
+              "name": "设计系统构建",
               "level": "基础",
-              "connections": [
-                "交互设计原则"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-10",
+              "summary": "了解设计系统概念，但未参与过构建",
+              "levelReason": "只有概念性笔记，没有实际参与设计系统搭建的记录",
+              "improvePriority": "高",
+              "improve": "建议参考Ant Design/Material Design学习组件库构建逻辑",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "设计系统对规模化产品很重要，建议至少理解其价值"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "设计系统能保证一致性，减少用户学习成本"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "标准化组件便于统一埋点方案"
+                }
+              ]
             },
             {
-              "title": "可用性测试",
+              "id": "pm-1-4",
+              "name": "可用性测试",
               "level": "中等",
-              "connections": [
-                "用户访谈技巧"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-11",
+              "summary": "了解可用性测试流程，有少量实践经验",
+              "levelReason": "有方法论笔记和2次简单可用性测试的记录",
+              "improvePriority": "中",
+              "improve": "建议系统学习SUS量表和任务成功率指标",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "可用性测试是验证假设的低成本方法，建议常态化"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "建议学习远程非监督式测试工具如UserTesting"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可结合定量数据（A/B测试）和定性数据（可用性测试）"
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-pm-2",
           "name": "数据与增长",
           "items": [
             {
-              "title": "SQL数据查询",
+              "id": "pm-2-0",
+              "name": "SQL数据查询",
               "level": "深度",
-              "connections": [
-                "漏斗分析"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-12",
+              "summary": "熟练编写复杂SQL查询，包括窗口函数和CTE",
+              "levelReason": "有SQL系统学习笔记和大量实际查询案例记录",
+              "improvePriority": "低",
+              "improve": "可学习数据建模和数据仓库设计概念",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "SQL能力是数据驱动PM的核心技能，保持好"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "SQL能帮助快速验证研究假设"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议学习查询优化和大数据场景下的分布式查询"
+                }
+              ]
             },
             {
-              "title": "A/B测试设计",
+              "id": "pm-2-1",
+              "name": "A/B测试设计",
               "level": "中等",
-              "connections": [
-                "SQL数据查询",
-                "统计显著性"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-13",
+              "summary": "了解A/B测试原理和流程，有少量实践",
+              "levelReason": "有理论笔记和2个A/B测试案例，但缺少复杂多变量测试经验",
+              "improvePriority": "中",
+              "improve": "建议学习多变量测试和贝叶斯方法",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "A/B测试是科学决策的基础，需要常态化使用"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "注意A/B测试要配合定性研究解释为什么"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "重点关注统计功效和最小样本量计算"
+                }
+              ]
             },
             {
-              "title": "漏斗分析",
+              "id": "pm-2-2",
+              "name": "漏斗分析",
               "level": "深度",
-              "connections": [
-                "SQL数据查询",
-                "留存分析"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-14",
+              "summary": "能独立搭建转化漏斗并定位流失环节",
+              "levelReason": "有漏斗分析方法笔记和3个完整项目的漏斗优化记录",
+              "improvePriority": "低",
+              "improve": "可进一步学习归因模型和多触点漏斗",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "漏斗分析做得好，建议拓展到用户全生命周期视角"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "漏斗流失点可以配合用户录屏找原因"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议学习Markov链和概率漏斗模型"
+                }
+              ]
             },
             {
-              "title": "留存分析",
+              "id": "pm-2-3",
+              "name": "留存分析",
               "level": "中等",
-              "connections": [
-                "漏斗分析"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-15",
+              "summary": "了解次留/7留/30留指标，能做基础留存分析",
+              "levelReason": "有留存分析方法笔记，但深度分析（同期群、留存曲线拟合）经验不足",
+              "improvePriority": "中",
+              "improve": "建议系统学习同期群分析和留存曲线拟合方法",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "留存是北极星指标之一，必须深入掌握"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "高留存用户的行为模式值得深入研究"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "推荐学习指数衰减模型和Power Law拟合"
+                }
+              ]
             },
             {
-              "title": "统计显著性",
+              "id": "pm-2-4",
+              "name": "统计显著性",
               "level": "基础",
-              "connections": [
-                "A/B测试设计"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-16",
+              "summary": "了解p值和置信区间的基本概念",
+              "levelReason": "笔记中只有概念性记录，缺少实际计算和应用案例",
+              "improvePriority": "高",
+              "improve": "建议系统学习假设检验、卡方检验和回归分析基础",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "统计基础对数据驱动决策很重要，必须补足"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "问卷和实验研究都依赖统计检验"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "推荐从《统计学习导论》入手，掌握核心检验方法"
+                }
+              ]
             },
             {
-              "title": "增长黑客方法论",
+              "id": "pm-2-5",
+              "name": "增长黑客方法论",
               "level": "基础",
-              "connections": [
-                "A/B测试设计",
-                "漏斗分析"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-17",
+              "summary": "了解增长飞轮和AARRR模型",
+              "levelReason": "只有读书笔记，缺少增长实验的实践记录",
+              "improvePriority": "高",
+              "improve": "建议设计并执行至少3个增长实验，积累实战经验",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "增长是PM进阶能力，建议从小规模实验开始积累"
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "增长策略要基于用户心理和行为洞察"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议建立增长实验追踪看板，量化每次实验效果"
+                }
+              ]
             }
           ]
         }
@@ -1680,31 +1972,48 @@ const KNOWLEDGELENS_DATA = {
           "topic": "B端产品需求分析",
           "type": "缺失",
           "priority": "高",
-          "reason": "当前经验集中在C端，B端复杂业务逻辑拆解是进阶必备能力"
+          "reason": "当前经验集中在C端，B端复杂业务逻辑拆解是进阶必备能力",
+          "from": [
+            "pm-0-0",
+            "pm-0-1"
+          ]
         },
         {
-          "topic": "设计系统从0到1构建",
+          "topic": "统计学基础",
           "type": "薄弱",
           "priority": "高",
-          "reason": "只会使用现成组件库，缺乏系统性设计规范的建设经验"
+          "reason": "影响A/B测试和数据分析的准确性判断",
+          "from": [
+            "pm-2-4",
+            "pm-2-1"
+          ]
         },
         {
-          "topic": "因果推断方法",
+          "topic": "设计系统实践",
           "type": "缺失",
           "priority": "中",
-          "reason": "当前数据分析停留在描述性层面，缺乏因果识别能力"
+          "reason": "对规模化产品开发效率有重要影响",
+          "from": [
+            "pm-1-3"
+          ]
         },
         {
-          "topic": "大型项目风险管控",
-          "type": "缺失",
-          "priority": "中",
-          "reason": "仅管理过小团队迭代，跨部门项目协调经验不足"
-        },
-        {
-          "topic": "财务建模与市场估算",
+          "topic": "增长实验",
           "type": "薄弱",
+          "priority": "高",
+          "reason": "理论知识充足但缺少实操经验",
+          "from": [
+            "pm-2-5"
+          ]
+        },
+        {
+          "topic": "竞品长期跟踪",
+          "type": "缺失",
           "priority": "中",
-          "reason": "商业判断力需要具体数字支撑能力"
+          "reason": "缺少系统性竞品情报收集和分析机制",
+          "from": [
+            "pm-0-5"
+          ]
         }
       ],
       "experts": [
@@ -1714,295 +2023,541 @@ const KNOWLEDGELENS_DATA = {
         },
         {
           "role": "用户研究专家",
-          "advice": "你的用户访谈技巧已经不错，下一步应该深入Jobs-to-be-Done框架和定量研究方法。建议尝试做一次完整的混合方法研究：先定性探索再定量验证。另外，问卷设计可以学习Likert量表设计的最佳实践，避免常见的双重装载和引导性问题。"
+          "advice": "用户访谈能力是你的强项，下一步建议拓展研究方法的广度——特别是定量研究能力。问卷设计需要补充统计分析环节，可用性测试可以引入SUS量表做标准化评估。另外建议学习日记研究和卡片分类等纵向研究方法。"
         },
         {
           "role": "数据分析师",
-          "advice": "SQL基础很好，建议下一步学习窗口函数和CTE来处理更复杂的分析需求。A/B测试方面，需要深入理解统计功效（power analysis）来合理设定样本量。长期来看，学习Python的pandas和因果推断库（如DoWhy）会显著提升你的数据决策能力。"
+          "advice": "SQL基础很好，这是一个优势。建议重点补足统计学知识——假设检验、回归分析是A/B测试和因果推断的基础。数据方面，推荐学习Python/R做更复杂的分析，并开始关注因果推断方法论。目标：从描述性分析向诊断性和预测性分析进阶。"
         }
       ]
     },
     {
-      "id": "marketing",
+      "id": "domain-mkt",
       "name": "市场投放",
-      "subtitle": "从策略制定到效果优化的数字营销能力",
+      "subtitle": "Digital Marketing",
       "color": "#059669",
-      "icon": "trending-up",
+      "icon": "📢",
       "overallScore": 6.8,
-      "benchmark": "以2年经验的数字营销专员为基准（10分=营销总监级别）",
+      "benchmark": "2年数字营销从业者",
       "dimensionInfo": {
-        "intro": "基于投放复盘文档、营销方案、渠道分析笔记，由营销总监、增长负责人、品牌策略师三位专家交叉评估。",
-        "method": "每个维度综合考量三个因素：渠道覆盖广度、策略理解深度、实际投放优化能力。最终得分为三位专家评分的加权综合。"
+        "intro": "基于广告投放笔记、平台操作记录、数据分析文档，由投放优化师、品牌策略师、数据分析师三位专家交叉评估。",
+        "method": "每个维度从广度（渠道/工具覆盖）、深度（优化策略层次）、应用（实际投放数据和优化记录）三个子因子综合评估。"
       },
       "expertRoles": [
-        "营销总监",
-        "增长负责人",
-        "品牌策略师"
+        "投放优化师",
+        "品牌策略师",
+        "数据分析师"
       ],
       "scores": [
         {
-          "label": "渠道策略",
+          "label": "搜索营销",
           "value": 7.5,
-          "description": "熟悉主流数字渠道（搜索、信息流、社交媒体），能根据产品特性选择合适渠道组合。但对线下渠道和新兴渠道（如播客、社区）的理解较浅。",
+          "description": "Google Ads账户结构和关键词策略掌握良好，质量得分优化和否定词管理有提升空间。",
           "factors": {
-            "breadth": 8.0,
-            "breadthNote": "SEM、信息流、社交广告、内容营销主流渠道均覆盖",
-            "depth": 7.0,
-            "depthNote": "搜索广告理解深入，新兴渠道停留在概念",
-            "application": 7.5,
-            "applicationNote": "独立操盘过3个渠道的投放策略"
+            "breadth": 7.5,
+            "breadthNote": "覆盖账户结构、关键词、质量得分、文案、否定词",
+            "depth": 8.0,
+            "depthNote": "账户结构和关键词有深度实操",
+            "application": 7.0,
+            "applicationNote": "有2个项目的完整投放记录"
           }
         },
         {
-          "label": "投放优化",
+          "label": "社交投放",
           "value": 7.2,
-          "description": "能进行基础的出价策略调整、素材A/B测试、受众定向优化。但对机器学习竞价算法原理和归因模型的深层理解不足。",
+          "description": "信息流投放全流程熟练，受众策略和创意制作有进阶空间。",
           "factors": {
             "breadth": 7.0,
-            "breadthNote": "出价、素材测试、受众定向、时段优化均实践过",
-            "depth": 7.0,
-            "depthNote": "实操经验丰富，但算法原理层面偏弱",
-            "application": 7.5,
-            "applicationNote": "将某渠道ROI从1.2优化到2.1的实际案例"
-          }
-        },
-        {
-          "label": "内容营销",
-          "value": 7.0,
-          "description": "能产出符合平台调性的营销内容，了解SEO基础和内容分发策略。但缺乏品牌叙事和长期内容战略规划能力。",
-          "factors": {
-            "breadth": 7.0,
-            "breadthNote": "SEO、社媒内容、EDM、落地页文案均有产出",
-            "depth": 6.5,
-            "depthNote": "执行层面熟练，品牌叙事和战略规划偏弱",
-            "application": 7.5,
-            "applicationNote": "运营过万粉公众号，多篇10w+文章"
+            "breadthNote": "覆盖信息流、受众、创意、再营销、预算",
+            "depth": 7.5,
+            "depthNote": "信息流投放有深度实践和效果数据",
+            "application": 7.0,
+            "applicationNote": "3个信息流项目记录，有明确的效果数据"
           }
         },
         {
           "label": "数据归因",
-          "value": 6.5,
-          "description": "理解UTM追踪和基本的末次点击归因，但对多触点归因模型、MMM和增量测试方法理解有限。",
+          "value": 7.0,
+          "description": "GA4和UTM体系扎实，归因模型和高级分析有待深入。",
           "factors": {
-            "breadth": 6.0,
-            "breadthNote": "UTM和末次点击熟悉，多触点归因模型概念层面",
-            "depth": 6.5,
-            "depthNote": "基本归因理解清晰，高级方法缺乏实践",
-            "application": 7.0,
-            "applicationNote": "搭建过基础的渠道归因看板"
+            "breadth": 7.0,
+            "breadthNote": "GA4、UTM、归因模型、报表、隐私合规",
+            "depth": 7.5,
+            "depthNote": "GA4和UTM有深度实操，归因和合规偏基础",
+            "application": 6.5,
+            "applicationNote": "3个GA4配置案例和2个仪表盘案例"
           }
         },
         {
-          "label": "预算管理",
-          "value": 6.2,
-          "description": "能制定月度投放预算并跟踪消耗节奏，但对预算分配模型、边际效益计算和跨渠道预算优化缺乏系统方法。",
+          "label": "创意策略",
+          "value": 6.5,
+          "description": "有基本的素材制作能力，但缺少系统化的创意测试方法论。",
           "factors": {
-            "breadth": 6.0,
-            "breadthNote": "预算制定和消耗追踪有经验，分配模型缺失",
+            "breadth": 6.5,
+            "breadthNote": "文案撰写和视觉素材制作",
             "depth": 6.0,
-            "depthNote": "凭经验分配预算，缺乏数学模型支撑",
-            "application": 6.5,
-            "applicationNote": "管理过月均50万预算的投放计划"
+            "depthNote": "素材制作有实践，系统化测试方法不足",
+            "application": 7.0,
+            "applicationNote": "有实际素材产出但缺少效果追踪"
+          }
+        },
+        {
+          "label": "预算与ROI",
+          "value": 5.5,
+          "description": "预算管理和ROI优化处于入门阶段，需要更多实战积累。",
+          "factors": {
+            "breadth": 5.5,
+            "breadthNote": "基本预算分配原则",
+            "depth": 5.0,
+            "depthNote": "只有理论框架，缺少多渠道预算优化经验",
+            "application": 6.0,
+            "applicationNote": "有单渠道预算管理经验，跨渠道优化不足"
           }
         }
       ],
       "categories": [
         {
+          "id": "cat-mkt-0",
           "name": "搜索营销",
           "items": [
             {
-              "title": "Google Ads关键词策略",
+              "id": "mkt-0-0",
+              "name": "Google Ads 账户结构",
               "level": "深度",
-              "connections": [
-                "出价策略优化",
-                "质量分优化"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-01",
+              "summary": "熟悉Campaign/Ad Group/Keyword三层结构和出价策略",
+              "levelReason": "有系统的Google Ads学习笔记和2个项目的投放实操记录",
+              "improvePriority": "低",
+              "improve": "可深入学习Smart Bidding策略和Performance Max",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "账户结构理解到位，建议关注自动化出价的新趋势"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "搜索广告要和品牌关键词策略保持一致"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议建立关键词ROI分层追踪体系"
+                }
+              ]
             },
             {
-              "title": "出价策略优化",
+              "id": "mkt-0-1",
+              "name": "关键词研究与匹配",
+              "level": "深度",
+              "docId": "doc-mkt-02",
+              "summary": "掌握关键词工具使用和匹配类型选择策略",
+              "levelReason": "有关键词策略笔记和实际项目的关键词库管理记录",
+              "improvePriority": "低",
+              "improve": "可学习语义关键词聚类和AI辅助关键词扩展",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "关键词功底好，建议定期清理低效词"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "长尾关键词策略要对齐内容营销计划"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议用搜索词报告数据反哺关键词策略"
+                }
+              ]
+            },
+            {
+              "id": "mkt-0-2",
+              "name": "质量得分优化",
               "level": "中等",
-              "connections": [
-                "Google Ads关键词策略",
-                "智能出价算法"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-03",
+              "summary": "了解质量得分三要素，有基本优化经验",
+              "levelReason": "有优化方法笔记，但缺少长期系统优化的效果跟踪",
+              "improvePriority": "中",
+              "improve": "建议建立质量得分监控体系，按广告组做精细化优化",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "质量得分直接影响CPC，值得花时间做精细化"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "落地页体验是质量得分的关键，需要和设计协作"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可以分析质量得分变化和CTR/CPC的相关性"
+                }
+              ]
             },
             {
-              "title": "质量分优化",
-              "level": "深度",
-              "connections": [
-                "Google Ads关键词策略",
-                "落地页优化"
-              ],
-              "improvePriority": "低"
+              "id": "mkt-0-3",
+              "name": "搜索广告文案撰写",
+              "level": "中等",
+              "docId": "doc-mkt-04",
+              "summary": "了解RSA广告文案写作原则，有基本实践",
+              "levelReason": "有文案技巧笔记，但文案AB测试的实验数据积累不足",
+              "improvePriority": "中",
+              "improve": "建议系统做文案AB测试，建立高转化文案素材库",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "RSA需要提供足够多的标题变体让算法优化"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "广告文案要传递品牌价值，不仅是功能卖点"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "文案效果评估要看CTR、CVR和品牌搜索量的综合指标"
+                }
+              ]
             },
             {
-              "title": "智能出价算法",
+              "id": "mkt-0-4",
+              "name": "否定关键词策略",
               "level": "基础",
-              "connections": [
-                "出价策略优化"
-              ],
-              "improvePriority": "高"
-            },
-            {
-              "title": "落地页优化",
-              "level": "中等",
-              "connections": [
-                "质量分优化",
-                "转化率优化"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-05",
+              "summary": "了解否定关键词概念但实践经验有限",
+              "levelReason": "只有概念笔记，缺少否定词列表管理的实战经验",
+              "improvePriority": "高",
+              "improve": "建议每周分析搜索词报告，持续补充否定词列表",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "否定关键词是省钱利器，建议建立行业通用否定词库"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "品牌词的否定策略需要特别谨慎"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "可以用搜索词报告自动化识别无效流量"
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-mkt-1",
           "name": "社交媒体投放",
           "items": [
             {
-              "title": "信息流广告投放",
+              "id": "mkt-1-0",
+              "name": "信息流广告投放",
               "level": "深度",
-              "connections": [
-                "受众定向策略",
-                "素材创意测试"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-06",
+              "summary": "掌握信息流广告创建、受众设定、出价优化全流程",
+              "levelReason": "有系统学习笔记和3个信息流投放项目的完整记录",
+              "improvePriority": "低",
+              "improve": "可深入学习DPA动态广告和素材自动化",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "信息流投放能力扎实，建议关注创意疲劳管理"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "信息流内容要和品牌调性一致，不能只追求转化"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议建立素材效果归因体系"
+                }
+              ]
             },
             {
-              "title": "受众定向策略",
+              "id": "mkt-1-1",
+              "name": "受众定向策略",
               "level": "中等",
-              "connections": [
-                "信息流广告投放",
-                "Lookalike受众"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-07",
+              "summary": "了解核心受众、相似受众和再营销的使用场景",
+              "levelReason": "有定向策略笔记，但受众扩展和交叉定向的经验较少",
+              "improvePriority": "中",
+              "improve": "建议学习第一方数据建设和CDP的使用",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "受众策略要随投放阶段调整，从窄到宽测试"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "受众细分要对齐品牌的目标人群画像"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议分析不同受众组的LTV差异指导预算分配"
+                }
+              ]
             },
             {
-              "title": "素材创意测试",
-              "level": "深度",
-              "connections": [
-                "信息流广告投放"
-              ],
-              "improvePriority": "低"
+              "id": "mkt-1-2",
+              "name": "创意素材制作",
+              "level": "中等",
+              "docId": "doc-mkt-08",
+              "summary": "能制作基本的图片和视频广告素材",
+              "levelReason": "有素材制作方法笔记，但缺少大规模素材测试的系统方法",
+              "improvePriority": "中",
+              "improve": "建议学习素材批量生产和DCO动态创意优化",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "素材是信息流效果的最大变量，建议建立测试矩阵"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "保持视觉一致性的同时要有足够的创意变体"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议标注素材标签，分析哪类元素效果最好"
+                }
+              ]
             },
             {
-              "title": "Lookalike受众",
+              "id": "mkt-1-3",
+              "name": "再营销策略",
               "level": "基础",
-              "connections": [
-                "受众定向策略"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-mkt-09",
+              "summary": "了解再营销概念和Pixel安装",
+              "levelReason": "只有基础概念笔记，缺少再营销序列设计的实践",
+              "improvePriority": "高",
+              "improve": "建议学习多触点再营销序列和频次控制策略",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "再营销是高ROI渠道，建议尽快落地实践"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "再营销频次过高会伤害品牌形象，需要平衡"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "关注再营销的增量贡献而非last-click归因"
+                }
+              ]
             },
             {
-              "title": "再营销策略",
-              "level": "中等",
-              "connections": [
-                "受众定向策略"
-              ],
-              "improvePriority": "中"
+              "id": "mkt-1-4",
+              "name": "预算分配策略",
+              "level": "基础",
+              "docId": "doc-mkt-10",
+              "summary": "了解预算分配的基本原则",
+              "levelReason": "只有理论框架笔记，缺少实际预算管理和调整的经验",
+              "improvePriority": "高",
+              "improve": "建议学习MTA多触点归因下的预算分配优化方法",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "预算分配要根据数据动态调整，不能固定比例"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "品牌广告和效果广告的预算比例要根据阶段调整"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议用边际ROI模型指导预算再分配"
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-mkt-2",
           "name": "数据与归因",
           "items": [
             {
-              "title": "UTM参数追踪",
+              "id": "mkt-2-0",
+              "name": "Google Analytics 4",
               "level": "深度",
-              "connections": [
-                "Google Analytics"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-11",
+              "summary": "熟练使用GA4进行事件追踪、转化设置和受众分析",
+              "levelReason": "有GA4系统学习笔记和3个网站的GA4配置实操记录",
+              "improvePriority": "低",
+              "improve": "可深入学习BigQuery导出和高级分析API",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "GA4能力好，建议打通GA4和广告平台的转化同步"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "GA4的路径分析可以帮助理解品牌认知旅程"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "BigQuery导出是高级分析的入口，建议尽快掌握"
+                }
+              ]
             },
             {
-              "title": "Google Analytics",
+              "id": "mkt-2-1",
+              "name": "UTM参数管理",
+              "level": "深度",
+              "docId": "doc-mkt-12",
+              "summary": "有规范的UTM命名体系和追踪流程",
+              "levelReason": "有完整的UTM规范文档和跨渠道追踪案例",
+              "improvePriority": "低",
+              "improve": "可学习server-side tracking应对隐私政策变化",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "UTM规范做得好，是归因分析的基础"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "UTM可以追踪品牌合作和线下活动的线上效果"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议考虑cookie-less场景的替代追踪方案"
+                }
+              ]
+            },
+            {
+              "id": "mkt-2-2",
+              "name": "归因模型",
               "level": "中等",
-              "connections": [
-                "UTM参数追踪",
-                "转化率优化"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-13",
+              "summary": "了解常见归因模型（last-click、linear、time-decay），有基本应用",
+              "levelReason": "有归因模型理论笔记，但缺少MTA多触点归因的实际建模经验",
+              "improvePriority": "中",
+              "improve": "建议学习数据驱动归因和增量测试方法",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "归因模型选择直接影响预算决策，必须深入理解"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "品牌广告在last-click中总是被低估，需要综合看"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "推荐学习Shapley Value和Markov归因方法"
+                }
+              ]
             },
             {
-              "title": "转化率优化",
+              "id": "mkt-2-3",
+              "name": "数据可视化与报表",
               "level": "中等",
-              "connections": [
-                "Google Analytics",
-                "落地页优化"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-14",
+              "summary": "能用Looker Studio搭建营销仪表盘",
+              "levelReason": "有Looker Studio使用笔记和2个仪表盘搭建案例",
+              "improvePriority": "中",
+              "improve": "建议学习Tableau和自动化报表流程",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "仪表盘要能实时反映投放关键指标"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "营销报表要对齐商业目标，不只是投放数据"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "建议加入异常检测和自动预警功能"
+                }
+              ]
             },
             {
-              "title": "多触点归因模型",
+              "id": "mkt-2-4",
+              "name": "隐私合规(GDPR/CCPA)",
               "level": "基础",
-              "connections": [
-                "Google Analytics"
-              ],
-              "improvePriority": "高"
-            },
-            {
-              "title": "Marketing Mix Modeling",
-              "level": "基础",
-              "connections": [
-                "多触点归因模型"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-mkt-15",
+              "summary": "了解GDPR和CCPA的基本要求",
+              "levelReason": "只有概念性笔记，缺少合规实施的实践经验",
+              "improvePriority": "高",
+              "improve": "建议深入学习Consent Mode和server-side tracking的合规实施",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "隐私政策是投放的最大变量，必须持续关注"
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "合规不只是法律要求，更是品牌信任的基础"
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "cookie-less归因方案是近期最重要的课题"
+                }
+              ]
             }
           ]
         }
       ],
       "gaps": [
         {
-          "topic": "多触点归因建模",
-          "type": "缺失",
-          "priority": "高",
-          "reason": "当前仅依赖末次点击，无法准确评估各触点贡献"
-        },
-        {
-          "topic": "智能出价算法原理",
+          "topic": "否定关键词体系",
           "type": "薄弱",
           "priority": "高",
-          "reason": "不理解算法机制就无法有效利用平台的自动化能力"
+          "reason": "直接影响广告花费效率，是搜索营销的必备能力",
+          "from": [
+            "mkt-0-4"
+          ]
         },
         {
-          "topic": "品牌营销与效果营销协同",
+          "topic": "再营销策略落地",
           "type": "缺失",
-          "priority": "中",
-          "reason": "当前偏效果导向，缺乏品牌建设长期视角"
+          "priority": "高",
+          "reason": "再营销是高ROI渠道，当前只有概念认知",
+          "from": [
+            "mkt-1-3"
+          ]
         },
         {
-          "topic": "增量测试方法",
+          "topic": "隐私合规实施",
           "type": "缺失",
-          "priority": "中",
-          "reason": "无法区分广告真实增量与自然转化"
+          "priority": "高",
+          "reason": "隐私政策变化直接影响投放效果和数据收集",
+          "from": [
+            "mkt-2-4"
+          ]
         },
         {
-          "topic": "跨渠道预算优化模型",
+          "topic": "多渠道预算优化",
           "type": "薄弱",
           "priority": "中",
-          "reason": "缺乏数学模型支撑的最优预算分配方法"
+          "reason": "跨渠道预算再分配能力影响整体ROI",
+          "from": [
+            "mkt-1-4"
+          ]
+        },
+        {
+          "topic": "创意系统化测试",
+          "type": "薄弱",
+          "priority": "中",
+          "reason": "素材效果缺少系统追踪和优化方法",
+          "from": [
+            "mkt-1-2"
+          ]
         }
       ],
       "experts": [
         {
-          "role": "营销总监",
-          "advice": "你的执行力不错，渠道实操经验是加分项。但要从执行层走向策略层，需要建立系统的归因思维——建议深入学习MMM（Marketing Mix Modeling）和增量测试方法。另外，品牌与效果的协同是高阶能力，推荐阅读《How Brands Grow》来建立品牌增长的科学认知。"
-        },
-        {
-          "role": "增长负责人",
-          "advice": "数据基础不错，建议下一步把归因做扎实。具体行动：1）学习Shapley Value在多触点归因中的应用；2）尝试用Python做一次简单的MMM建模；3）设计一次增量测试来验证某渠道的真实贡献。这三步走完，你的数据归因能力会有质的提升。"
+          "role": "投放优化师",
+          "advice": "搜索和信息流基础扎实，有明确的效果数据积累。下一阶段重点：1）建立否定关键词库和自动化规则，预计可节省15-20%无效花费；2）落地再营销策略，从简单的网站访客再营销开始；3）学习Smart Bidding和Performance Max，这是未来趋势。"
         },
         {
           "role": "品牌策略师",
-          "advice": "你的内容营销执行力强，但缺乏品牌战略思维。建议从三个层面提升：1）学习品牌定位理论（Trout的定位、Keller的品牌资产模型）；2）分析3个你喜欢的品牌，拆解他们的品牌叙事结构；3）尝试为你负责的产品写一份品牌故事。好的营销不只是投放效率，更是品牌心智的长期经营。"
+          "advice": "当前能力偏效果导向，建议补充品牌建设视角：品牌广告虽然短期ROI不高，但对长期获客成本有重要影响。建议学习品牌力度量指标（品牌搜索量、NPS）和品牌安全策略。另外创意素材要建立品牌视觉一致性标准。"
+        },
+        {
+          "role": "数据分析师",
+          "advice": "GA4和UTM体系做得好，数据基础设施完善。重点提升方向：1）归因模型——从Last Click进阶到数据驱动归因；2）隐私合规——学习Consent Mode和server-side tracking；3）建议用BigQuery做跨平台数据分析，建立统一的ROI报表。"
         }
       ]
     }
-  ],
-  "documents": {
-    "doc-1": "# KANO模型学习笔记\n\n## 核心概念\n- 基本型需求：不满足会不满意，满足了也不会特别满意\n- 期望型需求：线性关系，满足越多越满意\n- 兴奋型需求：不满足不会不满意，满足了会非常惊喜\n\n## 实践要点\n- 正反向问卷设计\n- 分类计算方法\n- 与RICE框架结合使用",
-    "doc-2": "# 信息流广告投放优化\n\n## 关键指标\n- CTR（点击率）\n- CVR（转化率）\n- CPA（单次获客成本）\n- ROI（投入产出比）\n\n## 优化策略\n- 素材轮换避免疲劳\n- 受众分层出价\n- 时段和地域定向"
-  }
+  ]
 };
 
 // ========== 全局状态 ==========

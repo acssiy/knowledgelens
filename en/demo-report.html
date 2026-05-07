@@ -1414,595 +1414,1150 @@ body {
 const KNOWLEDGELENS_DATA = {
   "meta": {
     "userName": "Demo User",
-    "generatedAt": "2025-05-07",
-    "evaluationBasis": "Based on 42 learning notes, 6 project documents, and 3 book summaries",
-    "version": "1.0"
+    "generatedAt": "2025-05-07T10:00:00+08:00",
+    "totalItems": 32,
+    "totalDomains": 2,
+    "sourceDescription": "Obsidian vault + Apple Notes (Product Management and Digital Marketing notes)"
+  },
+  "documents": {
+    "doc-pm-01": "<h1>KANO Model Study Notes</h1><h2>Core Concepts</h2><ul><li><strong>Basic Needs:</strong> Dissatisfaction if absent, no extra satisfaction if present</li><li><strong>Performance Needs:</strong> Linear relationship — more fulfillment = more satisfaction</li><li><strong>Excitement Needs:</strong> No dissatisfaction if absent, delight if present</li></ul><h2>Project Cases</h2><h3>Project A — E-commerce Cart Optimization</h3><ul><li>Basic: Confirmation feedback after adding to cart</li><li>Performance: Show estimated delivery time</li><li>Excitement: Smart product recommendations</li></ul><h3>Project B — SaaS Dashboard</h3><ul><li>Basic: Data loads within 3 seconds</li><li>Performance: Customizable dashboard layout</li><li>Excitement: AI-generated weekly reports</li></ul>",
+    "doc-pm-02": "<h1>RICE Priority Framework</h1><h2>Formula</h2><p>RICE Score = (Reach × Impact × Confidence) / Effort</p><h2>Scoring Criteria</h2><ul><li>Reach: Users affected per quarter</li><li>Impact: 0.25 / 0.5 / 1 / 2 / 3</li><li>Confidence: 50%–100%</li><li>Effort: Person-months</li></ul><h2>Evaluation Records</h2><table><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>Score</th></tr><tr><td>Search optimization</td><td>5000</td><td>2</td><td>80%</td><td>2</td><td>4000</td></tr><tr><td>New payment method</td><td>3000</td><td>3</td><td>60%</td><td>4</td><td>1350</td></tr></table>",
+    "doc-pm-03": "<h1>User Interview Methodology</h1><h2>Preparation</h2><ol><li>Define research goals and hypotheses</li><li>Design semi-structured interview guide</li><li>Prepare recording tools</li></ol><h2>Interview Techniques</h2><ul><li>Open-ended questions: 'Can you describe your last experience with...?'</li><li>Probe for details: 'What were you thinking at that point?'</li><li>Avoid leading: Don't say 'Do you think this feature is good?'</li></ul><h2>Records</h2><p>Completed 8 user interviews across 3 projects</p>",
+    "doc-pm-04": "<h1>Survey Design Methods</h1><h2>Question Types</h2><ul><li>Single choice: Mutually exclusive options</li><li>Multiple choice: Include 'Other' as catch-all</li><li>Scale: 5-point or 7-point Likert</li></ul><h2>Best Practices</h2><ul><li>Avoid double negatives</li><li>Avoid leading language</li><li>Keep survey under 5 minutes</li></ul>",
+    "doc-pm-05": "<h1>User Persona Construction</h1><h2>Qualitative Personas</h2><p>Character archetypes based on interviews and observation</p><h2>Data-Driven Personas</h2><p>User segments based on behavioral data clustering</p><h2>Case Study</h2><h3>Project X User Personas</h3><ul><li>Efficiency Users (35%): Want to complete tasks quickly</li><li>Explorers (25%): Like discovering new features</li><li>Passive Users (40%): Only use core features</li></ul>",
+    "doc-pm-06": "<h1>Competitive Analysis</h1><h2>Framework</h2><ul><li>Feature comparison matrix</li><li>UX comparison</li><li>Business model analysis</li></ul><h2>To Establish</h2><ul><li>Long-term tracking mechanism</li><li>Periodic analysis reports</li></ul>",
+    "doc-pm-07": "<h1>Information Architecture Design</h1><h2>Methods</h2><ul><li>Card sorting (open/closed)</li><li>Tree testing</li><li>Site maps</li></ul><h2>Project Practice</h2><h3>E-commerce Navigation Redesign</h3><ul><li>Changed from category to scenario-based navigation</li><li>Tree test success rate improved from 45% to 78%</li></ul><h3>SaaS Feature Reorganization</h3><ul><li>Restructured by workflow</li><li>Average clicks to find target feature reduced from 4.2 to 2.1</li></ul>",
+    "doc-pm-08": "<h1>Interaction Design Principles</h1><h2>Nielsen's 10 Heuristics</h2><ol><li>Visibility of system status</li><li>Match between system and real world</li><li>User control and freedom</li><li>Consistency and standards</li><li>Error prevention</li><li>Recognition rather than recall</li><li>Flexibility and efficiency of use</li><li>Aesthetic and minimalist design</li><li>Help users recognize and recover from errors</li><li>Help and documentation</li></ol><h2>Review Records</h2><p>Regularly cited heuristic #3 (undo) and #5 (form validation) in design reviews</p>",
+    "doc-pm-09": "<h1>Figma Prototyping</h1><h2>Key Techniques</h2><ul><li>Auto Layout: Adaptive component layouts</li><li>Component Variants: State management</li><li>Interaction: Smart Animate</li></ul><h2>Projects</h2><p>Completed 6 mid-to-high fidelity prototypes across projects</p>",
+    "doc-pm-10": "<h1>Design Systems</h1><h2>Core Concepts</h2><ul><li>Design Tokens</li><li>Atomic Design methodology</li><li>Component documentation</li></ul><h2>References</h2><ul><li>Ant Design</li><li>Material Design</li><li>Apple HIG</li></ul>",
+    "doc-pm-11": "<h1>Usability Testing</h1><h2>Process</h2><ol><li>Define test tasks</li><li>Recruit users (5-8 people)</li><li>Conduct observation</li><li>Document issues</li><li>Prioritize findings</li></ol><h2>Practice Records</h2><h3>Test 1: Registration Flow</h3><ul><li>Found 3 usability issues</li><li>Completion rate improved from 60% to 90%</li></ul><h3>Test 2: Search Feature</h3><ul><li>Discovered users struggled with filter understanding</li></ul>",
+    "doc-pm-12": "<h1>SQL Learning Notes</h1><h2>Window Functions</h2><pre>SELECT user_id,\n  ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at) as visit_seq,\n  LAG(created_at) OVER (PARTITION BY user_id ORDER BY created_at) as prev_visit\nFROM events</pre><h2>CTEs</h2><pre>WITH daily_active AS (\n  SELECT date, COUNT(DISTINCT user_id) as dau\n  FROM events GROUP BY date\n)\nSELECT * FROM daily_active WHERE dau > 1000</pre><h2>Real Query Cases</h2><ul><li>User retention calculation</li><li>Funnel conversion analysis</li><li>Active user trends</li></ul>",
+    "doc-pm-13": "<h1>A/B Test Design</h1><h2>Process</h2><p>Hypothesis → Design → Sample size → Randomize → Run → Analyze</p><h2>Cases</h2><h3>Button Color Test</h3><ul><li>Control: Blue CTA</li><li>Variant: Green CTA</li><li>Result: +12% conversion (p=0.03)</li></ul><h3>Pricing Page Layout</h3><ul><li>Control: Three columns side by side</li><li>Variant: Recommended plan highlighted</li><li>Result: +8% paid conversion (p=0.07, not significant)</li></ul>",
+    "doc-pm-14": "<h1>Funnel Analysis Methods</h1><h2>E-commerce Funnel</h2><p>Homepage → Listing → Detail → Add to Cart → Checkout → Payment Success</p><h2>Project Records</h2><h3>Project 1: Payment Funnel Optimization</h3><ul><li>Found 35% drop-off from Add to Cart → Checkout</li><li>Cause: Required registration first</li><li>Solution: Guest checkout</li><li>Result: Drop-off reduced to 18%</li></ul>",
+    "doc-pm-15": "<h1>Retention Analysis</h1><h2>Metric Definitions</h2><ul><li>D1 Retention: D+1 revisit rate</li><li>D7 Retention: D+7 revisit rate</li><li>D30 Retention: D+30 revisit rate</li></ul><h2>Methods</h2><ul><li>Cohort analysis</li><li>Retention curves</li><li>Feature retention rates</li></ul>",
+    "doc-pm-16": "<h1>Statistical Significance</h1><h2>Concepts</h2><ul><li>p-value: Probability of observing current or more extreme results if null hypothesis is true</li><li>Confidence interval: Range of uncertainty for parameter estimates</li><li>α: Significance level, typically 0.05</li></ul>",
+    "doc-pm-17": "<h1>Growth Hacking Methodology</h1><h2>Book Notes</h2><ul><li>AARRR: Acquisition → Activation → Retention → Revenue → Referral</li><li>Growth Flywheel: Find positive feedback loops</li><li>North Star Metric: One core metric guiding all growth actions</li></ul>",
+    "doc-mkt-01": "<h1>Google Ads Account Structure</h1><h2>Hierarchy</h2><p>Account → Campaign → Ad Group → Ad/Keyword</p><h2>Bidding Strategies</h2><ul><li>Manual CPC: Full control</li><li>Target CPA: Automated, cost-per-conversion goal</li><li>Target ROAS: Automated, return-on-ad-spend goal</li><li>Maximize Conversions: Maximize within budget</li></ul><h2>Project Records</h2><h3>E-commerce Project</h3><ul><li>Brand Campaign: Manual CPC for brand coverage</li><li>Competitor Campaign: Target CPA for acquisition cost control</li><li>Generic Campaign: Maximize Conversions</li></ul>",
+    "doc-mkt-02": "<h1>Keyword Research</h1><h2>Tools</h2><ul><li>Google Keyword Planner</li><li>SEMrush</li><li>Ahrefs</li></ul><h2>Match Types</h2><ul><li>Broad match: Maximum reach</li><li>Phrase match: Balance reach and precision</li><li>Exact match: Most precise control</li></ul><h2>Keyword Library</h2><ul><li>Classify by intent: Informational / Navigational / Transactional</li><li>Regular low-performer pruning</li><li>Long-tail expansion</li></ul>",
+    "doc-mkt-03": "<h1>Quality Score Optimization</h1><h2>Three Factors</h2><ol><li>Expected CTR</li><li>Ad Relevance</li><li>Landing Page Experience</li></ol><h2>Optimization Methods</h2><ul><li>Improve CTR: Optimize headlines and descriptions</li><li>Relevance: Keyword-Ad-Landing page alignment</li><li>Landing page: Load speed, mobile-friendly, relevant content</li></ul>",
+    "doc-mkt-04": "<h1>Search Ad Copywriting</h1><h2>RSA (Responsive Search Ads)</h2><ul><li>Provide up to 15 headlines and 4 descriptions</li><li>System auto-combines and tests</li></ul><h2>Writing Principles</h2><ul><li>Include keywords</li><li>Highlight USP</li><li>Clear CTA</li><li>Numbers and special characters for attention</li></ul>",
+    "doc-mkt-05": "<h1>Negative Keywords</h1><h2>Concept</h2><p>Prevent ads from showing for irrelevant searches</p><h2>Levels</h2><ul><li>Account-level negatives</li><li>Campaign-level negatives</li><li>Ad Group-level negatives</li></ul>",
+    "doc-mkt-06": "<h1>Feed Ad Campaign Management</h1><h2>Platforms</h2><ul><li>Meta (Facebook/Instagram)</li><li>TikTok</li></ul><h2>Key Process</h2><ol><li>Create Campaign → Choose objective</li><li>Set up Ad Set → Audience/Placement/Budget</li><li>Create Ad → Creative/Copy</li></ol><h2>Project Records</h2><h3>E-commerce Acquisition</h3><ul><li>Budget: $3,000/day</li><li>Target CPA: $15</li><li>Actual CPA: $12.30</li><li>ROAS: 4.2x</li></ul><h3>App Install</h3><ul><li>Budget: $2,000/day</li><li>Target CPI: $3</li><li>Actual CPI: $2.70</li></ul>",
+    "doc-mkt-07": "<h1>Audience Targeting Strategy</h1><h2>Types</h2><ul><li>Core Audiences: Demographics + Interests + Behaviors</li><li>Custom Audiences: Website visitors / App users / Customer lists</li><li>Lookalike Audiences: Expansion from seed users</li></ul><h2>Strategy</h2><ul><li>Cold start: Broad targeting, let algorithm learn</li><li>Scale phase: Lookalike expansion</li><li>Stable phase: Retargeting for efficiency</li></ul>",
+    "doc-mkt-08": "<h1>Creative Asset Production</h1><h2>Formats</h2><ul><li>Static images: 1:1, 4:5, 9:16</li><li>Video: 6s / 15s / 30s</li><li>Carousel: 2-10 cards</li></ul><h2>Process</h2><ul><li>Tag-based asset classification</li><li>Weekly refresh cadence</li><li>Performance data tracking</li></ul>",
+    "doc-mkt-09": "<h1>Retargeting Strategy</h1><h2>Concept</h2><p>Re-engage users who have previously interacted with your brand</p><h2>Pixel Setup</h2><ul><li>Facebook Pixel</li><li>Google Tag</li><li>TikTok Pixel</li></ul>",
+    "doc-mkt-10": "<h1>Budget Allocation Strategy</h1><h2>Principles</h2><ul><li>Increase budget for high-performing channels</li><li>Small budget for new channel testing</li><li>Reserve 10-20% for experiments</li></ul><h2>Framework</h2><p>70/20/10: Core / Growth / Experiment</p>",
+    "doc-mkt-11": "<h1>Google Analytics 4</h1><h2>Event Tracking</h2><ul><li>Auto events: page_view, scroll, click</li><li>Recommended events: purchase, sign_up, add_to_cart</li><li>Custom events: Configure as needed</li></ul><h2>Conversion Setup</h2><ul><li>Mark key events as conversions</li><li>Set conversion values</li></ul><h2>Audience Analysis</h2><ul><li>User property analysis</li><li>Cohort reports</li><li>Path exploration</li></ul><h2>Configuration Records</h2><p>GA4 configured for 3 websites with full event tracking</p>",
+    "doc-mkt-12": "<h1>UTM Parameter Management</h1><h2>Specifications</h2><ul><li>utm_source: Traffic source (google/facebook/email)</li><li>utm_medium: Medium type (cpc/organic/social)</li><li>utm_campaign: Campaign name</li><li>utm_content: Differentiate ad variants</li><li>utm_term: Keywords</li></ul><h2>Naming Convention</h2><ul><li>All lowercase</li><li>Underscore separated</li><li>Date prefix: 2025Q1_spring_sale</li></ul>",
+    "doc-mkt-13": "<h1>Attribution Models</h1><h2>Common Models</h2><ul><li>Last Click: Last interaction gets credit</li><li>First Click: First interaction gets credit</li><li>Linear: Equal credit distribution</li><li>Time Decay: Recent interactions weighted more</li><li>Data-Driven: ML-based (GA4 default)</li></ul><h2>Application</h2><ul><li>Brand ads: First Click perspective</li><li>Performance ads: Last Click perspective</li><li>Overall decisions: Data-Driven</li></ul>",
+    "doc-mkt-14": "<h1>Data Visualization & Dashboards</h1><h2>Looker Studio</h2><ul><li>Data sources: GA4, Google Ads, BigQuery</li><li>Custom dashboards</li><li>Scheduled email delivery</li></ul><h2>Dashboard Cases</h2><h3>Marketing Daily Report</h3><ul><li>Spend / Conversions / CPA / ROAS</li><li>Channel comparison</li><li>Anomaly alerts</li></ul><h3>Monthly Review</h3><ul><li>Trend analysis</li><li>Goal achievement rate</li><li>Next month plan</li></ul>",
+    "doc-mkt-15": "<h1>Privacy Compliance</h1><h2>GDPR (EU)</h2><ul><li>No data collection without consent</li><li>Data minimization principle</li><li>Right to be forgotten</li></ul><h2>CCPA (California)</h2><ul><li>Disclose collection purpose</li><li>User can request deletion</li><li>Opt-out of data sale</li></ul>"
   },
   "domains": [
     {
-      "id": "product-management",
+      "id": "domain-pm",
       "name": "Product Management",
-      "subtitle": "Complete skill stack from requirements analysis to product delivery",
-      "color": "#7c3aed",
-      "icon": "box",
-      "overallScore": 7.2,
-      "benchmark": "Benchmarked against PM with 3 years experience (10 = Director of Product level)",
+      "subtitle": "产品管理",
+      "color": "#4F46E5",
+      "icon": "📦",
+      "overallScore": 7.4,
+      "benchmark": "3-year Product Manager",
       "dimensionInfo": {
-        "intro": "Based on product documents, project retrospectives, methodology notes and book summaries, cross-evaluated by three experts: Product Director, User Research Expert, and Data Analyst.",
-        "method": "Each dimension considers three factors: methodology breadth, practice depth (successful cases), and cross-scenario transfer ability. Final score is a weighted composite of three expert ratings."
+        "intro": "Based on product documents, project retrospectives, methodology notes, and reading notes, evaluated by Product Director, UX Researcher, and Data Analyst.",
+        "method": "Each dimension is scored on three sub-factors: breadth (knowledge coverage), depth (understanding and application level), and application (evidence from actual projects). Scores are evidence-based from notes."
       },
       "expertRoles": [
-        "Product Director",
-        "User Research Expert",
-        "Data Analyst"
+        "产品总监",
+        "用户研究专家",
+        "数据分析师"
       ],
       "scores": [
         {
           "label": "Requirements Analysis",
           "value": 8.2,
-          "description": "Systematic mastery of user interviews, survey design, and prioritization methods. Proficient with KANO model and RICE framework, can distill core needs from user feedback. However, lacks experience in complex B2B business requirement decomposition.",
+          "description": "Systematic mastery of user interviews, survey design, and requirement prioritization. KANO model and RICE framework used proficiently.",
           "factors": {
             "breadth": 8.5,
-            "breadthNote": "User interviews, surveys, KANO, RICE framework, user story mapping all covered",
+            "breadthNote": "Covers KANO, RICE, user interviews, survey design, personas, competitive analysis",
             "depth": 8.0,
-            "depthNote": "KANO model deeply understood with actual case applications",
+            "depthNote": "KANO and RICE have deep practice cases; competitive analysis is basic",
             "application": 8.0,
-            "applicationNote": "3 complete B2C product requirement analysis cases; B2B experience lacking"
+            "applicationNote": "8 interview records and multiple requirement ranking cases"
           }
         },
         {
           "label": "Product Design",
-          "value": 7.8,
-          "description": "Familiar with full product design process from information architecture to interaction details. Strong Figma prototyping skills, but limited experience building design systems from scratch.",
+          "value": 8.5,
+          "description": "Strong IA and interaction design capabilities. Figma prototyping is proficient. Design system knowledge is shallow.",
           "factors": {
             "breadth": 8.0,
-            "breadthNote": "Information architecture, interaction design, prototyping, design review process complete",
-            "depth": 7.5,
-            "depthNote": "Interaction design understanding deep; design system building limited",
-            "application": 8.0,
-            "applicationNote": "Independently completed full design proposals for 2 products"
+            "breadthNote": "Covers IA, interaction, prototyping, design systems, usability testing",
+            "depth": 9.0,
+            "depthNote": "IA and interaction principles have deep understanding with project practice",
+            "application": 8.5,
+            "applicationNote": "6 project prototype records, multiple design review citations"
           }
         },
         {
-          "label": "Data Analytics",
-          "value": 7.5,
-          "description": "Proficient SQL queries, can build basic data dashboards. Good A/B test design and interpretation skills, but advanced statistical methods and causal inference still in progress.",
+          "label": "Data Analysis",
+          "value": 7.2,
+          "description": "Strong SQL and funnel analysis. A/B testing and statistical methods need improvement.",
           "factors": {
             "breadth": 7.5,
-            "breadthNote": "SQL, A/B testing, funnel analysis, retention analysis all practiced",
-            "depth": 7.0,
-            "depthNote": "Basic analysis solid; advanced statistical methods still learning",
-            "application": 8.0,
-            "applicationNote": "Built complete data dashboards; daily data-driven decisions"
+            "breadthNote": "SQL, funnels, retention, A/B testing, statistics, growth methodology",
+            "depth": 7.5,
+            "depthNote": "SQL and funnels are deep; statistics and growth are basic",
+            "application": 6.5,
+            "applicationNote": "Rich SQL query cases, limited experiment design practice"
+          }
+        },
+        {
+          "label": "Business Thinking",
+          "value": 6.0,
+          "description": "Systematic understanding of business models and market analysis needs improvement.",
+          "factors": {
+            "breadth": 6.0,
+            "breadthNote": "Growth methodology covered, but business models and market analysis missing",
+            "depth": 5.5,
+            "depthNote": "Mostly at conceptual understanding level",
+            "application": 6.5,
+            "applicationNote": "AARRR application thinking present, but no complete business analysis case"
           }
         },
         {
           "label": "Project Management",
           "value": 7.0,
-          "description": "Can manage iteration cadence of 3-5 person teams, familiar with agile development processes. But limited experience coordinating large cross-functional projects and risk management.",
+          "description": "Good agile process understanding. Cross-team coordination evident in interviews and design reviews.",
           "factors": {
             "breadth": 7.0,
-            "breadthNote": "Agile, Scrum, Kanban, Sprint Planning all practiced",
-            "depth": 6.5,
-            "depthNote": "Small team management comfortable; large project experience lacking",
-            "application": 7.5,
-            "applicationNote": "Led 4 product iteration cycles"
-          }
-        },
-        {
-          "label": "Business Thinking",
-          "value": 6.5,
-          "description": "Understands basic Business Model Canvas and competitive analysis frameworks, but market sizing, financial modeling, and fundraising strategy understanding is shallow.",
-          "factors": {
-            "breadth": 6.5,
-            "breadthNote": "Business Model Canvas and competitive analysis practiced; financial modeling missing",
-            "depth": 6.0,
-            "depthNote": "Framework-level understanding; lacking deep business judgment",
+            "breadthNote": "Agile process, priority management, cross-team collaboration",
+            "depth": 7.0,
+            "depthNote": "Process methodology understood well; complex project management limited",
             "application": 7.0,
-            "applicationNote": "Completed 2 competitive analysis reports"
-          }
-        },
-        {
-          "label": "Technical Understanding",
-          "value": 6.0,
-          "description": "Can communicate effectively with engineers, understands basic frontend/backend architecture and API design. But limited understanding of distributed systems and performance optimization.",
-          "factors": {
-            "breadth": 6.0,
-            "breadthNote": "Frontend/backend architecture, API, database basic concepts covered",
-            "depth": 5.5,
-            "depthNote": "Basic concepts clear; deep principles limited",
-            "application": 6.5,
-            "applicationNote": "Can write technical constraints in PRDs, accepted by engineers"
+            "applicationNote": "Daily project management practice evident in notes"
           }
         }
       ],
       "categories": [
         {
+          "id": "cat-pm-0",
           "name": "Requirements & User Research",
           "items": [
             {
-              "title": "KANO Model & Requirement Classification",
+              "id": "pm-0-0",
+              "name": "KANO Model & Requirement Classification",
               "level": "深度",
-              "connections": [
-                "RICE Prioritization Framework",
-                "User Interview Techniques"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-01",
+              "summary": "Mastered basic/performance/excitement need classification, applied in real projects",
+              "levelReason": "Notes contain 3 systematic summaries with 2 project-based KANO analysis cases",
+              "improvePriority": "低",
+              "improve": "Study quantitative KANO analysis methodology",
+              "improveResources": "<a href='https://example.com'>Quantitative KANO Methods</a>",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Solid KANO understanding. Try applying it in B2B scenarios next."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Combine with satisfaction surveys for quantitative priority ranking."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Cross-validate KANO classifications with behavioral data."
+                }
+              ]
             },
             {
-              "title": "RICE Prioritization Framework",
+              "id": "pm-0-1",
+              "name": "RICE Prioritization Framework",
               "level": "深度",
-              "connections": [
-                "KANO Model & Requirement Classification"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-02",
+              "summary": "Proficient in using Reach/Impact/Confidence/Effort for requirement prioritization",
+              "levelReason": "Notes contain RICE template and 5 actual requirement ranking records",
+              "improvePriority": "低",
+              "improve": "Compare with ICE, WSJF, and other prioritization frameworks",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "RICE proficiency is good. Promote standardized evaluation across the team."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Impact dimension should be backed by user research data, not assumptions."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Reach data can be sourced from product analytics — build a data-driven process."
+                }
+              ]
             },
             {
-              "title": "User Interview Techniques",
+              "id": "pm-0-2",
+              "name": "User Interview Techniques",
               "level": "深度",
-              "connections": [
-                "KANO Model & Requirement Classification",
-                "Survey Design Methods"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-03",
+              "summary": "Mastered semi-structured interview design, probing techniques, and analysis methods",
+              "levelReason": "Complete methodology notes plus 8 documented user interview sessions",
+              "improvePriority": "低",
+              "improve": "Learn remote interview tools and large-scale interview management",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Strong interview skills. Next step: lead team-wide research initiatives."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Consider adding focus groups and card sorting to your toolkit."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Interview findings can be validated with A/B tests for stronger evidence."
+                }
+              ]
             },
             {
-              "title": "Survey Design Methods",
+              "id": "pm-0-3",
+              "name": "Survey Design Methods",
               "level": "中等",
-              "connections": [
-                "User Interview Techniques"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-04",
+              "summary": "Understands question types, scale design, and basic sample size calculation",
+              "levelReason": "Has design methodology notes but lacks real deployment and analysis cases",
+              "improvePriority": "中",
+              "improve": "Complete a full survey cycle: design → deploy → analyze → action",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Surveys are tools — the key is extracting actionable insights from data."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Focus on Likert scales and NPS methodology for structured measurement."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Statistical testing and significance judgment are core survey analysis skills."
+                }
+              ]
             },
             {
-              "title": "User Persona Building",
+              "id": "pm-0-4",
+              "name": "User Persona Construction",
               "level": "中等",
-              "connections": [
-                "User Interview Techniques"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-05",
+              "summary": "Understands qualitative and data-driven persona methods",
+              "levelReason": "Has persona theory notes and 1 project persona case",
+              "improvePriority": "中",
+              "improve": "Learn clustering analysis for data-driven user segmentation",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Personas must drive product decisions — not just wall decorations."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Distinguish marketing personas from design personas for different uses."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Use RFM models with behavioral data for data-driven segmentation."
+                }
+              ]
             },
             {
-              "title": "Jobs-to-be-Done Framework",
+              "id": "pm-0-5",
+              "name": "Competitive Analysis",
               "level": "基础",
-              "connections": [
-                "User Persona Building"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-06",
+              "summary": "Familiar with competitive analysis frameworks but lacks deep practice",
+              "levelReason": "Only scattered comparison notes, no systematic analysis framework documented",
+              "improvePriority": "高",
+              "improve": "Establish long-term competitor tracking with periodic analysis reports",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Competitive analysis is PM fundamentals — deep-dive 2-3 competitors."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Include UX dimension in competitive analysis, not just features."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Use SimilarWeb for quantitative competitive benchmarking."
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-pm-1",
           "name": "Product Design & Prototyping",
           "items": [
             {
-              "title": "Information Architecture Design",
+              "id": "pm-1-0",
+              "name": "Information Architecture Design",
               "level": "深度",
-              "connections": [
-                "Interaction Design Principles"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-07",
+              "summary": "Systematic mastery of card sorting, tree testing, and IA methods",
+              "levelReason": "3 IA learning notes and 2 project-based IA design records",
+              "improvePriority": "低",
+              "improve": "Research IA patterns for large-scale content management",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "IA skills are solid. Focus on cross-platform consistency next."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Run periodic tree tests to validate IA discoverability."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Combine user path data to evaluate IA effectiveness."
+                }
+              ]
             },
             {
-              "title": "Interaction Design Principles",
+              "id": "pm-1-1",
+              "name": "Interaction Design Principles",
               "level": "深度",
-              "connections": [
-                "Information Architecture Design",
-                "Figma Prototyping"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-08",
+              "summary": "Familiar with Nielsen's 10 heuristics, applies them in design reviews",
+              "levelReason": "Systematic design principle notes, regularly cited in review sessions",
+              "improvePriority": "低",
+              "improve": "Study cognitive load theory and attention design",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Good principle mastery. Develop design aesthetics next."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Validate principle application through usability testing."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Track conversion and retention changes after interaction updates."
+                }
+              ]
             },
             {
-              "title": "Figma Prototyping",
+              "id": "pm-1-2",
+              "name": "Figma Prototyping",
               "level": "深度",
-              "connections": [
-                "Interaction Design Principles"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-09",
+              "summary": "Can independently create medium-to-high fidelity prototypes with components and Auto Layout",
+              "levelReason": "Figma tips collection and multiple project prototype file records",
+              "improvePriority": "低",
+              "improve": "Learn Design Tokens and design system automation",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Prototyping ability is strong — sufficient for PM level."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "High-fidelity prototypes perform better in user testing than wireframes."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Consider analytics requirements at the prototype stage."
+                }
+              ]
             },
             {
-              "title": "Design System Building",
+              "id": "pm-1-3",
+              "name": "Design System Development",
               "level": "基础",
-              "connections": [
-                "Interaction Design Principles"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-10",
+              "summary": "Understands design system concepts but hasn't built one",
+              "levelReason": "Only conceptual notes, no hands-on design system construction experience",
+              "improvePriority": "高",
+              "improve": "Study Ant Design/Material Design for component library logic",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Design systems matter for product at scale. Understand the value."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Design systems ensure consistency, reducing user learning cost."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Standardized components enable unified analytics instrumentation."
+                }
+              ]
             },
             {
-              "title": "Usability Testing",
+              "id": "pm-1-4",
+              "name": "Usability Testing",
               "level": "中等",
-              "connections": [
-                "User Interview Techniques"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-11",
+              "summary": "Understands usability testing process with limited practice",
+              "levelReason": "Has methodology notes and 2 simple usability test records",
+              "improvePriority": "中",
+              "improve": "Learn SUS scale and task success rate metrics systematically",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Usability testing is a low-cost way to validate assumptions — make it routine."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Explore unmoderated remote testing tools like UserTesting."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Combine quantitative (A/B tests) with qualitative (usability tests) data."
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-pm-2",
           "name": "Data & Growth",
           "items": [
             {
-              "title": "SQL Data Queries",
+              "id": "pm-2-0",
+              "name": "SQL Data Querying",
               "level": "深度",
-              "connections": [
-                "Funnel Analysis"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-12",
+              "summary": "Proficient in complex SQL including window functions and CTEs",
+              "levelReason": "Systematic SQL notes and extensive real query case records",
+              "improvePriority": "低",
+              "improve": "Learn data modeling and data warehouse design concepts",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "SQL proficiency is a core data-driven PM skill. Keep it up."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "SQL helps quickly validate research hypotheses."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Learn query optimization for large-scale distributed queries."
+                }
+              ]
             },
             {
-              "title": "A/B Test Design",
+              "id": "pm-2-1",
+              "name": "A/B Test Design",
               "level": "中等",
-              "connections": [
-                "SQL Data Queries",
-                "Statistical Significance"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-13",
+              "summary": "Understands A/B testing principles and process with limited practice",
+              "levelReason": "Theory notes and 2 A/B test cases, lacks multivariate testing experience",
+              "improvePriority": "中",
+              "improve": "Learn multivariate testing and Bayesian methods",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "A/B testing is the foundation of scientific decision-making."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "A/B tests need qualitative research to explain the 'why'."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Focus on statistical power and minimum sample size calculation."
+                }
+              ]
             },
             {
-              "title": "Funnel Analysis",
+              "id": "pm-2-2",
+              "name": "Funnel Analysis",
               "level": "深度",
-              "connections": [
-                "SQL Data Queries",
-                "Retention Analysis"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-pm-14",
+              "summary": "Can independently build conversion funnels and identify drop-off points",
+              "levelReason": "Funnel analysis methods notes and 3 complete project optimization records",
+              "improvePriority": "低",
+              "improve": "Study attribution models and multi-touch funnels",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Good funnel work. Expand to full lifecycle perspective."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Pair funnel drop-off points with session recordings for root cause."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Study Markov chains and probabilistic funnel models."
+                }
+              ]
             },
             {
-              "title": "Retention Analysis",
+              "id": "pm-2-3",
+              "name": "Retention Analysis",
               "level": "中等",
-              "connections": [
-                "Funnel Analysis"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-pm-15",
+              "summary": "Understands D1/D7/D30 retention metrics with basic analysis ability",
+              "levelReason": "Has retention method notes but lacks cohort analysis and curve-fitting experience",
+              "improvePriority": "中",
+              "improve": "Learn cohort analysis and retention curve fitting methods",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Retention is a North Star metric — must master deeply."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "High-retention user behavior patterns deserve deep research."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Study exponential decay models and Power Law fitting."
+                }
+              ]
             },
             {
-              "title": "Statistical Significance",
+              "id": "pm-2-4",
+              "name": "Statistical Significance",
               "level": "基础",
-              "connections": [
-                "A/B Test Design"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-16",
+              "summary": "Understands basic p-value and confidence interval concepts",
+              "levelReason": "Notes contain only conceptual records, no actual calculation or application cases",
+              "improvePriority": "高",
+              "improve": "Systematically learn hypothesis testing, chi-squared tests, and regression basics",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Statistical literacy is essential for data-driven decisions."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Surveys and experiments both depend on statistical testing."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Start with 'Introduction to Statistical Learning' for core test methods."
+                }
+              ]
             },
             {
-              "title": "Growth Hacking Methodology",
+              "id": "pm-2-5",
+              "name": "Growth Hacking Methodology",
               "level": "基础",
-              "connections": [
-                "A/B Test Design",
-                "Funnel Analysis"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-pm-17",
+              "summary": "Understands growth flywheel and AARRR model",
+              "levelReason": "Only book notes, no growth experiment practice records",
+              "improvePriority": "高",
+              "improve": "Design and execute at least 3 growth experiments for hands-on experience",
+              "experts": [
+                {
+                  "name": "产品总监",
+                  "opinion": "Growth is an advanced PM skill. Start small-scale experiments."
+                },
+                {
+                  "name": "用户研究专家",
+                  "opinion": "Growth strategies must be based on user psychology insights."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Build a growth experiment dashboard to quantify each experiment's impact."
+                }
+              ]
             }
           ]
         }
       ],
       "gaps": [
         {
-          "topic": "B2B Product Requirement Analysis",
+          "topic": "B2B Product Requirements",
           "type": "缺失",
           "priority": "高",
-          "reason": "Current experience concentrated on B2C; B2B complex business logic decomposition is essential for advancement"
+          "reason": "Current experience is C2C-focused; B2B complex business logic decomposition is essential for senior PM",
+          "from": [
+            "pm-0-0",
+            "pm-0-1"
+          ]
         },
         {
-          "topic": "Design System Building from Scratch",
+          "topic": "Statistics Fundamentals",
           "type": "薄弱",
           "priority": "高",
-          "reason": "Only uses existing component libraries; lacks systematic design specification building experience"
+          "reason": "Impacts A/B testing and data analysis accuracy judgment",
+          "from": [
+            "pm-2-4",
+            "pm-2-1"
+          ]
         },
         {
-          "topic": "Causal Inference Methods",
+          "topic": "Design System Practice",
           "type": "缺失",
           "priority": "中",
-          "reason": "Current data analysis stays at descriptive level; lacks causal identification capability"
+          "reason": "Critical for product development efficiency at scale",
+          "from": [
+            "pm-1-3"
+          ]
         },
         {
-          "topic": "Large Project Risk Management",
-          "type": "缺失",
-          "priority": "中",
-          "reason": "Only managed small team iterations; cross-functional project coordination experience insufficient"
-        },
-        {
-          "topic": "Financial Modeling & Market Sizing",
+          "topic": "Growth Experiments",
           "type": "薄弱",
+          "priority": "高",
+          "reason": "Theoretical knowledge is sufficient but lacks hands-on execution",
+          "from": [
+            "pm-2-5"
+          ]
+        },
+        {
+          "topic": "Long-term Competitive Tracking",
+          "type": "缺失",
           "priority": "中",
-          "reason": "Business judgment needs quantitative support capability"
+          "reason": "No systematic competitive intelligence mechanism established",
+          "from": [
+            "pm-0-5"
+          ]
         }
       ],
       "experts": [
         {
-          "role": "Product Director",
-          "advice": "Your requirements analysis and product design fundamentals are solid, but to become a senior PM, you need to build experience in complex B2B scenarios. I suggest finding a B2B product internship or internal transfer opportunity to experience multi-stakeholder requirement coordination firsthand. Additionally, for business thinking, systematically study 'The Lean Startup' and complete 3 full market sizing exercises."
+          "role": "产品总监",
+          "advice": "Your requirements analysis and product design fundamentals are solid. To become a senior PM, you need B2B complex business scenario experience. Seek a B2B product role to experience multi-stakeholder requirement coordination. Also, build business thinking by studying 'The Lean Startup' and doing 3 complete TAM/SAM/SOM exercises."
         },
         {
-          "role": "User Research Expert",
-          "advice": "Your user interview skills are already good — next step should be diving deeper into Jobs-to-be-Done framework and quantitative research methods. I suggest doing a complete mixed-methods study: qualitative exploration first, then quantitative validation. Also, for survey design, learn Likert scale best practices to avoid common double-loading and leading questions."
+          "role": "用户研究专家",
+          "advice": "User interview skills are your strength. Next, expand research method breadth — especially quantitative research capabilities. Survey design needs a statistical analysis component. Usability testing can benefit from SUS scale standardization. Also learn diary studies and card sorting for longitudinal research."
         },
         {
-          "role": "Data Analyst",
-          "advice": "SQL basics are strong — next step is learning window functions and CTEs for more complex analysis needs. For A/B testing, you need to deeply understand power analysis to properly set sample sizes. Long-term, learning Python's pandas and causal inference libraries (like DoWhy) will significantly elevate your data-driven decision capability."
+          "role": "数据分析师",
+          "advice": "SQL foundation is great — that's an advantage. Focus on statistics: hypothesis testing and regression are the basis for A/B testing and causal inference. Recommend learning Python/R for complex analysis, and start exploring causal inference methodologies. Goal: progress from descriptive to diagnostic and predictive analytics."
         }
       ]
     },
     {
-      "id": "marketing",
+      "id": "domain-mkt",
       "name": "Digital Marketing",
-      "subtitle": "Digital marketing capabilities from strategy to optimization",
+      "subtitle": "市场投放",
       "color": "#059669",
-      "icon": "trending-up",
+      "icon": "📢",
       "overallScore": 6.8,
-      "benchmark": "Benchmarked against digital marketer with 2 years experience (10 = Marketing Director level)",
+      "benchmark": "2-year Digital Marketing Practitioner",
       "dimensionInfo": {
-        "intro": "Based on campaign retrospectives, marketing proposals, and channel analysis notes, cross-evaluated by three experts: Marketing Director, Growth Lead, and Brand Strategist.",
-        "method": "Each dimension considers three factors: channel coverage breadth, strategy understanding depth, and actual campaign optimization ability. Final score is a weighted composite of three expert ratings."
+        "intro": "Based on ad campaign notes, platform operation records, and analytics documentation, evaluated by Campaign Optimizer, Brand Strategist, and Data Analyst.",
+        "method": "Each dimension scored on breadth (channel/tool coverage), depth (optimization strategy level), and application (actual campaign data and optimization records)."
       },
       "expertRoles": [
-        "Marketing Director",
-        "Growth Lead",
-        "Brand Strategist"
+        "投放优化师",
+        "品牌策略师",
+        "数据分析师"
       ],
       "scores": [
         {
-          "label": "Channel Strategy",
+          "label": "Search Marketing",
           "value": 7.5,
-          "description": "Familiar with mainstream digital channels (search, display, social media), can select appropriate channel mix based on product characteristics. But understanding of offline channels and emerging channels (podcasts, communities) remains shallow.",
+          "description": "Google Ads structure and keyword strategy well mastered. Quality score optimization and negative keywords have room for improvement.",
           "factors": {
-            "breadth": 8.0,
-            "breadthNote": "SEM, display ads, social ads, content marketing — mainstream channels covered",
-            "depth": 7.0,
-            "depthNote": "Search advertising deeply understood; emerging channels at concept level",
-            "application": 7.5,
-            "applicationNote": "Independently managed campaign strategy across 3 channels"
-          }
-        },
-        {
-          "label": "Campaign Optimization",
-          "value": 7.2,
-          "description": "Can perform basic bid strategy adjustments, creative A/B testing, and audience targeting optimization. But lacks deep understanding of ML bidding algorithms and attribution models.",
-          "factors": {
-            "breadth": 7.0,
-            "breadthNote": "Bidding, creative testing, audience targeting, dayparting all practiced",
-            "depth": 7.0,
-            "depthNote": "Rich hands-on experience, but algorithm principle level weak",
-            "application": 7.5,
-            "applicationNote": "Optimized channel ROI from 1.2x to 2.1x — actual case"
-          }
-        },
-        {
-          "label": "Content Marketing",
-          "value": 7.0,
-          "description": "Can produce content matching platform tone, understands SEO basics and content distribution strategy. But lacks brand narrative and long-term content strategy planning capability.",
-          "factors": {
-            "breadth": 7.0,
-            "breadthNote": "SEO, social content, email marketing, landing page copy all produced",
-            "depth": 6.5,
-            "depthNote": "Execution level proficient; brand narrative and strategic planning weak",
-            "application": 7.5,
-            "applicationNote": "Ran account with 10K+ followers, multiple viral posts"
-          }
-        },
-        {
-          "label": "Attribution",
-          "value": 6.5,
-          "description": "Understands UTM tracking and basic last-click attribution, but limited understanding of multi-touch attribution models, MMM, and incrementality testing.",
-          "factors": {
-            "breadth": 6.0,
-            "breadthNote": "UTM and last-click familiar; multi-touch models at concept level",
-            "depth": 6.5,
-            "depthNote": "Basic attribution clear; advanced methods lacking practice",
+            "breadth": 7.5,
+            "breadthNote": "Covers account structure, keywords, quality score, copy, negatives",
+            "depth": 8.0,
+            "depthNote": "Account structure and keywords have deep hands-on experience",
             "application": 7.0,
-            "applicationNote": "Built basic channel attribution dashboard"
+            "applicationNote": "2 projects with complete campaign management records"
           }
         },
         {
-          "label": "Budget Management",
-          "value": 6.2,
-          "description": "Can set monthly campaign budgets and track spend pacing, but lacks systematic approaches to budget allocation models, marginal returns calculation, and cross-channel budget optimization.",
+          "label": "Social Advertising",
+          "value": 7.2,
+          "description": "Feed ad full process is proficient. Audience strategy and creative production have room to grow.",
           "factors": {
-            "breadth": 6.0,
-            "breadthNote": "Budget setting and spend tracking experienced; allocation models missing",
-            "depth": 6.0,
-            "depthNote": "Allocates budget by intuition; lacks mathematical model support",
+            "breadth": 7.0,
+            "breadthNote": "Covers feed ads, audiences, creative, retargeting, budgets",
+            "depth": 7.5,
+            "depthNote": "Feed ads have deep practice with performance data",
+            "application": 7.0,
+            "applicationNote": "3 feed ad projects with clear performance metrics"
+          }
+        },
+        {
+          "label": "Data & Attribution",
+          "value": 7.0,
+          "description": "GA4 and UTM system are solid. Attribution modeling and advanced analytics need deepening.",
+          "factors": {
+            "breadth": 7.0,
+            "breadthNote": "GA4, UTM, attribution models, dashboards, privacy compliance",
+            "depth": 7.5,
+            "depthNote": "GA4 and UTM have deep hands-on; attribution and compliance are basic",
             "application": 6.5,
-            "applicationNote": "Managed monthly budget of ~$70K in campaign spend"
+            "applicationNote": "3 GA4 configurations and 2 dashboard build cases"
+          }
+        },
+        {
+          "label": "Creative Strategy",
+          "value": 6.5,
+          "description": "Has basic creative production ability but lacks systematic creative testing methodology.",
+          "factors": {
+            "breadth": 6.5,
+            "breadthNote": "Copywriting and visual creative production",
+            "depth": 6.0,
+            "depthNote": "Creative production practiced, systematic testing methods insufficient",
+            "application": 7.0,
+            "applicationNote": "Actual creative output but lacking performance tracking"
+          }
+        },
+        {
+          "label": "Budget & ROI",
+          "value": 5.5,
+          "description": "Budget management and ROI optimization at entry level. Needs more hands-on accumulation.",
+          "factors": {
+            "breadth": 5.5,
+            "breadthNote": "Basic budget allocation principles",
+            "depth": 5.0,
+            "depthNote": "Only theoretical framework; lacks multi-channel budget optimization",
+            "application": 6.0,
+            "applicationNote": "Single-channel budget experience; cross-channel optimization insufficient"
           }
         }
       ],
       "categories": [
         {
+          "id": "cat-mkt-0",
           "name": "Search Marketing",
           "items": [
             {
-              "title": "Google Ads Keyword Strategy",
+              "id": "mkt-0-0",
+              "name": "Google Ads Account Structure",
               "level": "深度",
-              "connections": [
-                "Bid Strategy Optimization",
-                "Quality Score Optimization"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-01",
+              "summary": "Proficient in Campaign/Ad Group/Keyword hierarchy and bidding strategies",
+              "levelReason": "Systematic Google Ads notes and 2 project-level campaign management records",
+              "improvePriority": "低",
+              "improve": "Deep-dive Smart Bidding strategies and Performance Max",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Account structure is solid. Focus on automation bidding trends."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Search ads must align with brand keyword strategy."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Build a keyword-level ROI tracking system."
+                }
+              ]
             },
             {
-              "title": "Bid Strategy Optimization",
+              "id": "mkt-0-1",
+              "name": "Keyword Research & Match Types",
+              "level": "深度",
+              "docId": "doc-mkt-02",
+              "summary": "Proficient in keyword tools and match type selection strategy",
+              "levelReason": "Keyword strategy notes and actual project keyword library management records",
+              "improvePriority": "低",
+              "improve": "Learn semantic keyword clustering and AI-assisted expansion",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Strong keyword skills. Regularly prune low-performing terms."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Long-tail keyword strategy should align with content marketing."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Use search term reports to feedback-loop keyword strategy."
+                }
+              ]
+            },
+            {
+              "id": "mkt-0-2",
+              "name": "Quality Score Optimization",
               "level": "中等",
-              "connections": [
-                "Google Ads Keyword Strategy",
-                "Smart Bidding Algorithms"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-03",
+              "summary": "Understands the three QS factors with basic optimization experience",
+              "levelReason": "Has optimization method notes but lacks long-term systematic tracking",
+              "improvePriority": "中",
+              "improve": "Build QS monitoring system, optimize at ad group level",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "QS directly impacts CPC — worth investing time in granular optimization."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Landing page experience is key to QS — collaborate with design."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Analyze QS changes correlated with CTR/CPC movements."
+                }
+              ]
             },
             {
-              "title": "Quality Score Optimization",
-              "level": "深度",
-              "connections": [
-                "Google Ads Keyword Strategy",
-                "Landing Page Optimization"
-              ],
-              "improvePriority": "低"
+              "id": "mkt-0-3",
+              "name": "Search Ad Copywriting",
+              "level": "中等",
+              "docId": "doc-mkt-04",
+              "summary": "Understands RSA writing principles with basic practice",
+              "levelReason": "Has copywriting technique notes but insufficient A/B testing data",
+              "improvePriority": "中",
+              "improve": "Systematically A/B test copy, build a high-conversion asset library",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "RSA needs diverse headline variations for algorithm optimization."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Ad copy should convey brand value, not just feature USPs."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Evaluate copy on CTR, CVR, and brand search lift holistically."
+                }
+              ]
             },
             {
-              "title": "Smart Bidding Algorithms",
+              "id": "mkt-0-4",
+              "name": "Negative Keyword Strategy",
               "level": "基础",
-              "connections": [
-                "Bid Strategy Optimization"
-              ],
-              "improvePriority": "高"
-            },
-            {
-              "title": "Landing Page Optimization",
-              "level": "中等",
-              "connections": [
-                "Quality Score Optimization",
-                "Conversion Rate Optimization"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-05",
+              "summary": "Understands the concept but has limited hands-on experience",
+              "levelReason": "Only conceptual notes, lacks real negative keyword list management experience",
+              "improvePriority": "高",
+              "improve": "Analyze search term reports weekly, continuously expand negative lists",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Negative keywords save budget. Build industry-standard negative lists."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Brand keyword negative strategies need extra caution."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Automate invalid traffic identification from search term reports."
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-mkt-1",
           "name": "Social Media Advertising",
           "items": [
             {
-              "title": "Display Ad Campaigns",
+              "id": "mkt-1-0",
+              "name": "Feed Ad Campaign Management",
               "level": "深度",
-              "connections": [
-                "Audience Targeting Strategy",
-                "Creative Testing"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-06",
+              "summary": "Proficient in feed ad creation, audience setup, and bid optimization",
+              "levelReason": "Systematic notes and 3 feed ad projects with complete performance records",
+              "improvePriority": "低",
+              "improve": "Deep-dive DPA dynamic ads and creative automation",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Strong feed ad skills. Focus on creative fatigue management."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Feed content must align with brand tone — not just chase conversions."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Build a creative performance attribution system."
+                }
+              ]
             },
             {
-              "title": "Audience Targeting Strategy",
+              "id": "mkt-1-1",
+              "name": "Audience Targeting Strategy",
               "level": "中等",
-              "connections": [
-                "Display Ad Campaigns",
-                "Lookalike Audiences"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-07",
+              "summary": "Understands core/lookalike/retargeting audience use cases",
+              "levelReason": "Has targeting strategy notes but limited audience expansion experience",
+              "improvePriority": "中",
+              "improve": "Learn first-party data building and CDP usage",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Audience strategy should evolve with campaign phases — narrow to broad."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Audience segments must align with brand target profiles."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Analyze LTV differences across audiences to guide budget allocation."
+                }
+              ]
             },
             {
-              "title": "Creative Testing",
-              "level": "深度",
-              "connections": [
-                "Display Ad Campaigns"
-              ],
-              "improvePriority": "低"
+              "id": "mkt-1-2",
+              "name": "Creative Asset Production",
+              "level": "中等",
+              "docId": "doc-mkt-08",
+              "summary": "Can produce basic image and video ad creatives",
+              "levelReason": "Has production method notes but lacks systematic testing methodology",
+              "improvePriority": "中",
+              "improve": "Learn bulk creative production and DCO dynamic optimization",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Creative is the biggest variable in feed ads. Build a test matrix."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Maintain visual consistency while having enough creative variants."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Tag creative elements, analyze which components drive best results."
+                }
+              ]
             },
             {
-              "title": "Lookalike Audiences",
+              "id": "mkt-1-3",
+              "name": "Retargeting Strategy",
               "level": "基础",
-              "connections": [
-                "Audience Targeting Strategy"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-mkt-09",
+              "summary": "Understands retargeting concepts and pixel installation",
+              "levelReason": "Only basic concept notes, lacks retargeting sequence design practice",
+              "improvePriority": "高",
+              "improve": "Learn multi-touch retargeting sequences and frequency capping",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Retargeting is high-ROI. Start practicing immediately."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Excessive retargeting frequency can harm brand image — balance needed."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Focus on incremental contribution rather than last-click attribution."
+                }
+              ]
             },
             {
-              "title": "Retargeting Strategy",
-              "level": "中等",
-              "connections": [
-                "Audience Targeting Strategy"
-              ],
-              "improvePriority": "中"
+              "id": "mkt-1-4",
+              "name": "Budget Allocation Strategy",
+              "level": "基础",
+              "docId": "doc-mkt-10",
+              "summary": "Understands basic budget allocation principles",
+              "levelReason": "Only theoretical framework notes, lacks multi-channel budget management experience",
+              "improvePriority": "高",
+              "improve": "Learn MTA multi-touch attribution for budget allocation optimization",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Budget allocation must be dynamically adjusted based on data."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Brand vs. performance budget ratio should evolve with growth stage."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Use marginal ROI models to guide budget reallocation."
+                }
+              ]
             }
           ]
         },
         {
+          "id": "cat-mkt-2",
           "name": "Data & Attribution",
           "items": [
             {
-              "title": "UTM Parameter Tracking",
+              "id": "mkt-2-0",
+              "name": "Google Analytics 4",
               "level": "深度",
-              "connections": [
-                "Google Analytics"
-              ],
-              "improvePriority": "低"
+              "docId": "doc-mkt-11",
+              "summary": "Proficient in GA4 event tracking, conversion setup, and audience analysis",
+              "levelReason": "Systematic GA4 notes and 3 website GA4 configuration records",
+              "improvePriority": "低",
+              "improve": "Deep-dive BigQuery export and advanced analytics API",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Great GA4 skills. Sync GA4 conversions with ad platforms."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "GA4 path analysis helps understand brand awareness journeys."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "BigQuery export is the gateway to advanced analytics."
+                }
+              ]
             },
             {
-              "title": "Google Analytics",
+              "id": "mkt-2-1",
+              "name": "UTM Parameter Management",
+              "level": "深度",
+              "docId": "doc-mkt-12",
+              "summary": "Has standardized UTM naming system and tracking workflow",
+              "levelReason": "Complete UTM specification document and cross-channel tracking cases",
+              "improvePriority": "低",
+              "improve": "Learn server-side tracking for privacy policy changes",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "UTM standards are well done — foundation for attribution analysis."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "UTM can track brand partnerships and offline campaign online impact."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Consider cookie-less alternative tracking solutions."
+                }
+              ]
+            },
+            {
+              "id": "mkt-2-2",
+              "name": "Attribution Modeling",
               "level": "中等",
-              "connections": [
-                "UTM Parameter Tracking",
-                "Conversion Rate Optimization"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-13",
+              "summary": "Understands common models (last-click, linear, time-decay) with basic application",
+              "levelReason": "Has attribution theory notes but lacks MTA multi-touch modeling experience",
+              "improvePriority": "中",
+              "improve": "Learn data-driven attribution and incrementality testing",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Attribution model choice directly impacts budget decisions."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Brand ads are always undervalued in last-click — use holistic view."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Study Shapley Value and Markov chain attribution methods."
+                }
+              ]
             },
             {
-              "title": "Conversion Rate Optimization",
+              "id": "mkt-2-3",
+              "name": "Data Visualization & Dashboards",
               "level": "中等",
-              "connections": [
-                "Google Analytics",
-                "Landing Page Optimization"
-              ],
-              "improvePriority": "中"
+              "docId": "doc-mkt-14",
+              "summary": "Can build marketing dashboards in Looker Studio",
+              "levelReason": "Has Looker Studio notes and 2 dashboard build cases",
+              "improvePriority": "中",
+              "improve": "Learn Tableau and automated reporting workflows",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Dashboards must surface key campaign metrics in real-time."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Marketing reports should align with business objectives, not just ad data."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Add anomaly detection and automated alerting features."
+                }
+              ]
             },
             {
-              "title": "Multi-Touch Attribution Models",
+              "id": "mkt-2-4",
+              "name": "Privacy Compliance (GDPR/CCPA)",
               "level": "基础",
-              "connections": [
-                "Google Analytics"
-              ],
-              "improvePriority": "高"
-            },
-            {
-              "title": "Marketing Mix Modeling",
-              "level": "基础",
-              "connections": [
-                "Multi-Touch Attribution Models"
-              ],
-              "improvePriority": "高"
+              "docId": "doc-mkt-15",
+              "summary": "Understands basic GDPR and CCPA requirements",
+              "levelReason": "Only conceptual notes, lacks compliance implementation experience",
+              "improvePriority": "高",
+              "improve": "Learn Consent Mode and server-side tracking for compliant implementation",
+              "experts": [
+                {
+                  "name": "投放优化师",
+                  "opinion": "Privacy policy is the biggest variable in ads — stay current."
+                },
+                {
+                  "name": "品牌策略师",
+                  "opinion": "Compliance is not just legal — it's the foundation of brand trust."
+                },
+                {
+                  "name": "数据分析师",
+                  "opinion": "Cookie-less attribution is the most important near-term challenge."
+                }
+              ]
             }
           ]
         }
       ],
       "gaps": [
         {
-          "topic": "Multi-Touch Attribution Modeling",
-          "type": "缺失",
-          "priority": "高",
-          "reason": "Currently relies only on last-click; cannot accurately assess touchpoint contributions"
-        },
-        {
-          "topic": "Smart Bidding Algorithm Principles",
+          "topic": "Negative Keyword System",
           "type": "薄弱",
           "priority": "高",
-          "reason": "Without understanding algorithm mechanics, cannot effectively leverage platform automation"
+          "reason": "Directly impacts ad spend efficiency — essential for search marketing",
+          "from": [
+            "mkt-0-4"
+          ]
         },
         {
-          "topic": "Brand-Performance Marketing Synergy",
+          "topic": "Retargeting Implementation",
           "type": "缺失",
-          "priority": "中",
-          "reason": "Currently performance-oriented; lacks long-term brand building perspective"
+          "priority": "高",
+          "reason": "Retargeting is a high-ROI channel, currently only conceptual knowledge",
+          "from": [
+            "mkt-1-3"
+          ]
         },
         {
-          "topic": "Incrementality Testing Methods",
+          "topic": "Privacy Compliance Implementation",
           "type": "缺失",
-          "priority": "中",
-          "reason": "Cannot distinguish true ad incrementality from organic conversions"
+          "priority": "高",
+          "reason": "Privacy policy changes directly impact campaign performance and data collection",
+          "from": [
+            "mkt-2-4"
+          ]
         },
         {
-          "topic": "Cross-Channel Budget Optimization Models",
+          "topic": "Multi-channel Budget Optimization",
           "type": "薄弱",
           "priority": "中",
-          "reason": "Lacks mathematically-supported optimal budget allocation methodology"
+          "reason": "Cross-channel budget reallocation ability impacts overall ROI",
+          "from": [
+            "mkt-1-4"
+          ]
+        },
+        {
+          "topic": "Systematic Creative Testing",
+          "type": "薄弱",
+          "priority": "中",
+          "reason": "Creative performance lacks systematic tracking and optimization methodology",
+          "from": [
+            "mkt-1-2"
+          ]
         }
       ],
       "experts": [
         {
-          "role": "Marketing Director",
-          "advice": "Your execution is solid — channel hands-on experience is a plus. But to move from execution to strategy, you need systematic attribution thinking. I recommend diving deep into MMM (Marketing Mix Modeling) and incrementality testing methods. Also, brand-performance synergy is an advanced skill — read 'How Brands Grow' to build a scientific understanding of brand growth."
+          "role": "投放优化师",
+          "advice": "Search and feed ad foundations are solid with clear performance data. Next phase priorities: 1) Build negative keyword library and automation rules — estimated 15-20% wasted spend savings; 2) Implement retargeting starting with website visitor remarketing; 3) Learn Smart Bidding and Performance Max — these are the future."
         },
         {
-          "role": "Growth Lead",
-          "advice": "Data foundation is good — next step is making attribution airtight. Specific actions: 1) Learn Shapley Value applications in multi-touch attribution; 2) Try building a simple MMM model in Python; 3) Design an incrementality test to validate a channel's true contribution. Completing these three steps will qualitatively elevate your attribution capability."
+          "role": "品牌策略师",
+          "advice": "Current capabilities lean performance-oriented. Build brand perspective: brand advertising may have lower short-term ROI but significantly impacts long-term acquisition costs. Learn brand health metrics (brand search volume, NPS) and brand safety strategies. Creative assets need brand visual consistency standards."
         },
         {
-          "role": "Brand Strategist",
-          "advice": "Your content marketing execution is strong, but you lack brand strategic thinking. I suggest improving on three levels: 1) Study brand positioning theory (Trout's Positioning, Keller's Brand Equity model); 2) Analyze 3 brands you admire, deconstructing their narrative structure; 3) Try writing a brand story for your product. Good marketing isn't just campaign efficiency — it's long-term mind share cultivation."
+          "role": "数据分析师",
+          "advice": "GA4 and UTM system are well done — data infrastructure is solid. Key improvement areas: 1) Attribution modeling — advance from Last Click to data-driven; 2) Privacy compliance — learn Consent Mode and server-side tracking; 3) Use BigQuery for cross-platform analysis, build unified ROI dashboards."
         }
       ]
     }
-  ],
-  "documents": {
-    "doc-1": "# KANO Model Study Notes\n\n## Core Concepts\n- Must-be needs: Dissatisfaction if absent, but no delight when present\n- Performance needs: Linear relationship — more fulfillment = more satisfaction\n- Excitement needs: No dissatisfaction if absent, but great delight when present\n\n## Practice Points\n- Positive/negative questionnaire design\n- Classification calculation method\n- Combining with RICE framework",
-    "doc-2": "# Display Ad Campaign Optimization\n\n## Key Metrics\n- CTR (Click-Through Rate)\n- CVR (Conversion Rate)\n- CPA (Cost Per Acquisition)\n- ROI (Return on Investment)\n\n## Optimization Strategy\n- Creative rotation to avoid fatigue\n- Audience-segmented bidding\n- Dayparting and geo-targeting"
-  }
+  ]
 };
 
 // ========== Display Mapping (data values are in Chinese, display in English) ==========
