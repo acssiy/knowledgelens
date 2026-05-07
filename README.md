@@ -3,8 +3,8 @@
 **Turn your notes into an interactive knowledge health report.**
 
 <p align="center">
-  <a href="zh/demo-report.html">中文 Demo</a> •
-  <a href="en/demo-report.html">English Demo</a> •
+  <a href="https://acssiy.github.io/knowledgelens/zh/demo-report.html">中文 Demo</a> •
+  <a href="https://acssiy.github.io/knowledgelens/en/demo-report.html">English Demo</a> •
   <a href="#-quick-start">Quick Start</a> •
   <a href="#-vision--roadmap">Roadmap</a>
 </p>
@@ -138,7 +138,7 @@ Open the HTML file in any browser. Done.
 |---|---|---|
 | **Package** | [`zh/`](zh/) | [`en/`](en/) |
 | **Documentation** | [`zh/README.md`](zh/README.md) | [`en/README.md`](en/README.md) |
-| **Live Demo** | [`zh/demo-report.html`](zh/demo-report.html) | [`en/demo-report.html`](en/demo-report.html) |
+| **Live Demo** | [中文 Demo](https://acssiy.github.io/knowledgelens/zh/demo-report.html) | [English Demo](https://acssiy.github.io/knowledgelens/en/demo-report.html) |
 
 Each folder is a **complete, self-contained package** — install script, AI prompt, HTML template, data schema, and demo report. Download one folder and you're set.
 
