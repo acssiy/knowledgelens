@@ -1411,7 +1411,7 @@ body {
 
 <script>
 // ===== 用户数据（由 KnowledgeLens 管道生成并注入）=====
-const KNOWLEDGELENS_DATA = {}; // Will be replaced by pipeline
+const KNOWLEDGELENS_DATA = "__KNOWLEDGELENS_DATA_PLACEHOLDER__";
 
 // ========== 全局状态 ==========
 let currentDomainIndex = 0;
@@ -1558,6 +1558,10 @@ function switchDomain(index) {
   renderMainContent();
 }
 
+function escapeAttr(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 function renderDomainTabs() {
   const tabsContainer = document.getElementById('domain-tabs');
   const domains = KNOWLEDGELENS_DATA.domains || [];
@@ -1572,7 +1576,7 @@ function renderDomainTabs() {
   tabsContainer.innerHTML = domains.map((domain, idx) => {
     const isActive = idx === currentDomainIndex;
     const iconSvg = getDomainIcon(domain.icon);
-    return `<button class="domain-tab${isActive ? ' active' : ''}" data-domain-index="${idx}" onclick="switchDomain(${idx})">
+    return `<button class="domain-tab${isActive ? ' active' : ''}" data-action="switch-domain" data-domain-index="${idx}">
       ${iconSvg}
       ${domain.name}
     </button>`;
@@ -1592,7 +1596,7 @@ function renderSidebar() {
   const gaps = domain.gaps || [];
   
   let html = `
-    <div class="nav-item${currentView === 'overview' ? ' active' : ''}" onclick="showView('overview')">
+    <div class="nav-item${currentView === 'overview' ? ' active' : ''}" data-action="show-view" data-view="overview">
       ${ICONS.home}
       概览
     </div>
@@ -1606,7 +1610,7 @@ function renderSidebar() {
     const items = cat.items || [];
     html += `
       <div class="category-item">
-        <button class="category-toggle${isOpen ? ' open' : ''}" onclick="toggleCategory('${catId.replace(/'/g, "\\'")}')">
+        <button class="category-toggle${isOpen ? ' open' : ''}" data-cat-id="${escapeAttr(catId)}">
           ${ICONS.chevronRight}
           <span style="flex:1">${cat.name}</span>
           <span class="category-count">${items.length}</span>
@@ -1614,7 +1618,7 @@ function renderSidebar() {
         <div class="knowledge-list${isOpen ? ' open' : ''}" id="cat-${idx}">
           ${items.map(item => `
             <div class="knowledge-item${selectedKnowledge && selectedKnowledge.id === item.docId ? ' active' : ''}" 
-                 onclick="selectKnowledge('${item.docId || ''}', '${(item.name || '').replace(/'/g, "\\'")}')">
+                 data-doc-id="${escapeAttr(item.docId || '')}" data-item-name="${escapeAttr(item.name || '')}">
               <span class="knowledge-item-name">${item.name || ''}</span>
               <span class="level-badge ${item.level || ''}">${item.level || ''}</span>
             </div>
@@ -1628,7 +1632,7 @@ function renderSidebar() {
   const gapCount = gaps.length + trees.reduce((acc, cat) => acc + (cat.items || []).filter(i => i.improve).length, 0);
   
   html += `
-    <div class="nav-item gaps-nav-item${currentView === 'gaps' ? ' active' : ''}" onclick="showView('gaps')">
+    <div class="nav-item gaps-nav-item${currentView === 'gaps' ? ' active' : ''}" data-action="show-view" data-view="gaps">
       ${ICONS.trending}
       待提升能力
       <span class="gaps-badge">${gapCount}</span>
@@ -1728,7 +1732,7 @@ function renderOverview(container) {
           const basicCount = items.filter(i => i.level === '基础').length;
           const catId = cat.id || cat.name;
           return `
-            <div class="summary-card" style="cursor:pointer" onclick="openCategories.push('${catId.replace(/'/g, "\\'")}');showView('overview');renderSidebar();">
+            <div class="summary-card" style="cursor:pointer" data-action="open-category" data-cat-id="${escapeAttr(catId)}">
               <div class="summary-card-header">
                 <div class="summary-card-icon">${cat.icon || '📚'}</div>
                 <div class="summary-card-title">
@@ -1795,7 +1799,7 @@ function renderKnowledgeDetail(container) {
   });
   
   let html = `
-    <button class="detail-back" onclick="showView('overview')">
+    <button class="detail-back" data-action="show-view" data-view="overview">
       ${ICONS.arrowLeft}
       返回概览
     </button>
@@ -1825,7 +1829,7 @@ function renderKnowledgeDetail(container) {
               ${ICONS.trending}
               提升建议
             </h3>
-            <button class="view-gaps-btn" onclick="showView('gaps')">查看全部</button>
+            <button class="view-gaps-btn" data-action="show-view" data-view="gaps">查看全部</button>
           </div>
           <ul class="improvement-list">
             ${knowledgeItem.improve ? `
@@ -1936,7 +1940,7 @@ function renderGaps(container) {
       // Source
       let sourceHtml = '';
       if (item.docId) {
-        sourceHtml = `<span style="font-size:12px;color:#64748b;word-break:break-word">📍 <a href="javascript:void(0)" onclick="selectKnowledge('${item.docId}','${(item.title||'').replace(/'/g,"\\'")}')" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #93c5fd">${item.category} › ${item.title}</a></span>`;
+        sourceHtml = `<span style="font-size:12px;color:#64748b;word-break:break-word">📍 <a href="javascript:void(0)" data-doc-id="${escapeAttr(item.docId)}" data-item-name="${escapeAttr(item.title || '')}" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #93c5fd">${item.category} › ${item.title}</a></span>`;
       } else if (item.from && item.from.length > 0) {
         // Resolve IDs to names
         const fromNames = item.from.map(f => {
@@ -1961,7 +1965,7 @@ function renderGaps(container) {
       } else if (item.docId) {
         resHtml = `<div style="margin-top:10px;padding:10px 14px;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd">
           <div style="font-size:11px;font-weight:700;color:#0369a1;margin-bottom:5px">📚 推荐资源</div>
-          <div style="font-size:12px"><a href="javascript:void(0)" onclick="selectKnowledge('${item.docId}','${(item.title||'').replace(/'/g,"\\'")}')" style="color:#2563eb">查看知识文档 →</a></div>
+          <div style="font-size:12px"><a href="javascript:void(0)" data-doc-id="${escapeAttr(item.docId)}" data-item-name="${escapeAttr(item.title || '')}" style="color:#2563eb">查看知识文档 →</a></div>
         </div>`;
       }
       
@@ -2174,16 +2178,42 @@ function onSearch(q){
       snippet = snippet.replace(re, '<mark>$1</mark>');
     });
     var typeIcon = it.type==='tree'?'📖':it.type==='gap'?'🚀':'📄';
-    var onclick = '';
+    var dataAttrs = '';
     if(it.docId){
-      onclick = "switchDomain("+it.domainIndex+");selectKnowledge('"+it.docId+"','"+(it.title||'').replace(/'/g,"\\'")+"');document.getElementById('search-results').className='search-results';document.getElementById('global-search').value='';";
+      dataAttrs = ' data-action="search-select" data-domain-index="'+it.domainIndex+'" data-doc-id="'+escapeAttr(it.docId)+'" data-item-name="'+escapeAttr(it.title||'')+'"';
     }
-    return '<div class="sr-item" onclick="'+onclick+'">'
+    return '<div class="sr-item"'+dataAttrs+'>'
       +'<div><span class="sr-item-title">'+typeIcon+' '+it.title+'</span><span class="sr-item-domain">'+it.domain+(it.level?' · '+it.level:'')+'</span></div>'
       +(snippet?'<div class="sr-item-snippet">'+snippet+'</div>':'')
       +'</div>';
   }).join('');
 }
+
+// ========== Event Delegation ==========
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('[data-action]') || e.target.closest('[data-doc-id]') || e.target.closest('[data-cat-id]');
+  if (!el) return;
+
+  var action = el.dataset.action;
+  if (action === 'switch-domain') {
+    switchDomain(parseInt(el.dataset.domainIndex));
+  } else if (action === 'show-view') {
+    showView(el.dataset.view);
+  } else if (action === 'open-category') {
+    openCategories.push(el.dataset.catId);
+    showView('overview');
+    renderSidebar();
+  } else if (action === 'search-select') {
+    switchDomain(parseInt(el.dataset.domainIndex));
+    selectKnowledge(el.dataset.docId, el.dataset.itemName);
+    document.getElementById('search-results').className = 'search-results';
+    document.getElementById('global-search').value = '';
+  } else if (el.dataset.catId && !action) {
+    toggleCategory(el.dataset.catId);
+  } else if (el.dataset.docId && !action) {
+    selectKnowledge(el.dataset.docId, el.dataset.itemName || '');
+  }
+});
 
 document.addEventListener('click',function(e){
   if(!e.target.closest('.search-wrap')){
