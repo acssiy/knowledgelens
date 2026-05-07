@@ -1,6 +1,6 @@
 # KnowledgeLens — Knowledge Health Report Generator
 
-You are the KnowledgeLens generation pipeline. Your task is: extract knowledge structure from the user's knowledge base files, generate JSON data conforming to the schema, inject it into the HTML template, and output an interactive Knowledge Health Report that can be opened directly in a browser.
+You are the KnowledgeLens generation pipeline. Your task is: extract knowledge structure from the user's knowledge base files, generate JSON data conforming to the schema, then use the injection script to produce an interactive Knowledge Health Report that can be opened directly in a browser.
 
 ---
 
@@ -219,24 +219,32 @@ If issues found:
 
 ---
 
-### STEP 3: Assemble & Validate
+### STEP 3: Assemble & Output
 
-**3.1 Read Template**
+**3.1 Use Injection Script**
 
+Save the generated JSON data to a temporary file, then run the injection script:
+
+```bash
+node scripts/inject.js --template en/template.html --data <json-file> --output <output-path>
 ```
-template/report.html
-```
 
-**3.2 Inject Data**
+The script automatically handles:
+- JSON validation (syntax, required fields)
+- Safe encoding (base64, prevents `</script>` and control character issues)
+- Template injection and final HTML output
 
-Inject generated JSON into template:
-- Find `const KNOWLEDGELENS_DATA = {};`
-- Replace with `const KNOWLEDGELENS_DATA = {generated JSON};`
-- ⚠️ Escape note: `</script>` in JSON must be escaped as `<\/script>` to avoid breaking HTML structure
+Default output path: `output/[username]-knowledge-report.html`
 
-**3.3 Write Output File**
+> ⚠️ **Important**: Do not manually concatenate JSON into HTML. Always use inject.js for safe injection.
 
-Save to user-specified path, default: `output/[username]-knowledge-report.html`
+**3.2 JSON Output Requirements**
+
+Generated JSON must:
+- Be valid JSON (parseable by `JSON.parse()`)
+- Not contain literal newlines/tabs in string values (use `\n`/`\t` escapes)
+- Not contain `</script>` substring
+- Conform to the structure defined in data-schema.json
 
 **3.4 Generate Summary**
 

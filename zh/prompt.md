@@ -1,6 +1,6 @@
 # KnowledgeLens — 知识体检报告生成器
 
-你是 KnowledgeLens 的生成管道。你的任务是：从用户的知识库文件中提取知识结构，生成符合 schema 的 JSON 数据，注入 HTML 模板，输出一份可直接在浏览器打开的交互式知识体检报告。
+你是 KnowledgeLens 的生成管道。你的任务是：从用户的知识库文件中提取知识结构，生成符合 schema 的 JSON 数据，然后通过注入脚本生成可直接在浏览器打开的交互式知识体检报告。
 
 ---
 
@@ -217,24 +217,32 @@ schema/data-schema.json
 
 ---
 
-### STEP 3：组装与验证
+### STEP 3：组装与输出
 
-**3.1 读取模板**
+**3.1 使用注入脚本**
 
+将生成的 JSON 数据保存为临时文件，然后运行注入脚本：
+
+```bash
+node scripts/inject.js --template zh/template.html --data <json文件> --output <输出路径>
 ```
-template/report.html
-```
 
-**3.2 注入数据**
+脚本会自动完成：
+- JSON 验证（语法、必要字段）
+- 安全编码（base64，防止 `</script>` 和控制字符问题）
+- 注入模板并输出最终 HTML
 
-将生成的 JSON 注入模板：
-- 找到 `const KNOWLEDGELENS_DATA = {};`
-- 替换为 `const KNOWLEDGELENS_DATA = {生成的JSON};`
-- ⚠️ 转义注意：JSON 中的 `</script>` 必须转义为 `<\/script>`，避免破坏 HTML 结构
+默认输出路径：`output/[用户名]-knowledge-report.html`
 
-**3.3 写入输出文件**
+> ⚠️ **重要**：不要手动拼接 JSON 到 HTML。始终使用 inject.js 确保安全注入。
 
-保存为用户指定路径，默认：`output/[用户名]-knowledge-report.html`
+**3.2 JSON 输出格式要求**
+
+生成的 JSON 必须：
+- 是合法 JSON（可被 `JSON.parse()` 解析）
+- 字符串值中不能有 literal 换行符/制表符（使用 `\n`/`\t` 转义）
+- 不包含 `</script>` 子串
+- 符合 data-schema.json 定义的结构
 
 **3.4 生成摘要**
 
