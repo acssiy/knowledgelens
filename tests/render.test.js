@@ -147,6 +147,71 @@ describe('zh demo — rendering', () => {
     expect(brokenLinks).toEqual([]);
   });
 
+  it('all domain tabs render knowledge items', async () => {
+    // Each domain tab should show at least 1 knowledge item
+    const tabs = page.locator('[data-action="switch-domain"]');
+    const tabCount = await tabs.count();
+    for (let i = 0; i < tabCount; i++) {
+      await tabs.nth(i).click();
+      await page.waitForTimeout(300);
+      const items = await page.locator('[data-doc-id]').count();
+      expect(items).toBeGreaterThan(0);
+    }
+  });
+
+  it('radar/chart SVG renders with visual elements', async () => {
+    const svgInfo = await page.evaluate(() => {
+      const svg = document.querySelector('svg');
+      if (!svg) return null;
+      const paths = svg.querySelectorAll('path').length;
+      const circles = svg.querySelectorAll('circle').length;
+      const lines = svg.querySelectorAll('line').length;
+      return { elements: paths + circles + lines };
+    });
+    expect(svgInfo).not.toBeNull();
+    expect(svgInfo.elements).toBeGreaterThan(0);
+  });
+
+  it('expert opinions show names and content', async () => {
+    // Navigate to gaps and check expert panels
+    const gapsNav = page.locator('[data-action="show-view"][data-view="gaps"]');
+    if (await gapsNav.count() > 0) {
+      await gapsNav.first().click();
+      await page.waitForTimeout(300);
+      const expertData = await page.evaluate(() => {
+        const buttons = document.querySelectorAll('button');
+        const expertBtns = Array.from(buttons).filter(b => b.textContent.includes('专家'));
+        return { count: expertBtns.length };
+      });
+      expect(expertData.count).toBeGreaterThan(0);
+    }
+  });
+
+  it('no empty category labels (structural completeness)', async () => {
+    // Back to overview
+    const overviewBtn = page.locator('[data-action="show-view"][data-view="overview"]');
+    if (await overviewBtn.count() > 0) await overviewBtn.first().click();
+    await page.waitForTimeout(300);
+    const emptyLabels = await page.evaluate(() => {
+      const issues = [];
+      // Check that category toggles have visible text
+      const toggles = document.querySelectorAll('[data-cat-id]');
+      toggles.forEach(t => {
+        const text = t.textContent.replace(/\s+/g, ' ').trim();
+        if (text.length < 2) issues.push(`Category toggle has no label`);
+      });
+      return issues;
+    });
+    expect(emptyLabels).toEqual([]);
+  });
+
+  it('no NaN or [object Object] in rendered text', async () => {
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    expect(bodyText).not.toContain('NaN');
+    expect(bodyText).not.toContain('[object Object]');
+    expect(bodyText).not.toMatch(/\bnull\b/);
+  });
+
   it('cleanup', async () => {
     await browser.close();
   });
@@ -214,6 +279,128 @@ describe('en demo — rendering', () => {
       return broken;
     });
     expect(brokenLinks).toEqual([]);
+  });
+
+  it('no NaN or [object Object] in rendered text', async () => {
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    expect(bodyText).not.toContain('NaN');
+    expect(bodyText).not.toContain('[object Object]');
+    expect(bodyText).not.toContain('undefined');
+  });
+
+  it('cleanup', async () => {
+    await browser.close();
+  });
+});
+
+// Cross-cutting boundary tests
+describe('boundary & edge cases', () => {
+  let browser, page, errors;
+
+  it('setup', async () => {
+    ({ browser, page, errors } = await openReport(resolve(ROOT, 'zh/demo-report.html')));
+    expect(errors).toEqual([]);
+  }, 10000);
+
+  it('all javascript:void(0) links have click handlers', async () => {
+    const unhandledLinks = await page.evaluate(() => {
+      const links = document.querySelectorAll('a[href="javascript:void(0)"]');
+      const unhandled = [];
+      links.forEach(a => {
+        // Must have data-doc-id or data-action or onclick or be inside event-delegated container
+        const hasHandler = a.dataset.docId || a.dataset.action || a.onclick ||
+          a.closest('[data-doc-id]') || a.closest('[data-action]');
+        if (!hasHandler) unhandled.push(a.innerText.slice(0, 40));
+      });
+      return unhandled;
+    });
+    expect(unhandledLinks).toEqual([]);
+  });
+
+  it('score values are within 0-10 range', async () => {
+    const invalidScores = await page.evaluate(() => {
+      const data = window.__KNOWLEDGELENS_DATA || window.reportData;
+      if (!data) return [];
+      const issues = [];
+      (data.domains || []).forEach(d => {
+        if (d.score < 0 || d.score > 10) issues.push(`domain ${d.name}: score=${d.score}`);
+        (d.categories || []).forEach(c => {
+          if (c.score < 0 || c.score > 10) issues.push(`category ${c.name}: score=${c.score}`);
+          (c.items || []).forEach(item => {
+            if (item.score < 0 || item.score > 10) issues.push(`item ${item.name}: score=${item.score}`);
+          });
+        });
+      });
+      return issues;
+    });
+    expect(invalidScores).toEqual([]);
+  });
+
+  it('all docIds referenced in gaps exist in domains', async () => {
+    const orphanRefs = await page.evaluate(() => {
+      const data = window.__KNOWLEDGELENS_DATA || window.reportData;
+      if (!data) return [];
+      const allDocIds = new Set();
+      (data.domains || []).forEach(d => {
+        (d.categories || []).forEach(c => {
+          (c.items || []).forEach(item => allDocIds.add(item.id));
+        });
+      });
+      const issues = [];
+      (data.domains || []).forEach(d => {
+        (d.gaps || []).forEach(g => {
+          (g.from || []).forEach(ref => {
+            if (!allDocIds.has(ref)) issues.push(`gap "${g.title}" references non-existent docId: ${ref}`);
+          });
+        });
+      });
+      return issues;
+    });
+    expect(orphanRefs).toEqual([]);
+  });
+
+  it('no truncated HTML tags in document content', async () => {
+    const truncated = await page.evaluate(() => {
+      const data = window.__KNOWLEDGELENS_DATA || window.reportData;
+      if (!data) return [];
+      const issues = [];
+      (data.domains || []).forEach(d => {
+        (d.categories || []).forEach(c => {
+          (c.items || []).forEach(item => {
+            if (item.document) {
+              // Check for unclosed tags (basic heuristic)
+              const opens = (item.document.match(/<[a-z][^>]*>/gi) || []).length;
+              const closes = (item.document.match(/<\/[a-z]+>/gi) || []).length;
+              if (Math.abs(opens - closes) > 3) {
+                issues.push(`${item.name}: open=${opens} close=${closes}`);
+              }
+            }
+          });
+        });
+      });
+      return issues;
+    });
+    expect(truncated).toEqual([]);
+  });
+
+  it('page does not have excessive empty whitespace blocks', async () => {
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    // No more than 5 consecutive blank lines (indicates missing content)
+    const hasExcessiveGaps = /\n{6,}/.test(bodyText);
+    expect(hasExcessiveGaps).toBe(false);
+  });
+
+  it('page has meaningful structure (header + content areas)', async () => {
+    const structure = await page.evaluate(() => {
+      const body = document.body.innerText;
+      const hasDomains = body.includes('产品') || body.includes('Product') || body.includes('Market');
+      const hasNavigation = document.querySelectorAll('[data-action]').length > 0;
+      const hasContent = body.length > 500;
+      return { hasDomains, hasNavigation, hasContent };
+    });
+    expect(structure.hasDomains).toBe(true);
+    expect(structure.hasNavigation).toBe(true);
+    expect(structure.hasContent).toBe(true);
   });
 
   it('cleanup', async () => {
