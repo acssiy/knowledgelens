@@ -1855,7 +1855,7 @@ function renderKnowledgeDetail(container) {
               <li>
                 <span class="bullet">•</span>
                 <span class="content">
-                  ${gap.priority === '高' ? '<span class="priority-badge">High Priority</span>' : gap.priority === '中' ? '<span class="priority-badge med">Medium Priority</span>' : '<span class="priority-badge low">Low Priority</span>'}
+                  ${gap.priority === 'high' ? '<span class="priority-badge">High Priority</span>' : gap.priority === 'medium' ? '<span class="priority-badge med">Medium Priority</span>' : '<span class="priority-badge low">Low Priority</span>'}
                   <strong>${gap.title}</strong> — ${gap.brief}
                 </span>
               </li>
@@ -1924,7 +1924,7 @@ function renderGaps(container) {
       resources:gap.resources||null, experts:gap.experts });
   });
   
-  const priorityOrder = {'高':0,'中':1,'低':2};
+  const priorityOrder = {'high':0,'medium':1,'low':2};
   allItems.sort((a,b) => {
     const p = (priorityOrder[a.priority]||2) - (priorityOrder[b.priority]||2);
     if (p !== 0) return p;
@@ -1933,9 +1933,9 @@ function renderGaps(container) {
     return 0;
   });
   
-  const highItems = allItems.filter(i => i.priority === '高');
-  const medItems = allItems.filter(i => i.priority === '中');
-  const lowItems = allItems.filter(i => i.priority === '低');
+  const highItems = allItems.filter(i => i.priority === 'high');
+  const medItems = allItems.filter(i => i.priority === 'medium');
+  const lowItems = allItems.filter(i => i.priority === 'low');
   
   let h = `<div class="gaps-header"><h2>Skills to Improve</h2><p>${allItems.length} suggestions</p></div>`;
   
@@ -2274,7 +2274,7 @@ function runSelfTest() {
         if (!item.summary) errors.push(`${ip}: missing summary`);
         if (!item.experts?.length) errors.push(`${ip}: missing expert recommendations`);
         if (!['深度','中等','基础'].includes(item.level)) errors.push(`${ip}: invalid level "${item.level}"`);
-        if (!['高','中','低'].includes(item.improvePriority)) errors.push(`${ip}: invalid improvePriority`);
+        if (!['high','medium','low'].includes(item.improvePriority)) errors.push(`${ip}: invalid improvePriority`);
         if (item.docId && !data.documents?.[item.docId]) errors.push(`${ip}: docId "${item.docId}" not found in documents`);
       });
     });
@@ -2285,7 +2285,7 @@ function runSelfTest() {
       if (!gap.title) errors.push(`${prefix} gap "${gap.title}": missing title`);
       if (!gap.brief) errors.push(`${prefix} gap "${gap.title}": missing brief`);
       if (!gap.experts?.length) errors.push(`${prefix} gap "${gap.title}": missing expert recommendations`);
-      if (!['高','中','低'].includes(gap.priority)) errors.push(`${prefix} gap "${gap.title}": invalid priority`);
+      if (!['high','medium','low'].includes(gap.priority)) errors.push(`${prefix} gap "${gap.title}": invalid priority`);
       if (!['extend','new'].includes(gap.type)) errors.push(`${prefix} gap "${gap.title}": invalid type`);
     });
   });

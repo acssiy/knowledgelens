@@ -97,13 +97,19 @@ describe('zh demo — rendering', () => {
   });
 
   it('gaps view loads and shows gap cards', async () => {
-    // Navigate to gaps view
     const gapsNav = page.locator('[data-action="show-view"][data-view="gaps"]');
     if (await gapsNav.count() > 0) {
       await gapsNav.first().click();
       await page.waitForTimeout(300);
       const bodyText = await page.evaluate(() => document.body.innerText);
       expect(bodyText).not.toContain('undefined');
+      // Must have priority groups with items, not just a header
+      expect(bodyText).toMatch(/优先级|Priority/);
+      const gapCards = await page.evaluate(() => {
+        const cards = document.querySelectorAll('[id^="gap-item-"]');
+        return cards.length;
+      });
+      expect(gapCards).toBeGreaterThan(0);
       expect(errors).toEqual([]);
     }
   });
@@ -255,13 +261,21 @@ describe('en demo — rendering', () => {
     expect(errors).toEqual([]);
   });
 
-  it('gaps view renders without errors', async () => {
+  it('gaps view renders with actual gap cards', async () => {
     const gapsNav = page.locator('[data-action="show-view"][data-view="gaps"]');
     if (await gapsNav.count() > 0) {
       await gapsNav.first().click();
       await page.waitForTimeout(300);
       const bodyText = await page.evaluate(() => document.body.innerText);
       expect(bodyText).not.toContain('undefined');
+      // Must have actual priority groups with items
+      expect(bodyText).toMatch(/Priority|优先级/);
+      // Must have at least one gap card with a title (not just header)
+      const gapCards = await page.evaluate(() => {
+        const cards = document.querySelectorAll('[id^="gap-item-"]');
+        return cards.length;
+      });
+      expect(gapCards).toBeGreaterThan(0);
       expect(errors).toEqual([]);
     }
   });
