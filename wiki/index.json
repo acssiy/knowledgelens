@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": null,
+  "evaluationBasis": null,
+  "stats": {
+    "totalItems": 0,
+    "totalDomains": 0,
+    "totalGaps": 0,
+    "totalDocuments": 0,
+    "lastIngestAt": null,
+    "totalIngests": 0
+  },
+  "domains": []
+}

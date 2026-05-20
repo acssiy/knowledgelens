@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KnowledgeLens Wiki Index",
+  "description": "Compressed knowledge directory — always loaded into LLM context so it knows what exists",
+  "type": "object",
+  "required": ["version", "lastUpdated", "domains", "stats"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version for migration support"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evaluationBasis": {
+      "type": "string",
+      "description": "The benchmark against which knowledge is evaluated"
+    },
+    "stats": {
+      "type": "object",
+      "required": ["totalItems", "totalDomains", "totalGaps", "totalDocuments"],
+      "properties": {
+        "totalItems": { "type": "integer" },
+        "totalDomains": { "type": "integer" },
+        "totalGaps": { "type": "integer" },
+        "totalDocuments": { "type": "integer" },
+        "lastIngestAt": { "type": "string", "format": "date-time" },
+        "totalIngests": { "type": "integer" }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "score", "categories"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "score": { "type": "number", "minimum": 0, "maximum": 10 },
+          "icon": { "type": "string" },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "itemCount", "score"],
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "itemCount": { "type": "integer" },
+                "score": { "type": "number", "minimum": 0, "maximum": 10 },
+                "items": {
+                  "type": "array",
+                  "description": "Brief item list — id + name + level only (detail in wiki pages)",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "name", "level"],
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "level": { "type": "string", "enum": ["advanced", "intermediate", "basic"] }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "gaps": {
+            "type": "array",
+            "description": "Brief gap list — id + title + priority only",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "priority"],
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "priority": { "type": "string", "enum": ["high", "medium", "low"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

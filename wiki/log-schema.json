@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KnowledgeLens Ingest Log",
+  "description": "Append-only log of all ingest operations for diff tracking",
+  "type": "object",
+  "required": ["entries"],
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "timestamp", "action", "files"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique operation ID (ISO timestamp + random suffix)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["ingest", "query", "lint", "manual-edit"],
+            "description": "What triggered this log entry"
+          },
+          "files": {
+            "type": "array",
+            "description": "Source files processed in this operation",
+            "items": {
+              "type": "object",
+              "required": ["path", "hash", "status"],
+              "properties": {
+                "path": { "type": "string" },
+                "hash": { "type": "string", "description": "SHA-256 of file content" },
+                "size": { "type": "integer" },
+                "status": { "type": "string", "enum": ["new", "modified", "unchanged"] }
+              }
+            }
+          },
+          "result": {
+            "type": "object",
+            "properties": {
+              "itemsAdded": { "type": "integer" },
+              "itemsUpdated": { "type": "integer" },
+              "itemsUnchanged": { "type": "integer" },
+              "gapsAdded": { "type": "integer" },
+              "gapsResolved": { "type": "integer" },
+              "contradictions": { "type": "integer" },
+              "wikiPagesModified": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "summary": {
+            "type": "string",
+            "description": "Human-readable one-line summary of what changed"
+          }
+        }
+      }
+    }
+  }
+}

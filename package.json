@@ -8,7 +8,12 @@
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "scan": "node scripts/diff-scan.js",
+    "ingest": "node scripts/ingest.js",
+    "lint:wiki": "node scripts/lint.js",
+    "hot-index": "node scripts/hot-index.js",
+    "wiki:generate": "node scripts/wiki-generate.js"
   },
   "repository": {
     "type": "git",
