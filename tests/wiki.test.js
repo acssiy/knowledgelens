@@ -319,3 +319,55 @@ describe('double-write', () => {
     expect(existsSync(join(TEST_WIKI, 'hot-index.md'))).toBe(true);
   });
 });
+
+describe('query', () => {
+  beforeAll(() => {
+    setupTestEnv();
+    const index = {
+      version: '1.0.0',
+      lastUpdated: '2025-05-07T00:00:00Z',
+      stats: { totalItems: 3, totalDomains: 2, totalGaps: 1, totalIngests: 1, totalDocuments: 2 },
+      domains: [
+        {
+          id: 'frontend', name: 'Frontend Development', score: 7.0,
+          categories: [{ id: 'c1', name: 'React', score: 8, itemCount: 2, items: [
+            { id: 'i1', name: 'Hooks', level: 'advanced' },
+            { id: 'i2', name: 'Context API', level: 'intermediate' }
+          ]}],
+          gaps: [{ id: 'g1', title: 'Testing', priority: 'high' }]
+        },
+        {
+          id: 'backend', name: 'Backend', score: 4.0,
+          categories: [{ id: 'c2', name: 'Node.js', score: 5, itemCount: 1, items: [
+            { id: 'i3', name: 'Express', level: 'beginner' }
+          ]}],
+          gaps: []
+        }
+      ]
+    };
+    writeFileSync(join(TEST_WIKI, 'index.json'), JSON.stringify(index));
+  });
+  afterAll(() => rmSync(TEST_DIR, { recursive: true, force: true }));
+  
+  it('prepares query context with relevant pages', async () => {
+    const { prepareQuery } = await import('../scripts/query.js');
+    const result = prepareQuery('How good am I at React hooks?', { wikiDir: TEST_WIKI });
+    expect(result.status).toBe('ready');
+    expect(result.context.question).toContain('React');
+    expect(result.context.hotIndex).toContain('Frontend');
+    expect(result.context.relevantPages.length).toBeGreaterThan(0);
+    expect(result.context.relevantPages[0].id).toBe('frontend');
+  });
+  
+  it('filters by domain when specified', async () => {
+    const { prepareQuery } = await import('../scripts/query.js');
+    const result = prepareQuery('What skills do I have?', { wikiDir: TEST_WIKI, domain: 'backend' });
+    expect(result.context.relevantPages.every(p => p.id === 'backend')).toBe(true);
+  });
+  
+  it('returns error for uninitialized wiki', async () => {
+    const { prepareQuery } = await import('../scripts/query.js');
+    const result = prepareQuery('test', { wikiDir: '/nonexistent' });
+    expect(result.error).toBeDefined();
+  });
+});
