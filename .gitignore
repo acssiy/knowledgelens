@@ -9,3 +9,14 @@ Thumbs.db
 .idea/
 .vscode/
 node_modules/
+
+# Wiki personal data (schemas/prompts stay tracked)
+wiki/index.json
+wiki/log.json
+wiki/hot-index.md
+wiki/domains/
+wiki/entities/
+wiki/concepts/
+wiki/gaps/
+wiki/sources/
+wiki/syntheses/

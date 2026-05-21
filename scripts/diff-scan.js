@@ -99,7 +99,7 @@ function getProcessedHashes(log) {
   return hashMap;
 }
 
-export function diffScan(sourcePath, wikiDir = './wiki') {
+export function diffScan(sourcePath, wikiDir = './wiki-data') {
   const resolvedSource = resolve(sourcePath);
   const resolvedWiki = resolve(wikiDir);
   
@@ -156,7 +156,7 @@ if (process.argv[1] && process.argv[1].endsWith('diff-scan.js')) {
     : 'text';
   const wikiDir = args.includes('--wiki-dir')
     ? args[args.indexOf('--wiki-dir') + 1]
-    : './wiki';
+    : './wiki-data';
   
   if (!sourcePath) {
     console.error('Usage: node scripts/diff-scan.js <source-path> [--output json|text] [--wiki-dir ./wiki]');

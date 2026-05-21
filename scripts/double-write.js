@@ -29,7 +29,7 @@ import { generateHotIndex } from './hot-index.js';
  * @param {string} wikiDir - Path to wiki directory
  * @returns {object} { index, hotIndex, pagesWritten }
  */
-export function doubleWrite(llmResponse, wikiDir = './wiki') {
+export function doubleWrite(llmResponse, wikiDir = './wiki-data') {
   const resolved = resolve(wikiDir);
   
   // 1. Apply index changes

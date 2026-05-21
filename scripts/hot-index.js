@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { resolve, join } from 'path';
 
-export function generateHotIndex(wikiDir = './wiki') {
+export function generateHotIndex(wikiDir = './wiki-data') {
   const indexPath = join(resolve(wikiDir), 'index.json');
   if (!existsSync(indexPath)) return '⚠️ Wiki is empty — no knowledge ingested yet.';
   
@@ -50,7 +50,7 @@ if (process.argv[1] && process.argv[1].endsWith('hot-index.js')) {
   const args = process.argv.slice(2);
   const wikiDir = args.includes('--wiki-dir')
     ? args[args.indexOf('--wiki-dir') + 1]
-    : './wiki';
+    : './wiki-data';
   const outputPath = args.includes('--output')
     ? args[args.indexOf('--output') + 1]
     : null;

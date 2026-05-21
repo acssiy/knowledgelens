@@ -175,7 +175,7 @@ if (process.argv[1] && process.argv[1].endsWith('ingest.js')) {
   const sourcePath = args.find(a => !a.startsWith('--'));
   const wikiDir = args.includes('--wiki-dir')
     ? args[args.indexOf('--wiki-dir') + 1]
-    : './wiki';
+    : './wiki-data';
   const applyPath = args.includes('--apply')
     ? args[args.indexOf('--apply') + 1]
     : null;

@@ -19,7 +19,7 @@ import { generateHotIndex } from './hot-index.js';
  * Returns everything the LLM needs to answer the question.
  */
 export function prepareQuery(question, options = {}) {
-  const wikiDir = resolve(options.wikiDir || './wiki');
+  const wikiDir = resolve(options.wikiDir || './wiki-data');
   const indexPath = join(wikiDir, 'index.json');
   
   if (!existsSync(indexPath)) {

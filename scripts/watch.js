@@ -18,7 +18,7 @@ const DEBOUNCE_MS = 2000;
 
 export function startWatcher(sourcePath, options = {}) {
   const resolved = resolve(sourcePath);
-  const wikiDir = resolve(options.wikiDir || './wiki');
+  const wikiDir = resolve(options.wikiDir || './wiki-data');
   const interval = (options.interval || DEFAULT_INTERVAL) * 1000;
   
   if (!existsSync(resolved)) {

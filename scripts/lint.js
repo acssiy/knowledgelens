@@ -33,7 +33,7 @@ function listJSONFiles(dir) {
     .map(f => join(dir, f));
 }
 
-export function lintWiki(wikiDir = './wiki') {
+export function lintWiki(wikiDir = './wiki-data') {
   const resolvedWiki = resolve(wikiDir);
   const index = loadJSON(join(resolvedWiki, 'index.json'));
   const issues = [];
@@ -161,7 +161,7 @@ if (process.argv[1] && process.argv[1].endsWith('lint.js')) {
   const args = process.argv.slice(2);
   const wikiDir = args.includes('--wiki-dir')
     ? args[args.indexOf('--wiki-dir') + 1]
-    : './wiki';
+    : './wiki-data';
   const outputFormat = args.includes('--output')
     ? args[args.indexOf('--output') + 1]
     : 'text';
