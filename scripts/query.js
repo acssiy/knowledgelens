@@ -52,41 +52,121 @@ export function prepareQuery(question, options = {}) {
 }
 
 /**
- * Finds wiki pages most relevant to the question.
- * Uses simple keyword matching against domain/category/item names.
+ * BM25 retrieval — finds wiki pages most relevant to the question.
+ * Replaces naive keyword .includes() with proper TF-IDF scoring.
+ * 
+ * BM25 parameters: k1 (term saturation), b (length normalization)
+ * Field boosts: domain name (2x), category name (1.5x), item name (1x), gap title (1.2x)
  */
-function findRelevantPages(question, index, wikiDir, domainFilter) {
-  const keywords = question.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-  const pages = [];
-  
+const BM25_K1 = 1.2;
+const BM25_B = 0.75;
+const FIELD_BOOSTS = { domain: 2.0, category: 1.5, item: 1.0, gap: 1.2 };
+const STOP_WORDS = new Set(['the','a','an','is','are','was','were','be','been','being',
+  'have','has','had','do','does','did','will','would','could','should','may','might',
+  'shall','can','need','dare','to','of','in','for','on','with','at','by','from','as',
+  'into','about','between','through','during','before','after','above','below','and',
+  'but','or','nor','not','so','yet','both','either','neither','each','every','all',
+  'any','few','more','most','other','some','such','no','only','own','same','than',
+  'too','very','just','because','how','what','which','who','whom','this','that',
+  'these','those','i','me','my','myself','we','our','you','your','he','him','his',
+  'she','her','it','its','they','them','their','know','tell','about','strong','much']);
+
+function tokenize(text) {
+  return text.toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 1 && !STOP_WORDS.has(w));
+}
+
+function buildDocuments(index) {
+  const docs = [];
   for (const domain of index.domains) {
-    if (domainFilter && domain.id !== domainFilter) continue;
-    
-    const domainText = [domain.name, ...(domain.categories || []).map(c => c.name),
-      ...(domain.categories || []).flatMap(c => (c.items || []).map(i => i.name))
-    ].join(' ').toLowerCase();
-    
-    const relevance = keywords.filter(k => domainText.includes(k)).length;
-    
-    if (relevance > 0 || !domainFilter) {
-      // Load domain page if exists
-      const pagePath = join(wikiDir, 'domains', `${domain.id}.json`);
+    const fields = {
+      domain: tokenize(domain.name || ''),
+      category: (domain.categories || []).flatMap(c => tokenize(c.name || '')),
+      item: (domain.categories || []).flatMap(c => 
+        (c.items || []).flatMap(i => tokenize(i.name || ''))
+      ),
+      gap: (domain.gaps || []).flatMap(g => tokenize(g.title || ''))
+    };
+    // All tokens flattened for length calculation
+    const allTokens = Object.values(fields).flat();
+    docs.push({ domainId: domain.id, fields, allTokens, length: allTokens.length });
+  }
+  return docs;
+}
+
+function scoreBM25(queryTokens, docs) {
+  const N = docs.length;
+  const avgDL = docs.reduce((s, d) => s + d.length, 0) / Math.max(N, 1);
+  
+  // Compute IDF for each query token
+  const idf = {};
+  for (const token of queryTokens) {
+    const docsContaining = docs.filter(d => d.allTokens.includes(token)).length;
+    idf[token] = Math.log((N - docsContaining + 0.5) / (docsContaining + 0.5) + 1);
+  }
+  
+  // Score each document
+  const scores = docs.map(doc => {
+    let score = 0;
+    for (const token of queryTokens) {
+      // Sum across fields with boosts
+      for (const [field, boost] of Object.entries(FIELD_BOOSTS)) {
+        const fieldTokens = doc.fields[field] || [];
+        const tf = fieldTokens.filter(t => t === token).length;
+        if (tf === 0) continue;
+        const fieldLen = fieldTokens.length;
+        const normTF = (tf * (BM25_K1 + 1)) / 
+          (tf + BM25_K1 * (1 - BM25_B + BM25_B * (fieldLen / Math.max(avgDL, 1))));
+        score += idf[token] * normTF * boost;
+      }
+    }
+    return { domainId: doc.domainId, score };
+  });
+  
+  return scores.sort((a, b) => b.score - a.score);
+}
+
+function findRelevantPages(question, index, wikiDir, domainFilter) {
+  const queryTokens = [...new Set(tokenize(question))]; // dedup
+  const docs = buildDocuments(index);
+  
+  // Apply domain filter before scoring if specified
+  const filteredDocs = domainFilter 
+    ? docs.filter(d => d.domainId === domainFilter)
+    : docs;
+  
+  // Empty query fallback: return all domains sorted by score
+  if (queryTokens.length === 0) {
+    return filteredDocs.map(d => {
+      const domain = index.domains.find(dom => dom.id === d.domainId);
+      return { type: 'domain', id: d.domainId, relevance: 0, content: domain };
+    }).slice(0, 5);
+  }
+  
+  const ranked = scoreBM25(queryTokens, filteredDocs);
+  
+  const pages = [];
+  for (const { domainId, score } of ranked) {
+    // Include if score > 0 (matched something) or if no filter is set (return all as fallback)
+    if (score > 0 || !domainFilter) {
+      const domain = index.domains.find(d => d.id === domainId);
+      if (!domain) continue;
+      
+      const pagePath = join(wikiDir, 'domains', `${domainId}.json`);
       if (existsSync(pagePath)) {
         pages.push({
-          type: 'domain',
-          id: domain.id,
-          relevance,
+          type: 'domain', id: domainId, relevance: score,
           content: JSON.parse(readFileSync(pagePath, 'utf-8'))
         });
       } else {
-        pages.push({ type: 'domain', id: domain.id, relevance, content: domain });
+        pages.push({ type: 'domain', id: domainId, relevance: score, content: domain });
       }
     }
   }
   
-  // Sort by relevance
-  pages.sort((a, b) => b.relevance - a.relevance);
-  return pages.slice(0, 5); // Top 5 most relevant
+  return pages.slice(0, 5);
 }
 
 const DEFAULT_QUERY_PROMPT = `You are a knowledge base assistant. Answer the user's question based ONLY on the knowledge base state provided. If the information isn't in the knowledge base, say so clearly.`;

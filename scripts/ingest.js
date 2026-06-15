@@ -16,9 +16,11 @@
  *   With --apply:    applies LLM response to wiki files (apply mode)
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { createHash } from 'crypto';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'fs';
 import { resolve, join } from 'path';
 import { diffScan } from './diff-scan.js';
+import { validateResponse, deriveScores } from './validate.js';
 
 function loadJSON(filepath) {
   if (!existsSync(filepath)) return null;
@@ -26,7 +28,9 @@ function loadJSON(filepath) {
 }
 
 function saveJSON(filepath, data) {
-  writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf-8');
+  const tmpPath = filepath + '.tmp';
+  writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf-8');
+  renameSync(tmpPath, filepath);
 }
 
 function prepareIngest(sourcePath, wikiDir) {
@@ -76,20 +80,144 @@ function applyUpdates(wikiDir, llmResponse) {
   const index = loadJSON(indexPath) || { version: '1.0.0', domains: [], stats: {} };
   const log = loadJSON(logPath) || { entries: [] };
   
-  // Apply index changes from LLM response
-  if (llmResponse.index_changes) {
-    const changes = llmResponse.index_changes;
+  // Validate LLM response before applying
+  const validation = validateResponse(llmResponse, index);
+  if (!validation.valid) {
+    return { 
+      index, 
+      log: null, 
+      warnings: validation.warnings, 
+      errors: validation.errors,
+      rejected: true 
+    };
+  }
+  
+  // Idempotency check: hash the sanitized response for canonical comparison
+  const responseHash = createHash('sha256')
+    .update(JSON.stringify(validation.sanitized))
+    .digest('hex');
+  const alreadyApplied = log.entries.some(e => e.responseHash === responseHash);
+  if (alreadyApplied) {
+    return { index, log: null, warnings: ['Skipped: this response was already applied (idempotency check)'], skipped: true };
+  }
+  
+  // Snapshot for rollback
+  const snapshot = {
+    index: JSON.parse(JSON.stringify(index)),
+    log: JSON.parse(JSON.stringify(log))
+  };
+  
+  // Use sanitized (clamped/corrected) response
+  const safeResponse = validation.sanitized;
+  const warnings = [];
+  
+  // Process updates array (all 6 action types from ingest-prompt.md)
+  if (safeResponse.updates && Array.isArray(llmResponse.updates)) {
+    for (const update of safeResponse.updates) {
+      switch (update.action) {
+        case 'add_domain': {
+          if (!update.data || !update.data.id) break;
+          if (!index.domains.find(d => d.id === update.data.id)) {
+            index.domains.push(update.data);
+          }
+          // Write domain page
+          const domainsDir = join(resolvedWiki, 'domains');
+          if (!existsSync(domainsDir)) mkdirSync(domainsDir, { recursive: true });
+          const domainPath = join(domainsDir, `${update.data.id}.json`);
+          saveJSON(domainPath, update.data);
+          break;
+        }
+        case 'add_item': {
+          const target = parseTarget(update.target);
+          if (!target) break;
+          const domain = index.domains.find(d => d.id === target.domainId);
+          if (!domain) { warnings.push(`add_item: domain "${target.domainId}" not found`); break; }
+          const cat = (domain.categories || []).find(c => c.id === target.categoryId);
+          if (!cat) { warnings.push(`add_item: category "${target.categoryId}" not found`); break; }
+          if (!cat.items) cat.items = [];
+          const itemData = update.data || {};
+          const itemId = target.itemId || itemData.id;
+          if (itemId && !cat.items.find(i => i.id === itemId)) {
+            cat.items.push({ id: itemId, ...itemData });
+            cat.itemCount = cat.items.length;
+          }
+          break;
+        }
+        case 'update_item': {
+          const target = parseTarget(update.target);
+          if (!target) break;
+          const domain = index.domains.find(d => d.id === target.domainId);
+          if (!domain) { warnings.push(`update_item: domain "${target.domainId}" not found`); break; }
+          const cat = (domain.categories || []).find(c => c.id === target.categoryId);
+          if (!cat) { warnings.push(`update_item: category "${target.categoryId}" not found`); break; }
+          const item = (cat.items || []).find(i => i.id === target.itemId);
+          if (!item) { warnings.push(`update_item: item "${target.itemId}" not found`); break; }
+          // Merge update data into existing item
+          if (update.data) Object.assign(item, update.data);
+          break;
+        }
+        case 'add_gap': {
+          const target = parseTarget(update.target);
+          if (!target) break;
+          const domain = index.domains.find(d => d.id === target.domainId);
+          if (!domain) { warnings.push(`add_gap: domain "${target.domainId}" not found`); break; }
+          if (!domain.gaps) domain.gaps = [];
+          const gapData = update.data || {};
+          const gapId = gapData.id || `gap-${Date.now()}`;
+          if (!domain.gaps.find(g => g.id === gapId)) {
+            domain.gaps.push({ id: gapId, ...gapData });
+          }
+          break;
+        }
+        case 'resolve_gap': {
+          const target = parseTarget(update.target);
+          if (!target) break;
+          const domain = index.domains.find(d => d.id === target.domainId);
+          if (!domain) { warnings.push(`resolve_gap: domain "${target.domainId}" not found`); break; }
+          const gapId = target.categoryId || target.itemId || (update.data && update.data.id);
+          if (gapId && domain.gaps) {
+            const gap = domain.gaps.find(g => g.id === gapId);
+            if (gap) {
+              gap.resolved = true;
+              gap.resolvedAt = new Date().toISOString();
+              gap.resolvedBy = update.evidence || null;
+            }
+          }
+          break;
+        }
+        case 'update_score': {
+          const target = parseTarget(update.target);
+          if (!target) break;
+          const domain = index.domains.find(d => d.id === target.domainId);
+          if (!domain) { warnings.push(`update_score: domain "${target.domainId}" not found`); break; }
+          if (target.categoryId) {
+            const cat = (domain.categories || []).find(c => c.id === target.categoryId);
+            if (cat && update.data && typeof update.data.score === 'number') {
+              cat.score = update.data.score;
+            }
+          } else if (update.data && typeof update.data.score === 'number') {
+            domain.score = update.data.score;
+          }
+          break;
+        }
+        default:
+          warnings.push(`Unknown action: "${update.action}"`);
+      }
+    }
+  }
+  
+  // Also support index_changes format (backward compatibility)
+  if (safeResponse.index_changes) {
+    const changes = safeResponse.index_changes;
     
-    // Add new domains
     if (changes.new_domains) {
       for (const domain of changes.new_domains) {
-        if (!index.domains.find(d => d.id === domain.id)) {
+        if (domain.id && !index.domains.find(d => d.id === domain.id)) {
           index.domains.push(domain);
         }
       }
     }
     
-    // Add new items to existing categories
     if (changes.new_items) {
       for (const newItem of changes.new_items) {
         const domain = index.domains.find(d => d.id === newItem.domainId);
@@ -106,7 +234,6 @@ function applyUpdates(wikiDir, llmResponse) {
       }
     }
     
-    // Update scores
     if (changes.score_changes) {
       for (const sc of changes.score_changes) {
         const domain = index.domains.find(d => d.id === sc.domainId);
@@ -128,7 +255,7 @@ function applyUpdates(wikiDir, llmResponse) {
     for (const c of d.categories || []) {
       totalItems += (c.items || []).length;
     }
-    totalGaps += (d.gaps || []).length;
+    totalGaps += (d.gaps || []).filter(g => !g.resolved).length;
   }
   index.stats = {
     ...index.stats,
@@ -140,33 +267,55 @@ function applyUpdates(wikiDir, llmResponse) {
   };
   index.lastUpdated = new Date().toISOString();
   
-  // Append log entry
-  if (llmResponse.log_entry) {
+  // Derive domain scores deterministically from category scores
+  deriveScores(index);
+  
+  // Append log entry with idempotency hash
+  if (safeResponse.log_entry) {
     log.entries.push({
       id: `ingest-${Date.now()}`,
       timestamp: new Date().toISOString(),
       action: 'ingest',
-      files: llmResponse.files_processed || [],
-      result: llmResponse.log_entry,
-      summary: llmResponse.log_entry.summary || 'Ingest completed'
+      files: safeResponse.files_processed || [],
+      result: safeResponse.log_entry,
+      summary: safeResponse.log_entry.summary || 'Ingest completed',
+      responseHash,
+      warnings: [...validation.warnings, ...warnings].length > 0 
+        ? [...validation.warnings, ...warnings] : undefined
     });
   }
   
-  // Write domain pages
-  if (llmResponse.updates) {
-    for (const update of llmResponse.updates) {
-      if (update.action === 'add_domain' && update.data) {
-        const domainPath = join(resolvedWiki, 'domains', `${update.data.id}.json`);
-        saveJSON(domainPath, update.data);
-      }
-    }
+  // Atomic save with rollback on failure
+  try {
+    saveJSON(indexPath, index);
+    saveJSON(logPath, log);
+  } catch (err) {
+    // Rollback: restore previous state
+    saveJSON(indexPath, snapshot.index);
+    saveJSON(logPath, snapshot.log);
+    return { 
+      index: snapshot.index, 
+      log: null, 
+      errors: [`Write failed, rolled back: ${err.message}`],
+      warnings: validation.warnings,
+      rejected: true 
+    };
   }
   
-  // Save
-  saveJSON(indexPath, index);
-  saveJSON(logPath, log);
-  
-  return { index, log: log.entries[log.entries.length - 1] };
+  return { index, log: log.entries[log.entries.length - 1], warnings: [...validation.warnings, ...warnings] };
+}
+
+/**
+ * Parses a target string like "domain-id/category-id/item-id"
+ */
+function parseTarget(target) {
+  if (!target || typeof target !== 'string') return null;
+  const parts = target.split('/');
+  return {
+    domainId: parts[0] || null,
+    categoryId: parts[1] || null,
+    itemId: parts[2] || null
+  };
 }
 
 // CLI
