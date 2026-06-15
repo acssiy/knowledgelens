@@ -41,7 +41,7 @@ The core insight: **knowledge management is a continuous learning loop, not a on
 
 Two-layer architecture separating **deterministic operations** from **LLM reasoning**:
 
-- **Deterministic layer**: file scanning, SHA-256 diffing, JSON persistence, score arithmetic — zero LLM cost, fully testable
+- **Deterministic layer**: file scanning, SHA-256 diffing, JSON persistence, score arithmetic, **BM25 retrieval**, **response validation** — zero LLM cost, fully testable
 - **LLM reasoning layer**: knowledge extraction, level assessment, query synthesis — invoked only when semantic understanding is needed
 
 In this system, "agent" means a repeatable LLM workflow with explicit context assembly, structured output, and deterministic apply steps — orchestrated via CLI, with human confirmation before any write operation.
@@ -67,9 +67,13 @@ ingest.js (apply)          ← structured update to wiki state
 
 **Key design decisions:**
 - **Two-phase orchestration** — separates "prepare context" from "apply response", making the pipeline LLM-agnostic and testable without API calls
+- **LLM response validation** — a `validate.js` layer enforces score bounds [0,10], limits per-ingest delta to ±2.0, rejects malformed actions, and auto-corrects invalid levels before any write
+- **Atomic apply with rollback** — temp-file + rename persistence; on failure, restores a pre-mutation snapshot automatically
+- **Idempotency** — SHA-256 hash of each sanitized response prevents duplicate applies (safe to retry)
 - **Evidence-required policy** — every knowledge item must cite source file + relevant quote; no hallucinated knowledge enters the system
 - **Contradiction handling** — the ingest prompt instructs the LLM to mark conflicts as `[!contradiction]`; the pipeline preserves these markers rather than silently overwriting
-- **Score adjustment algebra** — mastery levels (basic/intermediate/advanced) map to score deltas, keeping the scoring model consistent across ingests
+- **6 action types** — `add_domain`, `add_item`, `update_item`, `add_gap`, `resolve_gap`, `update_score` — covering the full lifecycle of knowledge evolution
+- **Deterministic score derivation** — domain scores are computed as weighted averages of category scores (by item count), ensuring consistency regardless of LLM output
 
 ### Query Agent
 
@@ -78,15 +82,16 @@ Answers questions about your knowledge base with full context awareness.
 ```
 hot-index.js               ← compressed ~500-word KB summary (always injected)
        │
-query.js                   ← keyword relevance → top-5 page selection
+query.js (BM25)            ← TF-IDF field-boosted retrieval → top-5 page selection
        │
      [LLM]                 ← synthesize answer + decide: persist or discard
 ```
 
 **Key design decisions:**
+- **BM25 retrieval** — replaces naive keyword matching with proper information retrieval: TF-IDF scoring, stop-word removal, field boosts (domain 2×, category 1.5×, item 1×, gap 1.2×), and length normalization (k1=1.2, b=0.75)
 - **Hot-index injection** — every LLM call receives a compressed summary of the entire KB state, so it always knows "what exists" without reading every page
 - **Persist-or-discard signal** — the query prompt asks the model to flag answers worth saving (cross-domain connections, new patterns); persistence remains user-initiated
-- **Context window management** — only top-5 relevant pages are loaded (keyword relevance scoring), keeping token usage bounded while maximizing answer quality
+- **Context window management** — only top-5 relevant pages are loaded (BM25 ranked), keeping token usage bounded while maximizing answer quality
 
 
 ## Knowledge Health System
@@ -193,15 +198,16 @@ npm run lint:wiki
 | Script | Layer | Role |
 |--------|-------|------|
 | `diff-scan.js` | Deterministic | SHA-256 incremental file detection |
-| `ingest.js` | Orchestration | Two-phase prepare/apply pipeline |
+| `ingest.js` | Orchestration | Two-phase prepare/apply with validation + rollback |
+| `validate.js` | Deterministic | LLM response validation, score clamping, delta limiting |
 | `double-write.js` | Deterministic | Dedup merge + wiki page persistence |
 | `hot-index.js` | Deterministic | Compressed context summary generation |
-| `query.js` | Orchestration | Relevance matching + context assembly |
+| `query.js` | Orchestration | BM25 retrieval + context assembly |
 | `watch.js` | Autonomous | Semi-autonomous detect + auto-prepare |
 | `lint.js` | Deterministic | 6-type knowledge health checker |
 | `wiki-generate.js` | Orchestration | Wiki-to-report HTML assembler |
 
-**Testing:** 65 tests covering all pipeline stages (`npm test`). Tests run against mock data — no LLM calls required.
+**Testing:** 42+ tests covering all pipeline stages (`npm test`), including 22 adversarial tests for malformed input, score overflow, idempotency, and retrieval quality. Tests run against mock data — no LLM calls required.
 
 **Data format:** JSON-based wiki with structured `index.json` as directory, per-domain pages, and append-only `log.json` for audit trail. Default wiki state stored in `./wiki-data`.
 
@@ -224,6 +230,10 @@ npm run lint:wiki
 | Query agent with context injection | ✅ Shipped |
 | Semi-autonomous watch + auto-prepare | ✅ Shipped |
 | Knowledge health scoring | ✅ Shipped |
+| LLM response validation + score guardrails | ✅ Shipped |
+| BM25 information retrieval | ✅ Shipped |
+| Atomic apply + idempotency + rollback | ✅ Shipped |
+| Adversarial test suite | ✅ Shipped |
 | Spaced repetition integration | Exploring |
 | Goal-driven learning paths | Exploring |
 | Multi-user knowledge graphs | Exploring |
